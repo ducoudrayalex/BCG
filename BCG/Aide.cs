@@ -15,6 +15,12 @@ namespace BCG
         public Aide()
         {
             InitializeComponent();
+            rtbPresentation.LoadFile("AideBCG.rtf");
+        }
+
+        private void rtbPresentation_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

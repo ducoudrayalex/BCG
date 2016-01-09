@@ -16,5 +16,15 @@ namespace BCG
         {
             InitializeComponent();
         }
+
+        private void btnAide_Click(object sender, EventArgs e)
+        {
+            new Aide().ShowDialog();
+        }
+
+        private void btnPrincipale_Click(object sender, EventArgs e)
+        {
+            new Principale().ShowDialog();
+        }
     }
 }
