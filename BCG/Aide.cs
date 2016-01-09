@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace BCG
 {
-    public partial class Form1 : Form
+    public partial class Aide : Form
     {
-        public Form1()
+        public Aide()
         {
             InitializeComponent();
         }
