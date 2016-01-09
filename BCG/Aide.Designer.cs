@@ -33,8 +33,10 @@
             this.tabPagePres = new System.Windows.Forms.TabPage();
             this.tabPageModedemploi = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tabAide.SuspendLayout();
             this.tabPagePres.SuspendLayout();
+            this.tabPageModedemploi.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,6 +75,7 @@
             // 
             // tabPageModedemploi
             // 
+            this.tabPageModedemploi.Controls.Add(this.richTextBox1);
             this.tabPageModedemploi.Location = new System.Drawing.Point(4, 22);
             this.tabPageModedemploi.Name = "tabPageModedemploi";
             this.tabPageModedemploi.Padding = new System.Windows.Forms.Padding(3);
@@ -90,6 +93,14 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(3, 6);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(752, 509);
+            this.richTextBox1.TabIndex = 0;
+            this.richTextBox1.Text = "";
+            // 
             // Aide
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -101,6 +112,7 @@
             this.Text = "Aide";
             this.tabAide.ResumeLayout(false);
             this.tabPagePres.ResumeLayout(false);
+            this.tabPageModedemploi.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -113,5 +125,6 @@
         private System.Windows.Forms.TabPage tabPagePres;
         private System.Windows.Forms.TabPage tabPageModedemploi;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }

@@ -16,5 +16,20 @@ namespace BCG
         {
             InitializeComponent();
         }
+
+        private void présentationEtModeDemploiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Aide().ShowDialog();
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            new Apropos().ShowDialog();
+        }
+
+        private void ouvrirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
