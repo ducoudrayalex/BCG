@@ -10,11 +10,17 @@ using System.Windows.Forms;
 
 namespace BCG
 {
-    public partial class Form1 : Form
+    public partial class Aide : Form
     {
-        public Form1()
+        public Aide()
         {
             InitializeComponent();
+            rtbPresentation.LoadFile("AideBCG.rtf");
+        }
+
+        private void rtbPresentation_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
