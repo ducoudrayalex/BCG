@@ -13,7 +13,11 @@ namespace BCG
         private float _PDMconct;
         private float _txCroiss;
         private float _partProduit;
+        
+        public Matrice()
+        {
 
+        }
         public string Activite
         {
             get
