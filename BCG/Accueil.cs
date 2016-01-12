@@ -15,16 +15,22 @@ namespace BCG
         public Accueil()
         {
             InitializeComponent();
+            rtbAccueil.LoadFile("accueilbcg.rtf");
         }
 
-        private void btnAide_Click(object sender, EventArgs e)
+        private void btnLancer_Click(object sender, EventArgs e)
         {
-            new Aide().ShowDialog();
+            new Principale().Show();
         }
 
-        private void btnPrincipale_Click(object sender, EventArgs e)
+        private void btnQuitter_Click(object sender, EventArgs e)
         {
-            new Principale().ShowDialog();
+            Application.Exit();
+        }
+
+        private void btnQuitterAccueil_Click(object sender, EventArgs e)
+        {
+            new Aide().Show();
         }
     }
 }
