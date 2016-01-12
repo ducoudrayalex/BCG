@@ -28,33 +28,33 @@ namespace BCG
             Points.Add(new Matrice("D", 59, 12, 7, 40));
 
             bindingSource.DataSource = Points;
-            dgvTableur.AutoGenerateColumns = false;
+            dgvTableur.AutoGenerateColumns = true;
             dgvTableur.DataSource = bindingSource;
 
-            DataGridViewColumn col1 = new DataGridViewTextBoxColumn();
-            col1.DataPropertyName = "Activite";
-            col1.HeaderText = "Activité";
-            dgvTableur.Columns.Add(col1);
+            //DataGridViewColumn col1 = new DataGridViewTextBoxColumn();
+            //col1.DataPropertyName = "Activite";
+            //col1.HeaderText = "Activité";
+            //dgvTableur.Columns.Add(col1);
 
-            DataGridViewColumn col2 = new DataGridViewTextBoxColumn();
-            col2.DataPropertyName = "PDMproduit";
-            col2.HeaderText = "PDM produit";
-            dgvTableur.Columns.Add(col2);
+            //DataGridViewColumn col2 = new DataGridViewTextBoxColumn();
+            //col2.DataPropertyName = "PDMproduit";
+            //col2.HeaderText = "PDM produit";
+            //dgvTableur.Columns.Add(col2);
 
-            DataGridViewColumn col3 = new DataGridViewTextBoxColumn();
-            col3.DataPropertyName = "PDMConct";
-            col3.HeaderText = "PDM Conct";
-            dgvTableur.Columns.Add(col3);
+            //DataGridViewColumn col3 = new DataGridViewTextBoxColumn();
+            //col3.DataPropertyName = "PDMConct";
+            //col3.HeaderText = "PDM Conct";
+            //dgvTableur.Columns.Add(col3);
 
-            DataGridViewColumn col4 = new DataGridViewTextBoxColumn();
-            col4.DataPropertyName = "TxCroiss";
-            col4.HeaderText = "Tx croiss";
-            dgvTableur.Columns.Add(col4);
+            //DataGridViewColumn col4 = new DataGridViewTextBoxColumn();
+            //col4.DataPropertyName = "TxCroiss";
+            //col4.HeaderText = "Tx croiss";
+            //dgvTableur.Columns.Add(col4);
 
-            DataGridViewColumn col5 = new DataGridViewTextBoxColumn();
-            col4.DataPropertyName = "PartProduit";
-            col4.HeaderText = "Part produit";
-            dgvTableur.Columns.Add(col5);
+            //DataGridViewColumn col5 = new DataGridViewTextBoxColumn();
+            //col4.DataPropertyName = "PartProduit";
+            //col4.HeaderText = "Part produit";
+            //dgvTableur.Columns.Add(col5);
         }
 
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
