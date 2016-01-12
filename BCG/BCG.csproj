@@ -64,6 +64,10 @@
     <Compile Include="Apropos.Designer.cs">
       <DependentUpon>Apropos.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/Alex
     <Compile Include="Matrice.cs" />
     <Compile Include="Microsoft\Office\Interop\Excel\WorkSheet.cs" />
     <Compile Include="Principale.cs">
