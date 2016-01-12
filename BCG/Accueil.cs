@@ -19,12 +19,12 @@ namespace BCG
 
         private void btnAide_Click(object sender, EventArgs e)
         {
-            new Aide().ShowDialog();
+            new Aide().Show();
         }
 
         private void btnPrincipale_Click(object sender, EventArgs e)
         {
-            new Principale().ShowDialog();
+            new Principale().Show();
         }
     }
 }
