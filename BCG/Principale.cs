@@ -15,24 +15,27 @@ namespace BCG
 {
     public partial class Principale : Form
     {
-        private List<Matrice> Points = new List<Matrice>();
+        List<Matrice> Points = new List<Matrice>();
         BindingSource bindingSource = new BindingSource();
         public Principale()
         {
             InitializeComponent();
-   
 
-            Points.Add(new Matrice("A", 25, 20, 18, 10));
-            Points.Add(new Matrice("B", 20, 30, 12, 10));
-            Points.Add(new Matrice("C", 12, 30, 5, 15));
-            Points.Add(new Matrice("D", 59, 12, 7, 40));
+            for(int i = 0;i < 20; i++){
+                Points.Add(new Matrice());
+            }
 
+            actualiserTableur(Points);
+
+            
+
+        }
+        private void actualiserTableur(List<Matrice> Points)
+        {
             bindingSource.DataSource = Points;
             dgvTableur.AutoGenerateColumns = true;
             dgvTableur.DataSource = bindingSource;
-
         }
-
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dgvTableur.Rows[e.RowIndex].DataBoundItem != null &&
@@ -123,7 +126,11 @@ namespace BCG
 
         private void testerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Points[0]=new Matrice("A", 25, 20, 18, 10);
+            Points[1]=new Matrice("B", 20, 30, 12, 10);
+            Points[2]=new Matrice("C", 12, 30, 5, 15);
+            Points[3]=new Matrice("D", 59, 12, 7, 40);
+            actualiserTableur(Points);
         }
     }
 }
