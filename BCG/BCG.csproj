@@ -64,12 +64,7 @@
     <Compile Include="Apropos.Designer.cs">
       <DependentUpon>Apropos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Help.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Help.Designer.cs">
-      <DependentUpon>Help.cs</DependentUpon>
-    </Compile>
+
     <Compile Include="Matrice.cs" />
     <Compile Include="Microsoft\Office\Interop\Excel\WorkSheet.cs" />
     <Compile Include="Principale.cs">
@@ -88,9 +83,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Apropos.resx">
       <DependentUpon>Apropos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Help.resx">
-      <DependentUpon>Help.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Principale.resx">
       <DependentUpon>Principale.cs</DependentUpon>
