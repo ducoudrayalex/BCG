@@ -152,6 +152,7 @@ namespace BCG
                     xlWorkSheet.Cells[i + 1, j + 1] = cell.Value;
                 }
             }
+            sfdTableur.Filter = "Excel Worsheets (*.xls, *.xlsx)|*.xls;*.xlsx";
             sfdTableur.ShowDialog();
             xlWorkBook.SaveAs(sfdTableur.FileName);
             //xlWorkBook.SaveAs("maMatriceBCG.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
