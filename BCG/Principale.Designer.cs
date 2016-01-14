@@ -43,6 +43,13 @@
             this.présentationEtModeDemploiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvTableur = new System.Windows.Forms.DataGridView();
+            this.ofdExcel = new System.Windows.Forms.OpenFileDialog();
+            this.sfdTableur = new System.Windows.Forms.SaveFileDialog();
+            this.activiteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pDMproduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pDMconctDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txCroissDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.partProduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.matriceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuPrincipale.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTableur)).BeginInit();
@@ -76,34 +83,35 @@
             // rAZToolStripMenuItem
             // 
             this.rAZToolStripMenuItem.Name = "rAZToolStripMenuItem";
-            this.rAZToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.rAZToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.rAZToolStripMenuItem.Text = "RAZ";
             this.rAZToolStripMenuItem.Click += new System.EventHandler(this.rAZToolStripMenuItem_Click);
             // 
             // testerToolStripMenuItem
             // 
             this.testerToolStripMenuItem.Name = "testerToolStripMenuItem";
-            this.testerToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.testerToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.testerToolStripMenuItem.Text = "Tester";
             this.testerToolStripMenuItem.Click += new System.EventHandler(this.testerToolStripMenuItem_Click);
             // 
             // ouvrirToolStripMenuItem
             // 
             this.ouvrirToolStripMenuItem.Name = "ouvrirToolStripMenuItem";
-            this.ouvrirToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.ouvrirToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.ouvrirToolStripMenuItem.Text = "Ouvrir";
             this.ouvrirToolStripMenuItem.Click += new System.EventHandler(this.ouvrirToolStripMenuItem_Click);
             // 
             // enregistrerToolStripMenuItem
             // 
             this.enregistrerToolStripMenuItem.Name = "enregistrerToolStripMenuItem";
-            this.enregistrerToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
-            this.enregistrerToolStripMenuItem.Text = "Enregistrer";
+            this.enregistrerToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.enregistrerToolStripMenuItem.Text = "Enregistrer sous";
+            this.enregistrerToolStripMenuItem.Click += new System.EventHandler(this.enregistrerToolStripMenuItem_Click);
             // 
             // quitterToolStripMenuItem
             // 
             this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
-            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.quitterToolStripMenuItem.Text = "Quitter";
             this.quitterToolStripMenuItem.Click += new System.EventHandler(this.quitterToolStripMenuItem_Click);
             // 
@@ -156,15 +164,57 @@
             this.dgvTableur.AllowUserToOrderColumns = true;
             this.dgvTableur.AutoGenerateColumns = false;
             this.dgvTableur.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTableur.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.activiteDataGridViewTextBoxColumn,
+            this.pDMproduitDataGridViewTextBoxColumn,
+            this.pDMconctDataGridViewTextBoxColumn,
+            this.txCroissDataGridViewTextBoxColumn,
+            this.partProduitDataGridViewTextBoxColumn});
             this.dgvTableur.DataSource = this.matriceBindingSource;
             this.dgvTableur.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgvTableur.Location = new System.Drawing.Point(12, 27);
             this.dgvTableur.Name = "dgvTableur";
             this.dgvTableur.Size = new System.Drawing.Size(543, 364);
             this.dgvTableur.TabIndex = 1;
-            this.dgvTableur.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableur_CellContentClick);
-            this.dgvTableur.Click += new System.EventHandler(this.dgvTableur_Click);
-            this.dgvTableur.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgvTableur_KeyUp);
+            // 
+            // ofdExcel
+            // 
+            this.ofdExcel.Title = "Importer des données Excel";
+            // 
+            // sfdTableur
+            // 
+            this.sfdTableur.FileName = "maMatriceBCG.xlsx";
+            this.sfdTableur.Title = "Enregistrer le fichier sous";
+            // 
+            // activiteDataGridViewTextBoxColumn
+            // 
+            this.activiteDataGridViewTextBoxColumn.DataPropertyName = "Activite";
+            this.activiteDataGridViewTextBoxColumn.HeaderText = "Activite";
+            this.activiteDataGridViewTextBoxColumn.Name = "activiteDataGridViewTextBoxColumn";
+            // 
+            // pDMproduitDataGridViewTextBoxColumn
+            // 
+            this.pDMproduitDataGridViewTextBoxColumn.DataPropertyName = "PDMproduit";
+            this.pDMproduitDataGridViewTextBoxColumn.HeaderText = "PDMproduit";
+            this.pDMproduitDataGridViewTextBoxColumn.Name = "pDMproduitDataGridViewTextBoxColumn";
+            // 
+            // pDMconctDataGridViewTextBoxColumn
+            // 
+            this.pDMconctDataGridViewTextBoxColumn.DataPropertyName = "PDMconct";
+            this.pDMconctDataGridViewTextBoxColumn.HeaderText = "PDMconct";
+            this.pDMconctDataGridViewTextBoxColumn.Name = "pDMconctDataGridViewTextBoxColumn";
+            // 
+            // txCroissDataGridViewTextBoxColumn
+            // 
+            this.txCroissDataGridViewTextBoxColumn.DataPropertyName = "TxCroiss";
+            this.txCroissDataGridViewTextBoxColumn.HeaderText = "TxCroiss";
+            this.txCroissDataGridViewTextBoxColumn.Name = "txCroissDataGridViewTextBoxColumn";
+            // 
+            // partProduitDataGridViewTextBoxColumn
+            // 
+            this.partProduitDataGridViewTextBoxColumn.DataPropertyName = "PartProduit";
+            this.partProduitDataGridViewTextBoxColumn.HeaderText = "PartProduit";
+            this.partProduitDataGridViewTextBoxColumn.Name = "partProduitDataGridViewTextBoxColumn";
             // 
             // matriceBindingSource
             // 
@@ -206,6 +256,13 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.DataGridView dgvTableur;
         private System.Windows.Forms.BindingSource matriceBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn activiteDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pDMproduitDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pDMconctDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txCroissDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn partProduitDataGridViewTextBoxColumn;
+        private System.Windows.Forms.OpenFileDialog ofdExcel;
+        private System.Windows.Forms.SaveFileDialog sfdTableur;
     }
 }
 
