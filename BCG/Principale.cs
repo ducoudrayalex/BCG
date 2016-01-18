@@ -187,5 +187,10 @@ namespace BCG
                 GC.Collect();
             }
         }
+
+        private void dgvTableur_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

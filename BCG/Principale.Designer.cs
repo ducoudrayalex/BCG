@@ -176,6 +176,7 @@
             this.dgvTableur.Name = "dgvTableur";
             this.dgvTableur.Size = new System.Drawing.Size(543, 364);
             this.dgvTableur.TabIndex = 1;
+            this.dgvTableur.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableur_CellContentClick);
             // 
             // ofdExcel
             // 
