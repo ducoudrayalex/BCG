@@ -1,0 +1,268 @@
+﻿namespace BCG
+{
+    partial class Principale
+    {
+        /// <summary>
+        /// Variable nécessaire au concepteur.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Nettoyage des ressources utilisées.
+        /// </summary>
+        /// <param name="disposing">true si les ressources managées doivent être supprimées ; sinon, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Code généré par le Concepteur Windows Form
+
+        /// <summary>
+        /// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
+        /// le contenu de cette méthode avec l'éditeur de code.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            this.menuPrincipale = new System.Windows.Forms.MenuStrip();
+            this.tsmiFichier = new System.Windows.Forms.ToolStripMenuItem();
+            this.rAZToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ouvrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.enregistrerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.affichageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.agrToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.agrandirMatriceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.présentationEtModeDemploiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.dgvTableur = new System.Windows.Forms.DataGridView();
+            this.ofdExcel = new System.Windows.Forms.OpenFileDialog();
+            this.sfdTableur = new System.Windows.Forms.SaveFileDialog();
+            this.activiteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pDMproduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pDMconctDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txCroissDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.partProduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.matriceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.menuPrincipale.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTableur)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // menuPrincipale
+            // 
+            this.menuPrincipale.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiFichier,
+            this.affichageToolStripMenuItem,
+            this.aideToolStripMenuItem});
+            this.menuPrincipale.Location = new System.Drawing.Point(0, 0);
+            this.menuPrincipale.Name = "menuPrincipale";
+            this.menuPrincipale.Size = new System.Drawing.Size(784, 24);
+            this.menuPrincipale.TabIndex = 0;
+            this.menuPrincipale.Text = "menuPrincipale";
+            // 
+            // tsmiFichier
+            // 
+            this.tsmiFichier.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rAZToolStripMenuItem,
+            this.testerToolStripMenuItem,
+            this.ouvrirToolStripMenuItem,
+            this.enregistrerToolStripMenuItem,
+            this.quitterToolStripMenuItem});
+            this.tsmiFichier.Name = "tsmiFichier";
+            this.tsmiFichier.Size = new System.Drawing.Size(54, 20);
+            this.tsmiFichier.Text = "Fichier";
+            // 
+            // rAZToolStripMenuItem
+            // 
+            this.rAZToolStripMenuItem.Name = "rAZToolStripMenuItem";
+            this.rAZToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.rAZToolStripMenuItem.Text = "RAZ";
+            this.rAZToolStripMenuItem.Click += new System.EventHandler(this.rAZToolStripMenuItem_Click);
+            // 
+            // testerToolStripMenuItem
+            // 
+            this.testerToolStripMenuItem.Name = "testerToolStripMenuItem";
+            this.testerToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.testerToolStripMenuItem.Text = "Tester";
+            this.testerToolStripMenuItem.Click += new System.EventHandler(this.testerToolStripMenuItem_Click);
+            // 
+            // ouvrirToolStripMenuItem
+            // 
+            this.ouvrirToolStripMenuItem.Name = "ouvrirToolStripMenuItem";
+            this.ouvrirToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.ouvrirToolStripMenuItem.Text = "Ouvrir";
+            this.ouvrirToolStripMenuItem.Click += new System.EventHandler(this.ouvrirToolStripMenuItem_Click);
+            // 
+            // enregistrerToolStripMenuItem
+            // 
+            this.enregistrerToolStripMenuItem.Name = "enregistrerToolStripMenuItem";
+            this.enregistrerToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.enregistrerToolStripMenuItem.Text = "Enregistrer sous";
+            this.enregistrerToolStripMenuItem.Click += new System.EventHandler(this.enregistrerToolStripMenuItem_Click);
+            // 
+            // quitterToolStripMenuItem
+            // 
+            this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
+            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.quitterToolStripMenuItem.Text = "Quitter";
+            this.quitterToolStripMenuItem.Click += new System.EventHandler(this.quitterToolStripMenuItem_Click);
+            // 
+            // affichageToolStripMenuItem
+            // 
+            this.affichageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.agrToolStripMenuItem,
+            this.agrandirMatriceToolStripMenuItem});
+            this.affichageToolStripMenuItem.Name = "affichageToolStripMenuItem";
+            this.affichageToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
+            this.affichageToolStripMenuItem.Text = "Affichage";
+            // 
+            // agrToolStripMenuItem
+            // 
+            this.agrToolStripMenuItem.Name = "agrToolStripMenuItem";
+            this.agrToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.agrToolStripMenuItem.Text = "Agrandir tableur";
+            // 
+            // agrandirMatriceToolStripMenuItem
+            // 
+            this.agrandirMatriceToolStripMenuItem.Name = "agrandirMatriceToolStripMenuItem";
+            this.agrandirMatriceToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.agrandirMatriceToolStripMenuItem.Text = "Agrandir matrice";
+            // 
+            // aideToolStripMenuItem
+            // 
+            this.aideToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.présentationEtModeDemploiToolStripMenuItem,
+            this.toolStripMenuItem2});
+            this.aideToolStripMenuItem.Name = "aideToolStripMenuItem";
+            this.aideToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.aideToolStripMenuItem.Text = "Aide";
+            // 
+            // présentationEtModeDemploiToolStripMenuItem
+            // 
+            this.présentationEtModeDemploiToolStripMenuItem.Name = "présentationEtModeDemploiToolStripMenuItem";
+            this.présentationEtModeDemploiToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.présentationEtModeDemploiToolStripMenuItem.Text = "Présentation et mode d\'emploi";
+            this.présentationEtModeDemploiToolStripMenuItem.Click += new System.EventHandler(this.présentationEtModeDemploiToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(237, 22);
+            this.toolStripMenuItem2.Text = "?";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // dgvTableur
+            // 
+            this.dgvTableur.AllowUserToOrderColumns = true;
+            this.dgvTableur.AutoGenerateColumns = false;
+            this.dgvTableur.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTableur.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.activiteDataGridViewTextBoxColumn,
+            this.pDMproduitDataGridViewTextBoxColumn,
+            this.pDMconctDataGridViewTextBoxColumn,
+            this.txCroissDataGridViewTextBoxColumn,
+            this.partProduitDataGridViewTextBoxColumn});
+            this.dgvTableur.DataSource = this.matriceBindingSource;
+            this.dgvTableur.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dgvTableur.Location = new System.Drawing.Point(12, 27);
+            this.dgvTableur.Name = "dgvTableur";
+            this.dgvTableur.Size = new System.Drawing.Size(543, 364);
+            this.dgvTableur.TabIndex = 1;
+            // 
+            // ofdExcel
+            // 
+            this.ofdExcel.Title = "Importer des données Excel";
+            // 
+            // sfdTableur
+            // 
+            this.sfdTableur.FileName = "maMatriceBCG.xlsx";
+            this.sfdTableur.Title = "Enregistrer le fichier sous";
+            // 
+            // activiteDataGridViewTextBoxColumn
+            // 
+            this.activiteDataGridViewTextBoxColumn.DataPropertyName = "Activite";
+            this.activiteDataGridViewTextBoxColumn.HeaderText = "Activite";
+            this.activiteDataGridViewTextBoxColumn.Name = "activiteDataGridViewTextBoxColumn";
+            // 
+            // pDMproduitDataGridViewTextBoxColumn
+            // 
+            this.pDMproduitDataGridViewTextBoxColumn.DataPropertyName = "PDMproduit";
+            this.pDMproduitDataGridViewTextBoxColumn.HeaderText = "PDMproduit";
+            this.pDMproduitDataGridViewTextBoxColumn.Name = "pDMproduitDataGridViewTextBoxColumn";
+            // 
+            // pDMconctDataGridViewTextBoxColumn
+            // 
+            this.pDMconctDataGridViewTextBoxColumn.DataPropertyName = "PDMconct";
+            this.pDMconctDataGridViewTextBoxColumn.HeaderText = "PDMconct";
+            this.pDMconctDataGridViewTextBoxColumn.Name = "pDMconctDataGridViewTextBoxColumn";
+            // 
+            // txCroissDataGridViewTextBoxColumn
+            // 
+            this.txCroissDataGridViewTextBoxColumn.DataPropertyName = "TxCroiss";
+            this.txCroissDataGridViewTextBoxColumn.HeaderText = "TxCroiss";
+            this.txCroissDataGridViewTextBoxColumn.Name = "txCroissDataGridViewTextBoxColumn";
+            // 
+            // partProduitDataGridViewTextBoxColumn
+            // 
+            this.partProduitDataGridViewTextBoxColumn.DataPropertyName = "PartProduit";
+            this.partProduitDataGridViewTextBoxColumn.HeaderText = "PartProduit";
+            this.partProduitDataGridViewTextBoxColumn.Name = "partProduitDataGridViewTextBoxColumn";
+            // 
+            // matriceBindingSource
+            // 
+            this.matriceBindingSource.DataSource = typeof(BCG.Matrice);
+            // 
+            // Principale
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.dgvTableur);
+            this.Controls.Add(this.menuPrincipale);
+            this.MainMenuStrip = this.menuPrincipale;
+            this.Name = "Principale";
+            this.Text = "Principale";
+            this.menuPrincipale.ResumeLayout(false);
+            this.menuPrincipale.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTableur)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.MenuStrip menuPrincipale;
+        private System.Windows.Forms.ToolStripMenuItem tsmiFichier;
+        private System.Windows.Forms.ToolStripMenuItem rAZToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem testerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ouvrirToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem enregistrerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem affichageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem agrToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem agrandirMatriceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aideToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem présentationEtModeDemploiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.DataGridView dgvTableur;
+        private System.Windows.Forms.BindingSource matriceBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn activiteDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pDMproduitDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pDMconctDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txCroissDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn partProduitDataGridViewTextBoxColumn;
+        private System.Windows.Forms.OpenFileDialog ofdExcel;
+        private System.Windows.Forms.SaveFileDialog sfdTableur;
+    }
+}
+
