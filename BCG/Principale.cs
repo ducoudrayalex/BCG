@@ -13,6 +13,7 @@ using System.Reflection;
 using Microsoft.Win32;
 using System.Data.OleDb;
 using System.IO;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace BCG
 {
@@ -25,11 +26,16 @@ namespace BCG
         public Principale()
         {
             InitializeComponent();
-            for(int i = 0;i < 20; i++){
+            remplissageTableur(20);
+            actualiserTableur(Points);
+ 
+        }
+        private void remplissageTableur(int taille)
+        {
+            for (int i = 0; i < taille; i++)
+            {
                 Points.Add(new Matrice());
             }
-
-            actualiserTableur(Points);
         }
         private void actualiserTableur(BindingList<Matrice> Points)
         {
@@ -98,6 +104,7 @@ namespace BCG
                     }
                 }
             }
+            remplissageTableur(20);
         }
 
         private void quitterToolStripMenuItem_Click(object sender, EventArgs e)
@@ -109,6 +116,7 @@ namespace BCG
         private void rAZToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Points.Clear();
+            remplissageTableur(20);
         }
 
         private void testerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -128,7 +136,7 @@ namespace BCG
                 Points.Add(new Matrice("D", 59, 12, 7, 40));
             }
 
-            actualiserTableur(Points);
+            remplissageTableur(20);
         }
 
         private void enregistrerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -186,6 +194,26 @@ namespace BCG
             {
                 GC.Collect();
             }
+        }
+
+        private void chartBCG_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void btnGenerer_Click(object sender, EventArgs e)
+        {
+            chartBCG.Visible = true;
+            
+            for(int i = 0; i <= 4; i++)
+            {
+
+                chartBCG.Series[Points[i].Activite].ChartType = SeriesChartType.Bubble;
+                chartBCG.Series[Points[i].Activite].Points.Add(i,i+2,i+10);
+            }
+            
+            chartBCG.DataBind();
+
         }
     }
 }
