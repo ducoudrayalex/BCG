@@ -45,20 +45,22 @@
             this.présentationEtModeDemploiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvTableur = new System.Windows.Forms.DataGridView();
-            this.ofdExcel = new System.Windows.Forms.OpenFileDialog();
-            this.sfdTableur = new System.Windows.Forms.SaveFileDialog();
-            this.btnGenerer = new System.Windows.Forms.Button();
-            this.chartBCG = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.matriceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.activiteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pDMproduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pDMconctDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txCroissDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.partProduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.matriceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ofdExcel = new System.Windows.Forms.OpenFileDialog();
+            this.sfdTableur = new System.Windows.Forms.SaveFileDialog();
+            this.btnGenerer = new System.Windows.Forms.Button();
+            this.chartBCG = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.btnAjout = new System.Windows.Forms.Button();
+            this.BtnValider = new System.Windows.Forms.Button();
             this.menuPrincipale.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTableur)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chartBCG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartBCG)).BeginInit();
             this.SuspendLayout();
             // 
             // menuPrincipale
@@ -181,6 +183,42 @@
             this.dgvTableur.Name = "dgvTableur";
             this.dgvTableur.Size = new System.Drawing.Size(367, 364);
             this.dgvTableur.TabIndex = 1;
+            this.dgvTableur.CellParsing += new System.Windows.Forms.DataGridViewCellParsingEventHandler(this.dgvTableur_CellParsing);
+            this.dgvTableur.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableur_CellValueChanged);
+            // 
+            // activiteDataGridViewTextBoxColumn
+            // 
+            this.activiteDataGridViewTextBoxColumn.DataPropertyName = "Activite";
+            this.activiteDataGridViewTextBoxColumn.HeaderText = "Activite";
+            this.activiteDataGridViewTextBoxColumn.Name = "activiteDataGridViewTextBoxColumn";
+            // 
+            // pDMproduitDataGridViewTextBoxColumn
+            // 
+            this.pDMproduitDataGridViewTextBoxColumn.DataPropertyName = "PDMproduit";
+            this.pDMproduitDataGridViewTextBoxColumn.HeaderText = "PDMproduit";
+            this.pDMproduitDataGridViewTextBoxColumn.Name = "pDMproduitDataGridViewTextBoxColumn";
+            // 
+            // pDMconctDataGridViewTextBoxColumn
+            // 
+            this.pDMconctDataGridViewTextBoxColumn.DataPropertyName = "PDMconct";
+            this.pDMconctDataGridViewTextBoxColumn.HeaderText = "PDMconct";
+            this.pDMconctDataGridViewTextBoxColumn.Name = "pDMconctDataGridViewTextBoxColumn";
+            // 
+            // txCroissDataGridViewTextBoxColumn
+            // 
+            this.txCroissDataGridViewTextBoxColumn.DataPropertyName = "TxCroiss";
+            this.txCroissDataGridViewTextBoxColumn.HeaderText = "TxCroiss";
+            this.txCroissDataGridViewTextBoxColumn.Name = "txCroissDataGridViewTextBoxColumn";
+            // 
+            // partProduitDataGridViewTextBoxColumn
+            // 
+            this.partProduitDataGridViewTextBoxColumn.DataPropertyName = "PartProduit";
+            this.partProduitDataGridViewTextBoxColumn.HeaderText = "PartProduit";
+            this.partProduitDataGridViewTextBoxColumn.Name = "partProduitDataGridViewTextBoxColumn";
+            // 
+            // matriceBindingSource
+            // 
+            this.matriceBindingSource.DataSource = typeof(BCG.Matrice);
             // 
             // ofdExcel
             // 
@@ -216,45 +254,33 @@
             this.chartBCG.Visible = false;
             this.chartBCG.Click += new System.EventHandler(this.chartBCG_Click);
             // 
-            // matriceBindingSource
+            // btnAjout
             // 
-            this.matriceBindingSource.DataSource = typeof(BCG.Matrice);
+            this.btnAjout.Location = new System.Drawing.Point(385, 186);
+            this.btnAjout.Name = "btnAjout";
+            this.btnAjout.Size = new System.Drawing.Size(75, 41);
+            this.btnAjout.TabIndex = 4;
+            this.btnAjout.Text = "Ajouter une ligne";
+            this.btnAjout.UseVisualStyleBackColor = true;
+            this.btnAjout.Click += new System.EventHandler(this.btnAjout_Click);
             // 
-            // activiteDataGridViewTextBoxColumn
+            // BtnValider
             // 
-            this.activiteDataGridViewTextBoxColumn.DataPropertyName = "Activite";
-            this.activiteDataGridViewTextBoxColumn.HeaderText = "Activite";
-            this.activiteDataGridViewTextBoxColumn.Name = "activiteDataGridViewTextBoxColumn";
-            // 
-            // pDMproduitDataGridViewTextBoxColumn
-            // 
-            this.pDMproduitDataGridViewTextBoxColumn.DataPropertyName = "PDMproduit";
-            this.pDMproduitDataGridViewTextBoxColumn.HeaderText = "PDMproduit";
-            this.pDMproduitDataGridViewTextBoxColumn.Name = "pDMproduitDataGridViewTextBoxColumn";
-            // 
-            // pDMconctDataGridViewTextBoxColumn
-            // 
-            this.pDMconctDataGridViewTextBoxColumn.DataPropertyName = "PDMconct";
-            this.pDMconctDataGridViewTextBoxColumn.HeaderText = "PDMconct";
-            this.pDMconctDataGridViewTextBoxColumn.Name = "pDMconctDataGridViewTextBoxColumn";
-            // 
-            // txCroissDataGridViewTextBoxColumn
-            // 
-            this.txCroissDataGridViewTextBoxColumn.DataPropertyName = "TxCroiss";
-            this.txCroissDataGridViewTextBoxColumn.HeaderText = "TxCroiss";
-            this.txCroissDataGridViewTextBoxColumn.Name = "txCroissDataGridViewTextBoxColumn";
-            // 
-            // partProduitDataGridViewTextBoxColumn
-            // 
-            this.partProduitDataGridViewTextBoxColumn.DataPropertyName = "PartProduit";
-            this.partProduitDataGridViewTextBoxColumn.HeaderText = "PartProduit";
-            this.partProduitDataGridViewTextBoxColumn.Name = "partProduitDataGridViewTextBoxColumn";
+            this.BtnValider.Location = new System.Drawing.Point(386, 146);
+            this.BtnValider.Name = "BtnValider";
+            this.BtnValider.Size = new System.Drawing.Size(75, 34);
+            this.BtnValider.TabIndex = 5;
+            this.BtnValider.Text = "Valider la ligne";
+            this.BtnValider.UseVisualStyleBackColor = true;
+            this.BtnValider.Click += new System.EventHandler(this.btnValider_Click);
             // 
             // Principale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.BtnValider);
+            this.Controls.Add(this.btnAjout);
             this.Controls.Add(this.chartBCG);
             this.Controls.Add(this.btnGenerer);
             this.Controls.Add(this.dgvTableur);
@@ -265,8 +291,8 @@
             this.menuPrincipale.ResumeLayout(false);
             this.menuPrincipale.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTableur)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chartBCG)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartBCG)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -289,15 +315,17 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.DataGridView dgvTableur;
         private System.Windows.Forms.BindingSource matriceBindingSource;
+        private System.Windows.Forms.OpenFileDialog ofdExcel;
+        private System.Windows.Forms.SaveFileDialog sfdTableur;
+        private System.Windows.Forms.Button btnGenerer;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartBCG;
+        private System.Windows.Forms.Button btnAjout;
         private System.Windows.Forms.DataGridViewTextBoxColumn activiteDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn pDMproduitDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn pDMconctDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn txCroissDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn partProduitDataGridViewTextBoxColumn;
-        private System.Windows.Forms.OpenFileDialog ofdExcel;
-        private System.Windows.Forms.SaveFileDialog sfdTableur;
-        private System.Windows.Forms.Button btnGenerer;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartBCG;
+        private System.Windows.Forms.Button BtnValider;
     }
 }
 

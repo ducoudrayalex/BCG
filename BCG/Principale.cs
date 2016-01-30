@@ -26,7 +26,7 @@ namespace BCG
         public Principale()
         {
             InitializeComponent();
-            remplissageTableur(20);
+            //remplissageTableur(20);
             actualiserTableur(Points);
  
         }
@@ -104,7 +104,7 @@ namespace BCG
                     }
                 }
             }
-            remplissageTableur(20);
+            //remplissageTableur(20);
         }
 
         private void quitterToolStripMenuItem_Click(object sender, EventArgs e)
@@ -116,17 +116,16 @@ namespace BCG
         private void rAZToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Points.Clear();
-            remplissageTableur(20);
         }
 
         private void testerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Points.Count >= 4)
             {
-                Points[0]=new Matrice("A", 25, 20, 18, 10);
-                Points[1]=new Matrice("B", 20, 30, 12, 10);
-                Points[2]=new Matrice("C", 12, 30, 5, 15);
-                Points[3]=new Matrice("D", 59, 12, 7, 40);
+                Points[0] = new Matrice("A", 25, 20, 18, 10);
+                Points[1] = new Matrice("B", 20, 30, 12, 10);
+                Points[2] = new Matrice("C", 12, 30, 5, 15);
+                Points[3] = new Matrice("D", 59, 12, 7, 40);
             }
             else
             {
@@ -135,9 +134,7 @@ namespace BCG
                 Points.Add(new Matrice("C", 12, 30, 5, 15));
                 Points.Add(new Matrice("D", 59, 12, 7, 40));
             }
-
-            remplissageTableur(20);
-        }
+}
 
         private void enregistrerToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -205,15 +202,43 @@ namespace BCG
         {
             chartBCG.Visible = true;
             
-            for(int i = 0; i <= 4; i++)
+            for(int i = 0; i <4; i++)
             {
-
+                chartBCG.Series.Add(Points[i].Activite);
                 chartBCG.Series[Points[i].Activite].ChartType = SeriesChartType.Bubble;
-                chartBCG.Series[Points[i].Activite].Points.Add(i,i+2,i+10);
+                chartBCG.Series[Points[i].Activite].Points.Add(Points[i].PartProduit,Points[i].PDMconct,Points[i].TxCroiss);
+            }           
+            chartBCG.DataBind();
+        }
+
+
+
+        private void btnAjout_Click(object sender, EventArgs e)
+        {
+            Points.Add(new Matrice());
+        }
+
+        private void btnValider_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Points[dgvTableur.CurrentRow.Index]=(Matrice)dgvTableur.CurrentRow.DataBoundItem;
+                MessageBox.Show(Points[0].toString());
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
             
-            chartBCG.DataBind();
+        }
 
+        private void dgvTableur_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgvTableur_CellParsing(object sender, DataGridViewCellParsingEventArgs e)
+        {
+            
         }
     }
 }
