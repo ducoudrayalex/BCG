@@ -13,6 +13,7 @@ using System.Reflection;
 using Microsoft.Win32;
 using System.Data.OleDb;
 using System.IO;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace BCG
 {
@@ -25,11 +26,16 @@ namespace BCG
         public Principale()
         {
             InitializeComponent();
-            for(int i = 0;i < 20; i++){
+            //remplissageTableur(20);
+            actualiserTableur(Points);
+ 
+        }
+        private void remplissageTableur(int taille)
+        {
+            for (int i = 0; i < taille; i++)
+            {
                 Points.Add(new Matrice());
             }
-
-            actualiserTableur(Points);
         }
         private void actualiserTableur(BindingList<Matrice> Points)
         {
@@ -50,53 +56,60 @@ namespace BCG
 
         private void ouvrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ofdExcel.Filter= "Excel Worsheets (*.xls, *.xlsx)|*.xls;*.xlsx";
-            ofdExcel.ShowDialog();
-            string filePath = ofdExcel.FileName;
-            string extension = Path.GetExtension(filePath);
-            string header = "YES";
-            string conStr, sheetName;
-
-            conStr = string.Empty;
-            switch (extension)
+            try
             {
+                ofdExcel.Filter = "Excel Worsheets (*.xls, *.xlsx)|*.xls;*.xlsx";
+                ofdExcel.ShowDialog();
+                string filePath = ofdExcel.FileName;
+                string extension = Path.GetExtension(filePath);
+                string header = "YES";
+                string conStr, sheetName;
 
-                case ".xls": //Excel 97-03
-                    conStr = string.Format(Excel03ConString, filePath, header);
-                    break;
-
-                case ".xlsx": //Excel 07
-                    conStr = string.Format(Excel07ConString, filePath, header);
-                    break;
-            }
-
-            using (OleDbConnection con = new OleDbConnection(conStr))
-            {
-                using (OleDbCommand cmd = new OleDbCommand())
+                conStr = string.Empty;
+                switch (extension)
                 {
-                    cmd.Connection = con;
-                    con.Open();
-                    DataTable dtExcelSchema = con.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
-                    sheetName = dtExcelSchema.Rows[0]["TABLE_NAME"].ToString();
-                    con.Close();
+
+                    case ".xls": //Excel 97-03
+                        conStr = string.Format(Excel03ConString, filePath, header);
+                        break;
+
+                    case ".xlsx": //Excel 07
+                        conStr = string.Format(Excel07ConString, filePath, header);
+                        break;
                 }
-            }
-            using (OleDbConnection con = new OleDbConnection(conStr))
-            {
-                using (OleDbCommand cmd = new OleDbCommand())
+
+                using (OleDbConnection con = new OleDbConnection(conStr))
                 {
-                    using (OleDbDataAdapter oda = new OleDbDataAdapter())
+                    using (OleDbCommand cmd = new OleDbCommand())
                     {
-                        DataTable dt = new DataTable();
-                        cmd.CommandText = "SELECT * From [" + sheetName + "]";
                         cmd.Connection = con;
                         con.Open();
-                        oda.SelectCommand = cmd;
-                        oda.Fill(dt);
+                        DataTable dtExcelSchema = con.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                        sheetName = dtExcelSchema.Rows[0]["TABLE_NAME"].ToString();
                         con.Close();
-                        dgvTableur.DataSource = dt;
                     }
                 }
+                using (OleDbConnection con = new OleDbConnection(conStr))
+                {
+                    using (OleDbCommand cmd = new OleDbCommand())
+                    {
+                        using (OleDbDataAdapter oda = new OleDbDataAdapter())
+                        {
+                            DataTable dt = new DataTable();
+                            cmd.CommandText = "SELECT * From [" + sheetName + "]";
+                            cmd.Connection = con;
+                            con.Open();
+                            oda.SelectCommand = cmd;
+                            oda.Fill(dt);
+                            con.Close();
+                            dgvTableur.DataSource = dt;
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -113,57 +126,71 @@ namespace BCG
 
         private void testerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Points.Count >= 4)
+            try
             {
-                Points[0]=new Matrice("A", 25, 20, 18, 10);
-                Points[1]=new Matrice("B", 20, 30, 12, 10);
-                Points[2]=new Matrice("C", 12, 30, 5, 15);
-                Points[3]=new Matrice("D", 59, 12, 7, 40);
+                if (Points.Count >= 4)
+                {
+                    Points[0] = new Matrice("A", 25, 20, 18, 10);
+                    Points[1] = new Matrice("B", 20, 30, 12, 10);
+                    Points[2] = new Matrice("C", 12, 30, 5, 15);
+                    Points[3] = new Matrice("D", 59, 12, 7, 40);
+                }
+                else
+                {
+                    Points.Add(new Matrice("A", 25, 20, 18, 10));
+                    Points.Add(new Matrice("B", 20, 30, 12, 10));
+                    Points.Add(new Matrice("C", 12, 30, 5, 15));
+                    Points.Add(new Matrice("D", 59, 12, 7, 40));
+                }
             }
-            else
+            catch(Exception ex)
             {
-                Points.Add(new Matrice("A", 25, 20, 18, 10));
-                Points.Add(new Matrice("B", 20, 30, 12, 10));
-                Points.Add(new Matrice("C", 12, 30, 5, 15));
-                Points.Add(new Matrice("D", 59, 12, 7, 40));
+                MessageBox.Show(ex.Message);
             }
 
-            actualiserTableur(Points);
-        }
+}
 
         private void enregistrerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Excel.Application xlApp;
-            Excel.Workbook xlWorkBook;
-            Excel.Worksheet xlWorkSheet;
-            object misValue = System.Reflection.Missing.Value;
-
-            xlApp = new Excel.Application();
-            xlWorkBook = xlApp.Workbooks.Add(misValue);
-            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-            int i = 0;
-            int j = 0;
-
-            for (i = 0; i <= dgvTableur.RowCount - 1; i++)
+            try
             {
-                for (j = 0; j <= dgvTableur.ColumnCount - 1; j++)
+                Excel.Application xlApp;
+                Excel.Workbook xlWorkBook;
+                Excel.Worksheet xlWorkSheet;
+                object misValue = System.Reflection.Missing.Value;
+
+                xlApp = new Excel.Application();
+                xlWorkBook = xlApp.Workbooks.Add(misValue);
+                xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+                int i = 0;
+                int j = 0;
+
+                for (i = 0; i <= dgvTableur.RowCount - 1; i++)
                 {
-                    DataGridViewCell cell = dgvTableur[j, i];
-                    xlWorkSheet.Cells[i + 1, j + 1] = cell.Value;
+                    for (j = 0; j <= dgvTableur.ColumnCount - 1; j++)
+                    {
+                        DataGridViewCell cell = dgvTableur[j, i];
+                        xlWorkSheet.Cells[i + 1, j + 1] = cell.Value;
+                    }
                 }
+                sfdTableur.Filter = "Excel Worsheets (*.xls, *.xlsx)|*.xls;*.xlsx";
+                sfdTableur.ShowDialog();
+                xlWorkBook.SaveAs(sfdTableur.FileName);
+                //xlWorkBook.SaveAs("maMatriceBCG.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+                xlWorkBook.Close(true, misValue, misValue);
+                xlApp.Quit();
+
+                releaseObject(xlWorkSheet);
+                releaseObject(xlWorkBook);
+                releaseObject(xlApp);
+
+                MessageBox.Show("Fichier excel créé , vous pouvez trouver le fichier à " + sfdTableur.FileName);
             }
-            sfdTableur.Filter = "Excel Worsheets (*.xls, *.xlsx)|*.xls;*.xlsx";
-            sfdTableur.ShowDialog();
-            xlWorkBook.SaveAs(sfdTableur.FileName);
-            //xlWorkBook.SaveAs("maMatriceBCG.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
-            xlWorkBook.Close(true, misValue, misValue);
-            xlApp.Quit();
-
-            releaseObject(xlWorkSheet);
-            releaseObject(xlWorkBook);
-            releaseObject(xlApp);
-
-            MessageBox.Show("Fichier excel créé , vous pouvez trouver le fichier à "+sfdTableur.FileName);
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
 
         }
         /// <summary>
@@ -186,6 +213,45 @@ namespace BCG
             {
                 GC.Collect();
             }
+        }
+
+        private void btnGenerer_Click(object sender, EventArgs e)
+        {
+            chartBCG.Visible = true;
+            
+            for(int i = 0; i <4; i++)
+            {
+                chartBCG.Series.Add(Points[i].Activite);
+                chartBCG.Series[Points[i].Activite].ChartType = SeriesChartType.Bubble;
+                chartBCG.Series[Points[i].Activite].Points.Add(Points[i].PartProduit,Points[i].PDMconct,Points[i].TxCroiss);
+            }           
+            chartBCG.DataBind();
+        }
+
+        private void btnAjout_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Points.Add(new Matrice());
+                
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+        }
+
+        private void btnValider_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Points[dgvTableur.CurrentRow.Index]=(Matrice)dgvTableur.CurrentRow.DataBoundItem;
+                MessageBox.Show(Points[0].toString());
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
     }
 }
