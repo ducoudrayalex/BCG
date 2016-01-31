@@ -183,8 +183,6 @@
             this.dgvTableur.Name = "dgvTableur";
             this.dgvTableur.Size = new System.Drawing.Size(367, 364);
             this.dgvTableur.TabIndex = 1;
-            this.dgvTableur.CellParsing += new System.Windows.Forms.DataGridViewCellParsingEventHandler(this.dgvTableur_CellParsing);
-            this.dgvTableur.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableur_CellValueChanged);
             // 
             // activiteDataGridViewTextBoxColumn
             // 
@@ -252,7 +250,6 @@
             this.chartBCG.TabIndex = 3;
             this.chartBCG.Text = "Repere";
             this.chartBCG.Visible = false;
-            this.chartBCG.Click += new System.EventHandler(this.chartBCG_Click);
             // 
             // btnAjout
             // 
