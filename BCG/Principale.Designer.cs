@@ -241,7 +241,6 @@
             // 
             chartArea1.Name = "ChartArea1";
             this.chartBCG.ChartAreas.Add(chartArea1);
-            this.chartBCG.DataSource = this.matriceBindingSource;
             legend1.Name = "Legend1";
             this.chartBCG.Legends.Add(legend1);
             this.chartBCG.Location = new System.Drawing.Point(466, 27);
