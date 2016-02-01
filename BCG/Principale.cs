@@ -28,11 +28,10 @@ namespace BCG
             InitializeComponent();
             remplissageTableur(10);
             actualiserTableur(Points);
-            chartBCG.ChartAreas[0].AxisX.Crossing = 0;
-            for(int i = 0; i < Points.Count; i++)
-            {
-                
-            }
+            chartBCG.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+            chartBCG.ChartAreas[0].AxisX.MinorGrid.Enabled = false;
+            chartBCG.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
+            chartBCG.ChartAreas[0].AxisY.MinorGrid.Enabled = false;
             
         }
         private void remplissageTableur(int taille)
@@ -145,7 +144,7 @@ namespace BCG
                     Points.Add(new Matrice("A", 25, 20, 18, 10));
                     Points.Add(new Matrice("B", 20, 30, 12, 10));
                     Points.Add(new Matrice("C", 12, 30, 5, 15));
-                    Points.Add(new Matrice("D", 59, 12, 7, 40));
+                    Points.Add(new Matrice("D", 59, 12, 7, 20));
                 }
             }
             catch(Exception ex)
@@ -225,14 +224,13 @@ namespace BCG
             try
             {
                 chartBCG.Visible = true;
-
+                chartBCG.Series.Add("Société 1");
+                chartBCG.Series["Société 1"].ChartType = SeriesChartType.Bubble;
+                
                 for (int i = 0; i < 4; i++)
                 {
-                    chartBCG.Series.Add(Points[i].Activite);
-                    chartBCG.Series[Points[i].Activite].ChartType = SeriesChartType.Bubble;
-                    chartBCG.Series[Points[i].Activite].Points.Add(Math.Log(Points[i].PDMproduit / Points[i].PDMconct), Points[i].TxCroiss, Points[i].PartProduit);
+                    chartBCG.Series["Société 1"].Points.AddXY(Math.Log(Points[i].PDMproduit / Points[i].PDMconct), Points[i].TxCroiss, Points[i].PartProduit);
                 }
-                chartBCG.DataBind();
             }
             catch(Exception ex)
             {

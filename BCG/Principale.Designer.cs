@@ -45,22 +45,22 @@
             this.présentationEtModeDemploiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvTableur = new System.Windows.Forms.DataGridView();
-            this.activiteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pDMproduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pDMconctDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txCroissDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.partProduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.matriceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ofdExcel = new System.Windows.Forms.OpenFileDialog();
             this.sfdTableur = new System.Windows.Forms.SaveFileDialog();
             this.btnGenerer = new System.Windows.Forms.Button();
             this.chartBCG = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnAjout = new System.Windows.Forms.Button();
             this.BtnValider = new System.Windows.Forms.Button();
+            this.activiteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pDMproduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pDMconctDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txCroissDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.partProduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.matriceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuPrincipale.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTableur)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartBCG)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // menuPrincipale
@@ -184,6 +184,67 @@
             this.dgvTableur.Size = new System.Drawing.Size(367, 364);
             this.dgvTableur.TabIndex = 1;
             // 
+            // ofdExcel
+            // 
+            this.ofdExcel.Title = "Importer des données Excel";
+            // 
+            // sfdTableur
+            // 
+            this.sfdTableur.FileName = "maMatriceBCG.xlsx";
+            this.sfdTableur.Title = "Enregistrer le fichier sous";
+            // 
+            // btnGenerer
+            // 
+            this.btnGenerer.Location = new System.Drawing.Point(385, 233);
+            this.btnGenerer.Name = "btnGenerer";
+            this.btnGenerer.Size = new System.Drawing.Size(75, 31);
+            this.btnGenerer.TabIndex = 2;
+            this.btnGenerer.Text = "Générer";
+            this.btnGenerer.UseVisualStyleBackColor = true;
+            this.btnGenerer.Click += new System.EventHandler(this.btnGenerer_Click);
+            // 
+            // chartBCG
+            // 
+            chartArea1.AxisX.Crossing = 5D;
+            chartArea1.AxisX.Interval = 2D;
+            chartArea1.AxisX.Maximum = 10D;
+            chartArea1.AxisX.Minimum = 0D;
+            chartArea1.AxisX.Title = "x";
+            chartArea1.AxisY.Crossing = 25D;
+            chartArea1.AxisY.Interval = 6D;
+            chartArea1.AxisY.Maximum = 50D;
+            chartArea1.AxisY.Minimum = 0D;
+            chartArea1.Name = "ChartArea1";
+            this.chartBCG.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartBCG.Legends.Add(legend1);
+            this.chartBCG.Location = new System.Drawing.Point(466, 27);
+            this.chartBCG.Name = "chartBCG";
+            this.chartBCG.Size = new System.Drawing.Size(300, 300);
+            this.chartBCG.TabIndex = 3;
+            this.chartBCG.Text = "Repere";
+            this.chartBCG.Visible = false;
+            // 
+            // btnAjout
+            // 
+            this.btnAjout.Location = new System.Drawing.Point(385, 186);
+            this.btnAjout.Name = "btnAjout";
+            this.btnAjout.Size = new System.Drawing.Size(75, 41);
+            this.btnAjout.TabIndex = 4;
+            this.btnAjout.Text = "Ajouter une ligne";
+            this.btnAjout.UseVisualStyleBackColor = true;
+            this.btnAjout.Click += new System.EventHandler(this.btnAjout_Click);
+            // 
+            // BtnValider
+            // 
+            this.BtnValider.Location = new System.Drawing.Point(386, 146);
+            this.BtnValider.Name = "BtnValider";
+            this.BtnValider.Size = new System.Drawing.Size(75, 34);
+            this.BtnValider.TabIndex = 5;
+            this.BtnValider.Text = "Valider la ligne";
+            this.BtnValider.UseVisualStyleBackColor = true;
+            this.BtnValider.Click += new System.EventHandler(this.btnValider_Click);
+            // 
             // activiteDataGridViewTextBoxColumn
             // 
             this.activiteDataGridViewTextBoxColumn.DataPropertyName = "Activite";
@@ -218,58 +279,6 @@
             // 
             this.matriceBindingSource.DataSource = typeof(BCG.Matrice);
             // 
-            // ofdExcel
-            // 
-            this.ofdExcel.Title = "Importer des données Excel";
-            // 
-            // sfdTableur
-            // 
-            this.sfdTableur.FileName = "maMatriceBCG.xlsx";
-            this.sfdTableur.Title = "Enregistrer le fichier sous";
-            // 
-            // btnGenerer
-            // 
-            this.btnGenerer.Location = new System.Drawing.Point(385, 233);
-            this.btnGenerer.Name = "btnGenerer";
-            this.btnGenerer.Size = new System.Drawing.Size(75, 31);
-            this.btnGenerer.TabIndex = 2;
-            this.btnGenerer.Text = "Générer";
-            this.btnGenerer.UseVisualStyleBackColor = true;
-            this.btnGenerer.Click += new System.EventHandler(this.btnGenerer_Click);
-            // 
-            // chartBCG
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.chartBCG.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartBCG.Legends.Add(legend1);
-            this.chartBCG.Location = new System.Drawing.Point(466, 27);
-            this.chartBCG.Name = "chartBCG";
-            this.chartBCG.Size = new System.Drawing.Size(300, 300);
-            this.chartBCG.TabIndex = 3;
-            this.chartBCG.Text = "Repere";
-            this.chartBCG.Visible = false;
-            // 
-            // btnAjout
-            // 
-            this.btnAjout.Location = new System.Drawing.Point(385, 186);
-            this.btnAjout.Name = "btnAjout";
-            this.btnAjout.Size = new System.Drawing.Size(75, 41);
-            this.btnAjout.TabIndex = 4;
-            this.btnAjout.Text = "Ajouter une ligne";
-            this.btnAjout.UseVisualStyleBackColor = true;
-            this.btnAjout.Click += new System.EventHandler(this.btnAjout_Click);
-            // 
-            // BtnValider
-            // 
-            this.BtnValider.Location = new System.Drawing.Point(386, 146);
-            this.BtnValider.Name = "BtnValider";
-            this.BtnValider.Size = new System.Drawing.Size(75, 34);
-            this.BtnValider.TabIndex = 5;
-            this.BtnValider.Text = "Valider la ligne";
-            this.BtnValider.UseVisualStyleBackColor = true;
-            this.BtnValider.Click += new System.EventHandler(this.btnValider_Click);
-            // 
             // Principale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -287,8 +296,8 @@
             this.menuPrincipale.ResumeLayout(false);
             this.menuPrincipale.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTableur)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartBCG)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
