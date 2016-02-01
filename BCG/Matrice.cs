@@ -13,7 +13,10 @@ namespace BCG
         private float _PDMconct;
         private float _txCroiss;
         private float _partProduit;
-        
+        public String toString()
+        {
+            return _activite + " " + _PDMproduit + " " + _PDMconct + " " + _txCroiss + " " + _partProduit;
+        }
         public Matrice()
         {
 
@@ -83,7 +86,7 @@ namespace BCG
             }
         }
 
-        public Matrice(String activite,int PDMProduit,int PDMconct,int txCroiss,int partProduit)
+        public Matrice(String activite,float PDMProduit,float PDMconct,float txCroiss,float partProduit)
         {
             Activite = activite;
             this.PDMconct = PDMconct;
