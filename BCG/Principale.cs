@@ -26,9 +26,14 @@ namespace BCG
         public Principale()
         {
             InitializeComponent();
-            //remplissageTableur(20);
+            remplissageTableur(10);
             actualiserTableur(Points);
- 
+            chartBCG.ChartAreas[0].AxisX.Crossing = 0;
+            for(int i = 0; i < Points.Count; i++)
+            {
+                
+            }
+            
         }
         private void remplissageTableur(int taille)
         {
@@ -217,15 +222,23 @@ namespace BCG
 
         private void btnGenerer_Click(object sender, EventArgs e)
         {
-            chartBCG.Visible = true;
-            
-            for(int i = 0; i <4; i++)
+            try
             {
-                chartBCG.Series.Add(Points[i].Activite);
-                chartBCG.Series[Points[i].Activite].ChartType = SeriesChartType.Bubble;
-                chartBCG.Series[Points[i].Activite].Points.Add(Points[i].PartProduit,Points[i].PDMconct,Points[i].TxCroiss);
-            }           
-            chartBCG.DataBind();
+                chartBCG.Visible = true;
+
+                for (int i = 0; i < 4; i++)
+                {
+                    chartBCG.Series.Add(Points[i].Activite);
+                    chartBCG.Series[Points[i].Activite].ChartType = SeriesChartType.Bubble;
+                    chartBCG.Series[Points[i].Activite].Points.Add(Math.Log(Points[i].PDMproduit / Points[i].PDMconct), Points[i].TxCroiss, Points[i].PartProduit);
+                }
+                chartBCG.DataBind();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         private void btnAjout_Click(object sender, EventArgs e)
@@ -246,7 +259,7 @@ namespace BCG
             try
             {
                 Points[dgvTableur.CurrentRow.Index]=(Matrice)dgvTableur.CurrentRow.DataBoundItem;
-                MessageBox.Show(Points[0].toString());
+                MessageBox.Show(Points[dgvTableur.CurrentRow.Index].toString());
             }catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
