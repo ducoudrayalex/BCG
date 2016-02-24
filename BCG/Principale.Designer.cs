@@ -168,6 +168,7 @@
             // 
             // dgvTableur
             // 
+            this.dgvTableur.AllowDrop = true;
             this.dgvTableur.AllowUserToOrderColumns = true;
             this.dgvTableur.AutoGenerateColumns = false;
             this.dgvTableur.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -183,6 +184,7 @@
             this.dgvTableur.Name = "dgvTableur";
             this.dgvTableur.Size = new System.Drawing.Size(367, 364);
             this.dgvTableur.TabIndex = 1;
+            this.dgvTableur.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvTableur_KeyDown);
             // 
             // ofdExcel
             // 
