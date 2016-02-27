@@ -14,6 +14,7 @@ using Microsoft.Win32;
 using System.Data.OleDb;
 using System.IO;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Text.RegularExpressions;
 
 namespace BCG
 {
@@ -264,57 +265,149 @@ namespace BCG
             }
             
         }
-
-        private void dgvTableur_KeyDown(object sender, KeyEventArgs e)
+        private Dictionary<int, Dictionary<int, string>> ClipBoardValues(string clipboardValue)
         {
-            try
+            Dictionary<int, Dictionary<int, string>>
+            copyValues = new Dictionary<int, Dictionary<int, string>>();
+
+            String[] lines = clipboardValue.Split('\n');
+
+            for (int i = 0; i <= lines.Length - 1; i++)
             {
-                DataObject d = dgvTableur.GetClipboardContent();
-                Clipboard.SetDataObject(d);
-                string s = Clipboard.GetText();
-                string[] lines = s.Split('\n');
-                int iFail = 0, iRow = dgvTableur.CurrentCell.RowIndex;
-                int iCol = dgvTableur.CurrentCell.ColumnIndex;
-                DataGridViewCell oCell;
-                foreach (string line in lines)
+                copyValues[i] = new Dictionary<int, string>();
+                String[] lineContent = lines[i].Split('\t');
+
+                //if an empty cell value copied, then set the dictionary with an empty string
+                //else Set value to dictionary
+                if (lineContent.Length == 0)
+                    copyValues[i][0] = string.Empty;
+                else
                 {
-                    if (iRow < dgvTableur.RowCount && line.Length > 0)
-                    {
-                        string[] sCells = line.Split('\t');
-                        for (int i = 0; i < sCells.GetLength(0); ++i)
-                        {
-                            if (iCol + i < this.dgvTableur.ColumnCount)
-                            {
-                                oCell = dgvTableur[iCol + i, iRow];
-                                if (!oCell.ReadOnly)
-                                {
-                                    if (oCell.Value.ToString() != sCells[i])
-                                    {
-                                        oCell.Value = Convert.ChangeType(sCells[i],oCell.ValueType);
-                                    }
-                                    else
-                                        iFail++;
-                                    //only traps a fail if the data has changed 
-                                    //and you are pasting into a read only cell
-                                }
-                            }
-                            else
-                            { break; }
-                        }
-                        iRow++;
-                    }
-                    else
-                    { break; }
-                    if (iFail > 0)
-                        MessageBox.Show(string.Format("{0} updates failed due" +
-                                        " to read only column setting", iFail));
+                    for (int j = 0; j <= lineContent.Length - 1; j++)
+                        copyValues[i][j] = lineContent[j];
                 }
             }
-            catch (FormatException)
+            return copyValues;
+        }
+        private void CopyToClipboard()
+        {
+            //Copy to clipboard
+            DataObject dataObj = dgvTableur.GetClipboardContent();
+            if (dataObj != null)
+                Clipboard.SetDataObject(dataObj);
+        }
+        private void PasteClipboardValue()
+        {
+            //Show Error if no cell is selected
+            if (dgvTableur.SelectedCells.Count == 0)
             {
-                MessageBox.Show("The data you pasted is in the wrong format for the cell");
+                MessageBox.Show("Veuillez sélectionner une cellule", "Paste",
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            //Get the starting Cell
+            DataGridViewCell startCell = GetStartCell(dgvTableur);
+            //Get the clipboard value in a dictionary
+            Dictionary<int, Dictionary<int, string>> cbValue = ClipBoardValues(Clipboard.GetText());
+            int iRowIndex = startCell.RowIndex;
+            foreach (int rowKey in cbValue.Keys)
+            {
+                int iColIndex = startCell.ColumnIndex;
+                foreach (int cellKey in cbValue[rowKey].Keys)
+                {
+                    //Check if the index is within the limit
+                    if (iColIndex <= dgvTableur.Columns.Count - 1 && iRowIndex <= dgvTableur.Rows.Count - 1)                  
+                    {
+                        DataGridViewCell cell = dgvTableur[iColIndex, iRowIndex];
+                        cell.Value = cbValue[rowKey][cellKey];
+                    }
+                    iColIndex++;
+                }
+                iRowIndex++;
+            }
+        }
+        private DataGridViewCell GetStartCell(DataGridView dgView)
+        {
+            //get the smallest row,column index
+            if (dgView.SelectedCells.Count == 0)
+                return null;
+
+            int rowIndex = dgView.Rows.Count - 1;
+            int colIndex = dgView.Columns.Count - 1;
+
+            foreach (DataGridViewCell dgvCell in dgView.SelectedCells)
+            {
+                if (dgvCell.RowIndex < rowIndex)
+                    rowIndex = dgvCell.RowIndex;
+                if (dgvCell.ColumnIndex < colIndex)
+                    colIndex = dgvCell.ColumnIndex;
+            }
+
+            return dgView[colIndex, rowIndex];
+        }
+        private void dgvTableur_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.V)
+            {
+                PasteClipboardValue();
+            }
+        }
+
+        private void dgvTableur_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show("DataError : " + e.Context.ToString());
+
+            if (e.Context == DataGridViewDataErrorContexts.Commit)
+            {
+                MessageBox.Show("Validation impossible");
+            }
+            if (e.Context == DataGridViewDataErrorContexts.CurrentCellChange)
+            {
+                MessageBox.Show("Vous avez changé de cellule alors que la précédente contenait une erreur");
+            }
+            if (e.Context == DataGridViewDataErrorContexts.Parsing)
+            {
+                MessageBox.Show("Erreur lors de l'analyse des données(problème de conversion de type ?)");
+            }
+            if (e.Context == DataGridViewDataErrorContexts.LeaveControl)
+            {
+                MessageBox.Show("Erreur lorsque le controle a perdu le focus");
+            }
+
+            if ((e.Exception) is ConstraintException)
+            {
+                //DataGridView view = (DataGridView)sender;
+                dgvTableur.Rows[e.RowIndex].ErrorText = "Erreur";
+                dgvTableur.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "Erreur";
+
+                e.ThrowException = false;
+            }
+        }
+
+        private void Couper_Click(object sender, EventArgs e)
+        {
+            //Copy to clipboard
+            CopyToClipboard();
+
+            //Clear selected cells
+            foreach (DataGridViewCell dgvCell in dgvTableur.SelectedCells)
+                dgvCell.Value = string.Empty;
+        }
+
+        private void Copier_Click(object sender, EventArgs e)
+        {
+            CopyToClipboard();
+        }
+
+        private void Coller_Click(object sender, EventArgs e)
+        {
+            PasteClipboardValue();
+        }
+
+        private void dgvTableur_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (dgvTableur.SelectedCells.Count > 0)
+                dgvTableur.ContextMenuStrip = cmsPaste;
         }
     }
 }

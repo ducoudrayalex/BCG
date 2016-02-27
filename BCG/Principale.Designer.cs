@@ -51,6 +51,10 @@
             this.chartBCG = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnAjout = new System.Windows.Forms.Button();
             this.BtnValider = new System.Windows.Forms.Button();
+            this.cmsPaste = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.Copier = new System.Windows.Forms.ToolStripMenuItem();
+            this.Coller = new System.Windows.Forms.ToolStripMenuItem();
+            this.Couper = new System.Windows.Forms.ToolStripMenuItem();
             this.activiteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pDMproduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pDMconctDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,6 +64,7 @@
             this.menuPrincipale.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTableur)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartBCG)).BeginInit();
+            this.cmsPaste.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -184,6 +189,8 @@
             this.dgvTableur.Name = "dgvTableur";
             this.dgvTableur.Size = new System.Drawing.Size(367, 364);
             this.dgvTableur.TabIndex = 1;
+            this.dgvTableur.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTableur_CellMouseClick);
+            this.dgvTableur.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvTableur_DataError);
             this.dgvTableur.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvTableur_KeyDown);
             // 
             // ofdExcel
@@ -247,6 +254,36 @@
             this.BtnValider.UseVisualStyleBackColor = true;
             this.BtnValider.Click += new System.EventHandler(this.btnValider_Click);
             // 
+            // cmsPaste
+            // 
+            this.cmsPaste.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Couper,
+            this.Copier,
+            this.Coller});
+            this.cmsPaste.Name = "cmsPaste";
+            this.cmsPaste.Size = new System.Drawing.Size(114, 70);
+            // 
+            // Copier
+            // 
+            this.Copier.Name = "Copier";
+            this.Copier.Size = new System.Drawing.Size(113, 22);
+            this.Copier.Text = "Copier";
+            this.Copier.Click += new System.EventHandler(this.Copier_Click);
+            // 
+            // Coller
+            // 
+            this.Coller.Name = "Coller";
+            this.Coller.Size = new System.Drawing.Size(113, 22);
+            this.Coller.Text = "Coller";
+            this.Coller.Click += new System.EventHandler(this.Coller_Click);
+            // 
+            // Couper
+            // 
+            this.Couper.Name = "Couper";
+            this.Couper.Size = new System.Drawing.Size(113, 22);
+            this.Couper.Text = "Couper";
+            this.Couper.Click += new System.EventHandler(this.Couper_Click);
+            // 
             // activiteDataGridViewTextBoxColumn
             // 
             this.activiteDataGridViewTextBoxColumn.DataPropertyName = "Activite";
@@ -299,6 +336,7 @@
             this.menuPrincipale.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTableur)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartBCG)).EndInit();
+            this.cmsPaste.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -333,6 +371,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn txCroissDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn partProduitDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button BtnValider;
+        private System.Windows.Forms.ContextMenuStrip cmsPaste;
+        private System.Windows.Forms.ToolStripMenuItem Couper;
+        private System.Windows.Forms.ToolStripMenuItem Copier;
+        private System.Windows.Forms.ToolStripMenuItem Coller;
     }
 }
 
