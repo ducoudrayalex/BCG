@@ -52,9 +52,9 @@
             this.btnAjout = new System.Windows.Forms.Button();
             this.BtnValider = new System.Windows.Forms.Button();
             this.cmsPaste = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.Couper = new System.Windows.Forms.ToolStripMenuItem();
             this.Copier = new System.Windows.Forms.ToolStripMenuItem();
             this.Coller = new System.Windows.Forms.ToolStripMenuItem();
-            this.Couper = new System.Windows.Forms.ToolStripMenuItem();
             this.activiteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pDMproduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pDMconctDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -187,9 +187,10 @@
             this.dgvTableur.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgvTableur.Location = new System.Drawing.Point(12, 27);
             this.dgvTableur.Name = "dgvTableur";
-            this.dgvTableur.Size = new System.Drawing.Size(367, 364);
+            this.dgvTableur.Size = new System.Drawing.Size(367, 300);
             this.dgvTableur.TabIndex = 1;
             this.dgvTableur.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTableur_CellMouseClick);
+            this.dgvTableur.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableur_CellValueChanged);
             this.dgvTableur.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvTableur_DataError);
             this.dgvTableur.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvTableur_KeyDown);
             // 
@@ -204,9 +205,9 @@
             // 
             // btnGenerer
             // 
-            this.btnGenerer.Location = new System.Drawing.Point(385, 233);
+            this.btnGenerer.Location = new System.Drawing.Point(385, 137);
             this.btnGenerer.Name = "btnGenerer";
-            this.btnGenerer.Size = new System.Drawing.Size(75, 31);
+            this.btnGenerer.Size = new System.Drawing.Size(94, 26);
             this.btnGenerer.TabIndex = 2;
             this.btnGenerer.Text = "Générer";
             this.btnGenerer.UseVisualStyleBackColor = true;
@@ -227,18 +228,18 @@
             this.chartBCG.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chartBCG.Legends.Add(legend1);
-            this.chartBCG.Location = new System.Drawing.Point(466, 27);
+            this.chartBCG.Location = new System.Drawing.Point(485, 27);
             this.chartBCG.Name = "chartBCG";
-            this.chartBCG.Size = new System.Drawing.Size(300, 300);
+            this.chartBCG.Size = new System.Drawing.Size(281, 300);
             this.chartBCG.TabIndex = 3;
             this.chartBCG.Text = "Repere";
             this.chartBCG.Visible = false;
             // 
             // btnAjout
             // 
-            this.btnAjout.Location = new System.Drawing.Point(385, 186);
+            this.btnAjout.Location = new System.Drawing.Point(385, 105);
             this.btnAjout.Name = "btnAjout";
-            this.btnAjout.Size = new System.Drawing.Size(75, 41);
+            this.btnAjout.Size = new System.Drawing.Size(94, 26);
             this.btnAjout.TabIndex = 4;
             this.btnAjout.Text = "Ajouter une ligne";
             this.btnAjout.UseVisualStyleBackColor = true;
@@ -246,11 +247,11 @@
             // 
             // BtnValider
             // 
-            this.BtnValider.Location = new System.Drawing.Point(386, 146);
+            this.BtnValider.Location = new System.Drawing.Point(385, 75);
             this.BtnValider.Name = "BtnValider";
-            this.BtnValider.Size = new System.Drawing.Size(75, 34);
+            this.BtnValider.Size = new System.Drawing.Size(94, 24);
             this.BtnValider.TabIndex = 5;
-            this.BtnValider.Text = "Valider la ligne";
+            this.BtnValider.Text = "Valider le tableur";
             this.BtnValider.UseVisualStyleBackColor = true;
             this.BtnValider.Click += new System.EventHandler(this.btnValider_Click);
             // 
@@ -262,6 +263,13 @@
             this.Coller});
             this.cmsPaste.Name = "cmsPaste";
             this.cmsPaste.Size = new System.Drawing.Size(114, 70);
+            // 
+            // Couper
+            // 
+            this.Couper.Name = "Couper";
+            this.Couper.Size = new System.Drawing.Size(113, 22);
+            this.Couper.Text = "Couper";
+            this.Couper.Click += new System.EventHandler(this.Couper_Click);
             // 
             // Copier
             // 
@@ -276,13 +284,6 @@
             this.Coller.Size = new System.Drawing.Size(113, 22);
             this.Coller.Text = "Coller";
             this.Coller.Click += new System.EventHandler(this.Coller_Click);
-            // 
-            // Couper
-            // 
-            this.Couper.Name = "Couper";
-            this.Couper.Size = new System.Drawing.Size(113, 22);
-            this.Couper.Text = "Couper";
-            this.Couper.Click += new System.EventHandler(this.Couper_Click);
             // 
             // activiteDataGridViewTextBoxColumn
             // 

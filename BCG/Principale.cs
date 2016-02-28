@@ -20,35 +20,52 @@ namespace BCG
 {
     public partial class Principale : Form
     {
+        ///<summary>La liste de matrice représentant les lignes du tableur</summary> 
         BindingList<Matrice> Points = new BindingList<Matrice>();
+        /// <summary>
+        /// Instance de la classe BindingSource servant à lier les objets Matrice au tableur
+        /// </summary>
         BindingSource bindingSource = new BindingSource();
+        /// <summary>
+        /// Instance de la classe CopierColler contenant les méthodes pour couper,copier et coller les données du presse papier depuis excel vers le tableur
+        /// </summary>
+        CopierColler cc = new CopierColler();
+        /// <summary>
+        /// Variables nécessaires à l'ouverture d'un fichier excel dans le tableur (version etc...)
+        /// </summary>
         private string Excel03ConString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
         private string Excel07ConString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
+        /// <summary>
+        /// Constructeur de la forme Principale
+        /// </summary>
         public Principale()
         {
             InitializeComponent();
             remplissageTableur(10);
             actualiserTableur(Points);
-            chartBCG.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
-            chartBCG.ChartAreas[0].AxisX.MinorGrid.Enabled = false;
-            chartBCG.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
-            chartBCG.ChartAreas[0].AxisY.MinorGrid.Enabled = false;
-            
         }
-        private void remplissageTableur(int taille)
+        /// <summary>
+        /// Remplit le tableur d'objet matrice initialisé à 0
+        /// </summary>
+        /// <param name="nbLigne">Nombre de ligne à insérer dans le tableur</param>
+        private void remplissageTableur(int nbLigne)
         {
-            for (int i = 0; i < taille; i++)
+            for (int i = 0; i < nbLigne; i++)
             {
                 Points.Add(new Matrice());
             }
         }
+        /// <summary>
+        /// Lie la liste de matrice au tableur en définissant la propriété datasource du tableur avec une Bindinglist
+        /// </summary>
+        /// <param name="Points"></param>
         private void actualiserTableur(BindingList<Matrice> Points)
         {
             bindingSource.DataSource = Points;
             dgvTableur.AutoGenerateColumns = true;
             dgvTableur.DataSource = bindingSource;
         }
-        
+
         private void présentationEtModeDemploiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new Aide().ShowDialog();
@@ -58,7 +75,11 @@ namespace BCG
         {
             new Apropos().ShowDialog();
         }
-
+        /// <summary>
+        /// Ouvre une boite de dialogue pour chercher un fichier excel à insérer dans le tableur
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ouvrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -73,7 +94,6 @@ namespace BCG
                 conStr = string.Empty;
                 switch (extension)
                 {
-
                     case ".xls": //Excel 97-03
                         conStr = string.Format(Excel03ConString, filePath, header);
                         break;
@@ -112,7 +132,7 @@ namespace BCG
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -123,12 +143,15 @@ namespace BCG
             Application.Exit();
         }
 
-
         private void rAZToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Points.Clear();
         }
-
+        /// <summary>
+        /// Crée des objets matrice avec des valeurs de test
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void testerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -148,13 +171,17 @@ namespace BCG
                     Points.Add(new Matrice("D", 59, 12, 7, 20));
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
 
-}
-
+        }
+        /// <summary>
+        /// Enregistre le tableur dans un fichier excel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void enregistrerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -191,13 +218,12 @@ namespace BCG
 
                 MessageBox.Show("Fichier excel créé , vous pouvez trouver le fichier à " + sfdTableur.FileName);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            
-
         }
+
         /// <summary>
         /// Fonction de libération des objets
         /// </summary>
@@ -222,137 +248,68 @@ namespace BCG
 
         private void btnGenerer_Click(object sender, EventArgs e)
         {
-            try
-            {
-                chartBCG.Visible = true;
-                chartBCG.Series.Add("Société 1");
-                chartBCG.Series["Société 1"].ChartType = SeriesChartType.Bubble;
-                
-                for (int i = 0; i < 4; i++)
-                {
-                    chartBCG.Series["Société 1"].Points.AddXY(Math.Log(Points[i].PDMproduit / Points[i].PDMconct), Points[i].TxCroiss, Points[i].PartProduit);
-                }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            
+ 
         }
-
+        /// <summary>
+        /// Ajoute une ligne au tableur en ajoutant un objet matrice vide
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAjout_Click(object sender, EventArgs e)
         {
             try
             {
                 Points.Add(new Matrice());
-                
-            }catch(Exception ex)
+
+            } catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
 
+        /// <summary>
+        /// Insère les données saisies dans le tableur dans des objets matrice
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnValider_Click(object sender, EventArgs e)
         {
             try
             {
-                Points[dgvTableur.CurrentRow.Index]=(Matrice)dgvTableur.CurrentRow.DataBoundItem;
-                MessageBox.Show(Points[dgvTableur.CurrentRow.Index].toString());
-            }catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            
-        }
-        private Dictionary<int, Dictionary<int, string>> ClipBoardValues(string clipboardValue)
-        {
-            Dictionary<int, Dictionary<int, string>>
-            copyValues = new Dictionary<int, Dictionary<int, string>>();
-
-            String[] lines = clipboardValue.Split('\n');
-
-            for (int i = 0; i <= lines.Length - 1; i++)
-            {
-                copyValues[i] = new Dictionary<int, string>();
-                String[] lineContent = lines[i].Split('\t');
-
-                //if an empty cell value copied, then set the dictionary with an empty string
-                //else Set value to dictionary
-                if (lineContent.Length == 0)
-                    copyValues[i][0] = string.Empty;
-                else
-                {
-                    for (int j = 0; j <= lineContent.Length - 1; j++)
-                        copyValues[i][j] = lineContent[j];
-                }
-            }
-            return copyValues;
-        }
-        private void CopyToClipboard()
-        {
-            //Copy to clipboard
-            DataObject dataObj = dgvTableur.GetClipboardContent();
-            if (dataObj != null)
-                Clipboard.SetDataObject(dataObj);
-        }
-        private void PasteClipboardValue()
-        {
-            //Show Error if no cell is selected
-            if (dgvTableur.SelectedCells.Count == 0)
-            {
-                MessageBox.Show("Veuillez sélectionner une cellule", "Paste",
-                MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            //Get the starting Cell
-            DataGridViewCell startCell = GetStartCell(dgvTableur);
-            //Get the clipboard value in a dictionary
-            Dictionary<int, Dictionary<int, string>> cbValue = ClipBoardValues(Clipboard.GetText());
-            int iRowIndex = startCell.RowIndex;
-            foreach (int rowKey in cbValue.Keys)
-            {
-                int iColIndex = startCell.ColumnIndex;
-                foreach (int cellKey in cbValue[rowKey].Keys)
-                {
-                    //Check if the index is within the limit
-                    if (iColIndex <= dgvTableur.Columns.Count - 1 && iRowIndex <= dgvTableur.Rows.Count - 1)                  
+                for (int i = 0; i < dgvTableur.RowCount - 1; i++) {
+                    if (Points[i] != null)
                     {
-                        DataGridViewCell cell = dgvTableur[iColIndex, iRowIndex];
-                        cell.Value = cbValue[rowKey][cellKey];
+                        Points[i] = (Matrice)dgvTableur.Rows[i].DataBoundItem;
                     }
-                    iColIndex++;
+                    else Points.Add((Matrice)dgvTableur.Rows[i].DataBoundItem);
+
                 }
-                iRowIndex++;
+                BtnValider.Enabled = false;
             }
-        }
-        private DataGridViewCell GetStartCell(DataGridView dgView)
-        {
-            //get the smallest row,column index
-            if (dgView.SelectedCells.Count == 0)
-                return null;
-
-            int rowIndex = dgView.Rows.Count - 1;
-            int colIndex = dgView.Columns.Count - 1;
-
-            foreach (DataGridViewCell dgvCell in dgView.SelectedCells)
+            catch (Exception ex)
             {
-                if (dgvCell.RowIndex < rowIndex)
-                    rowIndex = dgvCell.RowIndex;
-                if (dgvCell.ColumnIndex < colIndex)
-                    colIndex = dgvCell.ColumnIndex;
+                MessageBox.Show("Erreur bouton valider : " + ex.Message);
             }
-
-            return dgView[colIndex, rowIndex];
         }
+
+        /// <summary>
+        /// Ajoute l'évenement keydown control+v pour coller le presse papier
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dgvTableur_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.V)
             {
-                PasteClipboardValue();
+                cc.PasteClipboardValue(dgvTableur);
             }
         }
-
+        /// <summary>
+        /// Gère les erreurs DataError provenant des cellules du tableur
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dgvTableur_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             MessageBox.Show("DataError : " + e.Context.ToString());
@@ -387,27 +344,32 @@ namespace BCG
         private void Couper_Click(object sender, EventArgs e)
         {
             //Copy to clipboard
-            CopyToClipboard();
+            cc.CopyToClipboard(dgvTableur);
 
             //Clear selected cells
             foreach (DataGridViewCell dgvCell in dgvTableur.SelectedCells)
-                dgvCell.Value = string.Empty;
+                dgvCell.Value = 0;
         }
 
         private void Copier_Click(object sender, EventArgs e)
         {
-            CopyToClipboard();
+            cc.CopyToClipboard(dgvTableur);
         }
 
         private void Coller_Click(object sender, EventArgs e)
         {
-            PasteClipboardValue();
+            cc.PasteClipboardValue(dgvTableur);
         }
 
         private void dgvTableur_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (dgvTableur.SelectedCells.Count > 0)
                 dgvTableur.ContextMenuStrip = cmsPaste;
+        }
+
+        private void dgvTableur_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            BtnValider.Enabled = true;
         }
     }
 }
