@@ -16,6 +16,7 @@ using System.IO;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Text.RegularExpressions;
 
+
 namespace BCG
 {
     public partial class Principale : Form
@@ -41,7 +42,7 @@ namespace BCG
         public Principale()
         {
             InitializeComponent();
-            remplissageTableur(10);
+            //remplissageTableur(10);
             actualiserTableur(Points);
         }
         /// <summary>
@@ -64,6 +65,7 @@ namespace BCG
             bindingSource.DataSource = Points;
             dgvTableur.AutoGenerateColumns = true;
             dgvTableur.DataSource = bindingSource;
+            btnAjout.Enabled = true;
         }
 
         private void présentationEtModeDemploiToolStripMenuItem_Click(object sender, EventArgs e)
@@ -131,6 +133,7 @@ namespace BCG
                         }
                     }
                 }
+                btnAjout.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -266,13 +269,11 @@ namespace BCG
         {
             try
             {
-                Points.Add(new Matrice());
-
-            } catch (Exception ex)
+                Points.Add(new Matrice());               
+            }catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
 
         /// <summary>
@@ -284,19 +285,55 @@ namespace BCG
         {
             try
             {
-                for (int i = 0; i < dgvTableur.RowCount - 1; i++) {
-                    if (Points[i] != null)
+                if (dgvTableur.DataSource == bindingSource)
+                {
+                    if (Points.Count > 0)
                     {
-                        Points[i] = (Matrice)dgvTableur.Rows[i].DataBoundItem;
+                        for (int i = 0; i < dgvTableur.Rows.Count - 2; i++)
+                        {
+                            Points[i] = (Matrice)dgvTableur.Rows[i].DataBoundItem;
+                        }
                     }
-                    else Points.Add((Matrice)dgvTableur.Rows[i].DataBoundItem);
+                    else {
+                        for (int i = 0; i < dgvTableur.Rows.Count - 2; i++)
+                        {
+                            Points.Add((Matrice)dgvTableur.Rows[i].DataBoundItem);
+                        }
+                    }
+                }
+                else
+                {
+                    if (Points.Count > 0)
+                    {
+                        for (int i = 0; i < dgvTableur.Rows.Count - 2; i++)
+                        {
+
+                            Points[i].Activite = dgvTableur.Rows[i].Cells[0].Value.ToString();
+                            Points[i].PDMproduit = (float)Convert.ChangeType(dgvTableur.Rows[i].Cells[1].Value, typeof(float));
+                            Points[i].PDMconct = (float)Convert.ChangeType(dgvTableur.Rows[i].Cells[2].Value, typeof(float));
+                            Points[i].TxCroiss = (float)Convert.ChangeType(dgvTableur.Rows[i].Cells[3].Value, typeof(float));
+                            Points[i].PartProduit = (float)Convert.ChangeType(dgvTableur.Rows[i].Cells[4].Value, typeof(float));
+                        }
+                    }
+                    else {
+                        for (int i = 0; i < dgvTableur.Rows.Count - 2; i++)
+                        {
+
+                            Points.Add(new Matrice(dgvTableur.Rows[i].Cells[0].Value.ToString(),
+                            (float)Convert.ChangeType(dgvTableur.Rows[i].Cells[1].Value, typeof(float)),
+                            (float)Convert.ChangeType(dgvTableur.Rows[i].Cells[2].Value, typeof(float)),
+                            (float)Convert.ChangeType(dgvTableur.Rows[i].Cells[3].Value, typeof(float)),
+                            (float)Convert.ChangeType(dgvTableur.Rows[i].Cells[4].Value, typeof(float))));
+
+                        }
+                    }                 
                 }
                 BtnValider.Enabled = false;
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                MessageBox.Show("Erreur bouton valider : " + ex.Message);
-            }
+                MessageBox.Show(ex.Message);
+            }             
         }
 
         /// <summary>
@@ -375,6 +412,11 @@ namespace BCG
         }
 
         private void dgvTableur_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            BtnValider.Enabled = true;
+        }
+
+        private void dgvTableur_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             BtnValider.Enabled = true;
         }

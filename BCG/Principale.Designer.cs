@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.menuPrincipale = new System.Windows.Forms.MenuStrip();
@@ -177,6 +178,17 @@
             this.dgvTableur.AllowUserToOrderColumns = true;
             this.dgvTableur.AutoGenerateColumns = false;
             this.dgvTableur.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvTableur.BackgroundColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Georgia", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = "null";
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTableur.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvTableur.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.activiteDataGridViewTextBoxColumn,
             this.pDMproduitDataGridViewTextBoxColumn,
@@ -185,10 +197,12 @@
             this.partProduitDataGridViewTextBoxColumn});
             this.dgvTableur.DataSource = this.matriceBindingSource;
             this.dgvTableur.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dgvTableur.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dgvTableur.Location = new System.Drawing.Point(12, 27);
             this.dgvTableur.Name = "dgvTableur";
-            this.dgvTableur.Size = new System.Drawing.Size(367, 300);
+            this.dgvTableur.Size = new System.Drawing.Size(412, 300);
             this.dgvTableur.TabIndex = 1;
+<<<<<<< HEAD
 
             this.dgvTableur.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableur_CellContentClick);
             // 
@@ -226,6 +240,9 @@
             // 
             this.matriceBindingSource.DataSource = typeof(BCG.Matrice);
 
+=======
+            this.dgvTableur.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableur_CellEndEdit);
+>>>>>>> refs/remotes/origin/dev
             this.dgvTableur.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTableur_CellMouseClick);
             this.dgvTableur.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableur_CellValueChanged);
             this.dgvTableur.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvTableur_DataError);
@@ -242,7 +259,7 @@
             // 
             // btnGenerer
             // 
-            this.btnGenerer.Location = new System.Drawing.Point(385, 137);
+            this.btnGenerer.Location = new System.Drawing.Point(285, 331);
             this.btnGenerer.Name = "btnGenerer";
             this.btnGenerer.Size = new System.Drawing.Size(94, 26);
             this.btnGenerer.TabIndex = 2;
@@ -274,7 +291,7 @@
             // 
             // btnAjout
             // 
-            this.btnAjout.Location = new System.Drawing.Point(385, 105);
+            this.btnAjout.Location = new System.Drawing.Point(12, 331);
             this.btnAjout.Name = "btnAjout";
             this.btnAjout.Size = new System.Drawing.Size(94, 26);
             this.btnAjout.TabIndex = 4;
@@ -284,7 +301,7 @@
             // 
             // BtnValider
             // 
-            this.BtnValider.Location = new System.Drawing.Point(385, 75);
+            this.BtnValider.Location = new System.Drawing.Point(149, 333);
             this.BtnValider.Name = "BtnValider";
             this.BtnValider.Size = new System.Drawing.Size(94, 24);
             this.BtnValider.TabIndex = 5;
@@ -299,26 +316,29 @@
             this.Copier,
             this.Coller});
             this.cmsPaste.Name = "cmsPaste";
-            this.cmsPaste.Size = new System.Drawing.Size(114, 70);
+            this.cmsPaste.Size = new System.Drawing.Size(155, 70);
             // 
             // Couper
             // 
             this.Couper.Name = "Couper";
-            this.Couper.Size = new System.Drawing.Size(113, 22);
+            this.Couper.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.Couper.Size = new System.Drawing.Size(154, 22);
             this.Couper.Text = "Couper";
             this.Couper.Click += new System.EventHandler(this.Couper_Click);
             // 
             // Copier
             // 
             this.Copier.Name = "Copier";
-            this.Copier.Size = new System.Drawing.Size(113, 22);
+            this.Copier.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.Copier.Size = new System.Drawing.Size(154, 22);
             this.Copier.Text = "Copier";
             this.Copier.Click += new System.EventHandler(this.Copier_Click);
             // 
             // Coller
             // 
             this.Coller.Name = "Coller";
-            this.Coller.Size = new System.Drawing.Size(113, 22);
+            this.Coller.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.Coller.Size = new System.Drawing.Size(154, 22);
             this.Coller.Text = "Coller";
             this.Coller.Click += new System.EventHandler(this.Coller_Click);
             // 
