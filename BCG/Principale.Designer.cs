@@ -202,11 +202,49 @@
             this.dgvTableur.Name = "dgvTableur";
             this.dgvTableur.Size = new System.Drawing.Size(412, 300);
             this.dgvTableur.TabIndex = 1;
+<<<<<<< HEAD
+            this.dgvTableur.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableur_CellContentClick);
+            // 
+            // activiteDataGridViewTextBoxColumn
+            // 
+            this.activiteDataGridViewTextBoxColumn.DataPropertyName = "Activite";
+            this.activiteDataGridViewTextBoxColumn.HeaderText = "Activite";
+            this.activiteDataGridViewTextBoxColumn.Name = "activiteDataGridViewTextBoxColumn";
+            // 
+            // pDMproduitDataGridViewTextBoxColumn
+            // 
+            this.pDMproduitDataGridViewTextBoxColumn.DataPropertyName = "PDMproduit";
+            this.pDMproduitDataGridViewTextBoxColumn.HeaderText = "PDMproduit";
+            this.pDMproduitDataGridViewTextBoxColumn.Name = "pDMproduitDataGridViewTextBoxColumn";
+            // 
+            // pDMconctDataGridViewTextBoxColumn
+            // 
+            this.pDMconctDataGridViewTextBoxColumn.DataPropertyName = "PDMconct";
+            this.pDMconctDataGridViewTextBoxColumn.HeaderText = "PDMconct";
+            this.pDMconctDataGridViewTextBoxColumn.Name = "pDMconctDataGridViewTextBoxColumn";
+            // 
+            // txCroissDataGridViewTextBoxColumn
+            // 
+            this.txCroissDataGridViewTextBoxColumn.DataPropertyName = "TxCroiss";
+            this.txCroissDataGridViewTextBoxColumn.HeaderText = "TxCroiss";
+            this.txCroissDataGridViewTextBoxColumn.Name = "txCroissDataGridViewTextBoxColumn";
+            // 
+            // partProduitDataGridViewTextBoxColumn
+            // 
+            this.partProduitDataGridViewTextBoxColumn.DataPropertyName = "PartProduit";
+            this.partProduitDataGridViewTextBoxColumn.HeaderText = "PartProduit";
+            this.partProduitDataGridViewTextBoxColumn.Name = "partProduitDataGridViewTextBoxColumn";
+            // 
+            // matriceBindingSource
+            // 
+            this.matriceBindingSource.DataSource = typeof(BCG.Matrice);
+=======
             this.dgvTableur.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableur_CellEndEdit);
             this.dgvTableur.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTableur_CellMouseClick);
             this.dgvTableur.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableur_CellValueChanged);
             this.dgvTableur.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvTableur_DataError);
             this.dgvTableur.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvTableur_KeyDown);
+>>>>>>> refs/remotes/origin/dev
             // 
             // ofdExcel
             // 
