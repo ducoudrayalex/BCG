@@ -204,7 +204,10 @@
             this.dgvTableur.TabIndex = 1;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/Jeremy
 =======
 >>>>>>> origin/Jeremy
             this.dgvTableur.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableur_CellContentClick);
@@ -242,8 +245,11 @@
             // matriceBindingSource
             // 
             this.matriceBindingSource.DataSource = typeof(BCG.Matrice);
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> origin/Jeremy
             this.dgvTableur.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableur_CellEndEdit);
 >>>>>>> refs/remotes/origin/dev
             this.dgvTableur.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTableur_CellMouseClick);
@@ -251,8 +257,11 @@
             this.dgvTableur.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvTableur_DataError);
             this.dgvTableur.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvTableur_KeyDown);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> refs/remotes/origin/dev
+>>>>>>> origin/Jeremy
+=======
 >>>>>>> origin/Jeremy
             // 
             // ofdExcel

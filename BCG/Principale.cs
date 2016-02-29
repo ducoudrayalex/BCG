@@ -254,7 +254,10 @@ namespace BCG
         private void dgvTableur_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/Jeremy
 
         private void btnGenerer_Click(object sender, EventArgs e)
         {
@@ -383,10 +386,14 @@ namespace BCG
                 e.ThrowException = false;
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> origin/Jeremy
             
+=======
+
+>>>>>>> origin/Jeremy
         }
 
         private void Couper_Click(object sender, EventArgs e)
@@ -424,8 +431,12 @@ namespace BCG
         {
             BtnValider.Enabled = true;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> refs/remotes/origin/dev
+>>>>>>> origin/Jeremy
+=======
+
 >>>>>>> origin/Jeremy
         }
     }
