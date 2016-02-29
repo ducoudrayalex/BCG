@@ -250,11 +250,11 @@ namespace BCG
             }
         }
 
-<<<<<<< HEAD
+
         private void dgvTableur_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+        }
 
-=======
         private void btnGenerer_Click(object sender, EventArgs e)
         {
  
@@ -381,10 +381,7 @@ namespace BCG
 
                 e.ThrowException = false;
             }
-<<<<<<< HEAD
-            
->>>>>>> refs/remotes/origin/dev
-=======
+
         }
 
         private void Couper_Click(object sender, EventArgs e)
@@ -421,7 +418,7 @@ namespace BCG
         private void dgvTableur_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             BtnValider.Enabled = true;
->>>>>>> refs/remotes/origin/dev
+
         }
     }
 }
