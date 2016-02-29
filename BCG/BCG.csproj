@@ -81,6 +81,7 @@
     <Compile Include="Apropos.Designer.cs">
       <DependentUpon>Apropos.cs</DependentUpon>
     </Compile>
+    <Compile Include="CopierColler.cs" />
     <Compile Include="Matrice.cs" />
     <Compile Include="Microsoft\Office\Interop\Excel\WorkSheet.cs" />
     <Compile Include="Principale.cs">
