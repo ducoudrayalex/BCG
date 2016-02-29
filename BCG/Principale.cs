@@ -146,6 +146,7 @@ namespace BCG
         private void rAZToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Points.Clear();
+            actualiserTableur(Points);
         }
         /// <summary>
         /// Crée des objets matrice avec des valeurs de test
@@ -283,7 +284,6 @@ namespace BCG
                         Points[i] = (Matrice)dgvTableur.Rows[i].DataBoundItem;
                     }
                     else Points.Add((Matrice)dgvTableur.Rows[i].DataBoundItem);
-
                 }
                 BtnValider.Enabled = false;
             }
