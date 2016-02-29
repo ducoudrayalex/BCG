@@ -203,7 +203,10 @@
             this.dgvTableur.Size = new System.Drawing.Size(412, 300);
             this.dgvTableur.TabIndex = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/Jeremy
             this.dgvTableur.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableur_CellContentClick);
             // 
             // activiteDataGridViewTextBoxColumn
@@ -247,6 +250,10 @@
             this.dgvTableur.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableur_CellValueChanged);
             this.dgvTableur.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvTableur_DataError);
             this.dgvTableur.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvTableur_KeyDown);
+<<<<<<< HEAD
+=======
+>>>>>>> refs/remotes/origin/dev
+>>>>>>> origin/Jeremy
             // 
             // ofdExcel
             // 

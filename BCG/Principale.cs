@@ -382,6 +382,10 @@ namespace BCG
 
                 e.ThrowException = false;
             }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/Jeremy
             
         }
 
@@ -419,6 +423,10 @@ namespace BCG
         private void dgvTableur_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             BtnValider.Enabled = true;
+<<<<<<< HEAD
+=======
+>>>>>>> refs/remotes/origin/dev
+>>>>>>> origin/Jeremy
         }
     }
 }
