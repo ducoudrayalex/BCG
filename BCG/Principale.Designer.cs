@@ -189,7 +189,7 @@
             this.dgvTableur.Name = "dgvTableur";
             this.dgvTableur.Size = new System.Drawing.Size(367, 300);
             this.dgvTableur.TabIndex = 1;
-<<<<<<< HEAD
+
             this.dgvTableur.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableur_CellContentClick);
             // 
             // activiteDataGridViewTextBoxColumn
@@ -225,12 +225,11 @@
             // matriceBindingSource
             // 
             this.matriceBindingSource.DataSource = typeof(BCG.Matrice);
-=======
+
             this.dgvTableur.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTableur_CellMouseClick);
             this.dgvTableur.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableur_CellValueChanged);
             this.dgvTableur.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvTableur_DataError);
             this.dgvTableur.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvTableur_KeyDown);
->>>>>>> refs/remotes/origin/dev
             // 
             // ofdExcel
             // 
