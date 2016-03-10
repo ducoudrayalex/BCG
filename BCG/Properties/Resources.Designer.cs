@@ -59,15 +59,5 @@ namespace BCG.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap matriceBCG {
-            get {
-                object obj = ResourceManager.GetObject("matriceBCG", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }
