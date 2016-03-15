@@ -59,11 +59,18 @@ namespace BCG
         /// <param name="Points"></param>
         private void actualiserTableur(BindingList<Matrice> Points)
         {
-            Points.Clear();
-            bindingSource.DataSource = Points;
-            dgvTableur.AutoGenerateColumns = true;
-            dgvTableur.DataSource = bindingSource;
-            btnAjout.Enabled = true;
+            try
+            {
+                Points.Clear();
+                bindingSource.DataSource = Points;
+                dgvTableur.AutoGenerateColumns = true;
+                dgvTableur.DataSource = bindingSource;
+                btnAjout.Enabled = true;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }          
         }
 
         private void présentationEtModeDemploiToolStripMenuItem_Click(object sender, EventArgs e)
@@ -245,7 +252,7 @@ namespace BCG
             catch (Exception ex)
             {
                 obj = null;
-                MessageBox.Show("Exception Occured while releasing object " + ex.ToString());
+                MessageBox.Show("Erreur lors de la libération de l'objet : " + ex.ToString());
             }
             finally
             {
@@ -459,9 +466,9 @@ namespace BCG
          }
 //============================================================================================================//
 
-        private void Principale_Load(object sender, EventArgs e)
+        private void Principale_FormClosed(object sender, FormClosedEventArgs e)
         {
-
+            Application.Exit();
         }
     }
 }
