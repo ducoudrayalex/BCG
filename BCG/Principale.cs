@@ -14,41 +14,73 @@ using Microsoft.Win32;
 using System.Data.OleDb;
 using System.IO;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Text.RegularExpressions;
+
 
 namespace BCG
 {
     public partial class Principale : Form
     {
+<<<<<<< HEAD
         BindingList<Matrice>  Points = new BindingList<Matrice>();
+=======
+        ///<summary>La liste de matrice représentant les lignes du tableur</summary> 
+        BindingList<Matrice> Points = new BindingList<Matrice>();
+        /// <summary>
+        /// Instance de la classe BindingSource servant à lier les objets Matrice au tableur
+        /// </summary>
+>>>>>>> refs/remotes/origin/dev
         BindingSource bindingSource = new BindingSource();
+        /// <summary>
+        /// Instance de la classe CopierColler contenant les méthodes pour couper,copier et coller les données du presse papier depuis excel vers le tableur
+        /// </summary>
+        CopierColler cc = new CopierColler();
+        /// <summary>
+        /// Variables nécessaires à l'ouverture d'un fichier excel dans le tableur (version etc...)
+        /// </summary>
         private string Excel03ConString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
         private string Excel07ConString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
+        /// <summary>
+        /// Constructeur de la forme Principale
+        /// </summary>
         public Principale()
         {
             InitializeComponent();
-            remplissageTableur(10);
+            //remplissageTableur(10);
             actualiserTableur(Points);
+<<<<<<< HEAD
 
             for (int i = 0; i < Points.Count; i++)
             {
                 
             }
             
+=======
+>>>>>>> refs/remotes/origin/dev
         }
-        private void remplissageTableur(int taille)
+        /// <summary>
+        /// Remplit le tableur d'objet matrice initialisé à 0
+        /// </summary>
+        /// <param name="nbLigne">Nombre de ligne à insérer dans le tableur</param>
+        private void remplissageTableur(int nbLigne)
         {
-            for (int i = 0; i < taille; i++)
+            for (int i = 0; i < nbLigne; i++)
             {
                 Points.Add(new Matrice());
             }
         }
+        /// <summary>
+        /// Lie la liste de matrice au tableur en définissant la propriété datasource du tableur avec une Bindinglist
+        /// </summary>
+        /// <param name="Points"></param>
         private void actualiserTableur(BindingList<Matrice> Points)
         {
             bindingSource.DataSource = Points;
             dgvTableur.AutoGenerateColumns = true;
             dgvTableur.DataSource = bindingSource;
+            btnAjout.Enabled = true;
         }
-        
+
         private void présentationEtModeDemploiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new Aide().ShowDialog();
@@ -58,7 +90,11 @@ namespace BCG
         {
             new Apropos().ShowDialog();
         }
-
+        /// <summary>
+        /// Ouvre une boite de dialogue pour chercher un fichier excel à insérer dans le tableur
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ouvrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -73,7 +109,6 @@ namespace BCG
                 conStr = string.Empty;
                 switch (extension)
                 {
-
                     case ".xls": //Excel 97-03
                         conStr = string.Format(Excel03ConString, filePath, header);
                         break;
@@ -111,8 +146,9 @@ namespace BCG
                         }
                     }
                 }
+                btnAjout.Enabled = false;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -123,16 +159,23 @@ namespace BCG
             Application.Exit();
         }
 
-
         private void rAZToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Points.Clear();
+<<<<<<< HEAD
            /* foreach(var series in chartBCG.Series)
             {
                 series.Points.Clear();
             }*/
+=======
+            actualiserTableur(Points);
+>>>>>>> refs/remotes/origin/dev
         }
-
+        /// <summary>
+        /// Crée des objets matrice avec des valeurs de test
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void testerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -149,16 +192,20 @@ namespace BCG
                     Points.Add(new Matrice("A", 25, 20, 18, 10));
                     Points.Add(new Matrice("B", 20, 30, 12, 10));
                     Points.Add(new Matrice("C", 12, 30, 5, 15));
-                    Points.Add(new Matrice("D", 59, 12, 7, 40));
+                    Points.Add(new Matrice("D", 59, 12, 7, 20));
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
 
-}
-
+        }
+        /// <summary>
+        /// Enregistre le tableur dans un fichier excel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void enregistrerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -195,13 +242,12 @@ namespace BCG
 
                 MessageBox.Show("Fichier excel créé , vous pouvez trouver le fichier à " + sfdTableur.FileName);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            
-
         }
+
         /// <summary>
         /// Fonction de libération des objets
         /// </summary>
@@ -224,8 +270,14 @@ namespace BCG
             }
         }
 
+
+        private void dgvTableur_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+
         private void btnGenerer_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             chartBCG.Series.Clear();
             //chartBCG.Visible = true;
             try
@@ -246,38 +298,170 @@ namespace BCG
                     chartBCG.Series[Points[i].Activite].Label ="Prod." + Points[i].Activite;
                  }
                  //chartBCG.DataBind();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            
+=======
+ 
         }
-
+        /// <summary>
+        /// Ajoute une ligne au tableur en ajoutant un objet matrice vide
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAjout_Click(object sender, EventArgs e)
         {
             try
             {
-                Points.Add(new Matrice());
-                
-            }catch(Exception ex)
+                Points.Add(new Matrice());               
+            }catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            
         }
 
+        /// <summary>
+        /// Insère les données saisies dans le tableur dans des objets matrice
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnValider_Click(object sender, EventArgs e)
         {
             try
             {
-                Points[dgvTableur.CurrentRow.Index]=(Matrice)dgvTableur.CurrentRow.DataBoundItem;
-                MessageBox.Show(Points[dgvTableur.CurrentRow.Index].toString());
-            }catch(Exception ex)
+                if (dgvTableur.DataSource == bindingSource)
+                {
+                    if (Points.Count > 0)
+                    {
+                        for (int i = 0; i < dgvTableur.Rows.Count - 2; i++)
+                        {
+                            Points[i] = (Matrice)dgvTableur.Rows[i].DataBoundItem;
+                        }
+                    }
+                    else {
+                        for (int i = 0; i < dgvTableur.Rows.Count - 2; i++)
+                        {
+                            Points.Add((Matrice)dgvTableur.Rows[i].DataBoundItem);
+                        }
+                    }
+                }
+                else
+                {
+                    if (Points.Count > 0)
+                    {
+                        for (int i = 0; i < dgvTableur.Rows.Count - 2; i++)
+                        {
+
+                            Points[i].Activite = dgvTableur.Rows[i].Cells[0].Value.ToString();
+                            Points[i].PDMproduit = (float)Convert.ChangeType(dgvTableur.Rows[i].Cells[1].Value, typeof(float));
+                            Points[i].PDMconct = (float)Convert.ChangeType(dgvTableur.Rows[i].Cells[2].Value, typeof(float));
+                            Points[i].TxCroiss = (float)Convert.ChangeType(dgvTableur.Rows[i].Cells[3].Value, typeof(float));
+                            Points[i].PartProduit = (float)Convert.ChangeType(dgvTableur.Rows[i].Cells[4].Value, typeof(float));
+                        }
+                    }
+                    else {
+                        for (int i = 0; i < dgvTableur.Rows.Count - 2; i++)
+                        {
+
+                            Points.Add(new Matrice(dgvTableur.Rows[i].Cells[0].Value.ToString(),
+                            (float)Convert.ChangeType(dgvTableur.Rows[i].Cells[1].Value, typeof(float)),
+                            (float)Convert.ChangeType(dgvTableur.Rows[i].Cells[2].Value, typeof(float)),
+                            (float)Convert.ChangeType(dgvTableur.Rows[i].Cells[3].Value, typeof(float)),
+                            (float)Convert.ChangeType(dgvTableur.Rows[i].Cells[4].Value, typeof(float))));
+
+                        }
+                    }                 
+                }
+                BtnValider.Enabled = false;
+>>>>>>> refs/remotes/origin/dev
+            }
+            catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }             
+        }
+
+        /// <summary>
+        /// Ajoute l'évenement keydown control+v pour coller le presse papier
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgvTableur_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.V)
+            {
+                cc.PasteClipboardValue(dgvTableur);
             }
-            
+        }
+        /// <summary>
+        /// Gère les erreurs DataError provenant des cellules du tableur
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgvTableur_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show("DataError : " + e.Context.ToString());
+
+            if (e.Context == DataGridViewDataErrorContexts.Commit)
+            {
+                MessageBox.Show("Validation impossible");
+            }
+            if (e.Context == DataGridViewDataErrorContexts.CurrentCellChange)
+            {
+                MessageBox.Show("Vous avez changé de cellule alors que la précédente contenait une erreur");
+            }
+            if (e.Context == DataGridViewDataErrorContexts.Parsing)
+            {
+                MessageBox.Show("Erreur lors de l'analyse des données(problème de conversion de type ?)");
+            }
+            if (e.Context == DataGridViewDataErrorContexts.LeaveControl)
+            {
+                MessageBox.Show("Erreur lorsque le controle a perdu le focus");
+            }
+
+            if ((e.Exception) is ConstraintException)
+            {
+                //DataGridView view = (DataGridView)sender;
+                dgvTableur.Rows[e.RowIndex].ErrorText = "Erreur";
+                dgvTableur.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "Erreur";
+
+                e.ThrowException = false;
+            }
+
+        }
+
+        private void Couper_Click(object sender, EventArgs e)
+        {
+            //Copy to clipboard
+            cc.CopyToClipboard(dgvTableur);
+
+            //Clear selected cells
+            foreach (DataGridViewCell dgvCell in dgvTableur.SelectedCells)
+                dgvCell.Value = 0;
+        }
+
+        private void Copier_Click(object sender, EventArgs e)
+        {
+            cc.CopyToClipboard(dgvTableur);
+        }
+
+        private void Coller_Click(object sender, EventArgs e)
+        {
+            cc.PasteClipboardValue(dgvTableur);
+        }
+
+        private void dgvTableur_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (dgvTableur.SelectedCells.Count > 0)
+                dgvTableur.ContextMenuStrip = cmsPaste;
+        }
+
+        private void dgvTableur_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            BtnValider.Enabled = true;
+        }
+
+        private void dgvTableur_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            BtnValider.Enabled = true;
+
         }
 
         private void chartBCG_MouseClick(object sender, MouseEventArgs e)
