@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Data.OleDb;
 using System.IO;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace BCG
 {
@@ -38,6 +39,7 @@ namespace BCG
             //remplissageTableur(10);
             Points = new BindingList<Matrice>();
             actualiserTableur(Points);
+
         }
         
         /// <summary>
@@ -251,15 +253,41 @@ namespace BCG
             }
         }
 
-
         private void dgvTableur_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
         }
 
         private void btnGenerer_Click(object sender, EventArgs e)
         {
- 
+
+            chartBCG.Series.Clear();
+            //chartBCG.Visible = true;
+            try
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    chartBCG.Series.Add(Points[i].Activite);
+                    chartBCG.Series[Points[i].Activite].ChartType = SeriesChartType.Bubble;
+                    chartBCG.Series[Points[i].Activite].MarkerStyle = MarkerStyle.Circle;
+                    chartBCG.Series[Points[i].Activite]["BubbleMaxSize"] = "25";
+                    chartBCG.Series[Points[i].Activite]["BubbleMinSize"] = "10";
+                    // chartBCG.Series[Points[i].Activite]["BubbleScaleMax"] = "auto";
+
+
+                    // chartBCG.Series[Points[i].Activite].Points.Add(x, y, z);
+
+                    chartBCG.Series[Points[i].Activite].Points.AddXY((Points[i].PDMproduit / Points[i].PDMconct), Points[i].TxCroiss, Points[i].PartProduit);
+                    chartBCG.Series[Points[i].Activite].Label = "Prod." + Points[i].Activite;
+                }
+                //chartBCG.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
+
         /// <summary>
         /// Ajoute une ligne au tableur en ajoutant un objet matrice vide
         /// </summary>
@@ -419,6 +447,20 @@ namespace BCG
         private void dgvTableur_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             BtnValider.Enabled = true;
+
+        }
+
+//============================================================================================================//
+
+        private void chartBCG_MouseClick(object sender, MouseEventArgs e)
+         {
+            if ( (e.Button ==  MouseButtons.Left) && (e.X >= 442 && e.X <= 602) && (e.Y >= 27 && e.Y <= 184) )
+                MessageBox.Show("VEDETTES !!!!!");
+         }
+//============================================================================================================//
+
+        private void Principale_Load(object sender, EventArgs e)
+        {
 
         }
     }
