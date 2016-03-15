@@ -1,21 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
-using Microsoft.Office.Core;
-using System.Reflection;
-using Microsoft.Win32;
 using System.Data.OleDb;
 using System.IO;
-using System.Windows.Forms.DataVisualization.Charting;
-using System.Text.RegularExpressions;
-
 
 namespace BCG
 {
@@ -23,19 +12,23 @@ namespace BCG
     {
         ///<summary>La liste de matrice représentant les lignes du tableur</summary> 
         BindingList<Matrice> Points = new BindingList<Matrice>();
+        
         /// <summary>
         /// Instance de la classe BindingSource servant à lier les objets Matrice au tableur
         /// </summary>
         BindingSource bindingSource = new BindingSource();
+        
         /// <summary>
         /// Instance de la classe CopierColler contenant les méthodes pour couper,copier et coller les données du presse papier depuis excel vers le tableur
         /// </summary>
         CopierColler cc = new CopierColler();
+        
         /// <summary>
         /// Variables nécessaires à l'ouverture d'un fichier excel dans le tableur (version etc...)
         /// </summary>
         private string Excel03ConString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
         private string Excel07ConString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
+        
         /// <summary>
         /// Constructeur de la forme Principale
         /// </summary>
@@ -46,6 +39,7 @@ namespace BCG
             actualiserTableur(Points);
 
         }
+        
         /// <summary>
         /// Remplit le tableur d'objet matrice initialisé à 0
         /// </summary>
@@ -161,7 +155,12 @@ namespace BCG
         {
             try
             {
-                if (Points.Count >= 4)
+                if (dgvTableur.DataSource != Points)
+                {
+                    actualiserTableur(Points);
+                }
+                
+                if (Points.Count >= 3)
                 {
                     Points[0] = new Matrice("A", 25, 20, 18, 10);
                     Points[1] = new Matrice("B", 20, 30, 12, 10);
@@ -413,10 +412,10 @@ namespace BCG
 
         private void Couper_Click(object sender, EventArgs e)
         {
-            //Copy to clipboard
+            //Copie dans le presse papier
             cc.CopyToClipboard(dgvTableur);
 
-            //Clear selected cells
+            //vide les cellules selectionnées
             foreach (DataGridViewCell dgvCell in dgvTableur.SelectedCells)
                 dgvCell.Value = 0;
         }
