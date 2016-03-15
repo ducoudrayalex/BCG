@@ -21,15 +21,11 @@ namespace BCG
 {
     public partial class Principale : Form
     {
-<<<<<<< HEAD
-        BindingList<Matrice>  Points = new BindingList<Matrice>();
-=======
         ///<summary>La liste de matrice représentant les lignes du tableur</summary> 
         BindingList<Matrice> Points = new BindingList<Matrice>();
         /// <summary>
         /// Instance de la classe BindingSource servant à lier les objets Matrice au tableur
         /// </summary>
->>>>>>> refs/remotes/origin/dev
         BindingSource bindingSource = new BindingSource();
         /// <summary>
         /// Instance de la classe CopierColler contenant les méthodes pour couper,copier et coller les données du presse papier depuis excel vers le tableur
@@ -48,15 +44,7 @@ namespace BCG
             InitializeComponent();
             //remplissageTableur(10);
             actualiserTableur(Points);
-<<<<<<< HEAD
 
-            for (int i = 0; i < Points.Count; i++)
-            {
-                
-            }
-            
-=======
->>>>>>> refs/remotes/origin/dev
         }
         /// <summary>
         /// Remplit le tableur d'objet matrice initialisé à 0
@@ -162,14 +150,7 @@ namespace BCG
         private void rAZToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Points.Clear();
-<<<<<<< HEAD
-           /* foreach(var series in chartBCG.Series)
-            {
-                series.Points.Clear();
-            }*/
-=======
             actualiserTableur(Points);
->>>>>>> refs/remotes/origin/dev
         }
         /// <summary>
         /// Crée des objets matrice avec des valeurs de test
@@ -270,20 +251,19 @@ namespace BCG
             }
         }
 
-
         private void dgvTableur_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
         }
 
         private void btnGenerer_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
+
             chartBCG.Series.Clear();
             //chartBCG.Visible = true;
             try
             {
-                 for (int i = 0; i < 4; i++)
-                 {
+                for (int i = 0; i < 4; i++)
+                {
                     chartBCG.Series.Add(Points[i].Activite);
                     chartBCG.Series[Points[i].Activite].ChartType = SeriesChartType.Bubble;
                     chartBCG.Series[Points[i].Activite].MarkerStyle = MarkerStyle.Circle;
@@ -294,13 +274,18 @@ namespace BCG
 
                     // chartBCG.Series[Points[i].Activite].Points.Add(x, y, z);
 
-                    chartBCG.Series[Points[i].Activite].Points.AddXY((Points[i].PDMproduit / Points[i].PDMconct), Points[i].TxCroiss,  Points[i].PartProduit);
-                    chartBCG.Series[Points[i].Activite].Label ="Prod." + Points[i].Activite;
-                 }
-                 //chartBCG.DataBind();
-=======
- 
+                    chartBCG.Series[Points[i].Activite].Points.AddXY((Points[i].PDMproduit / Points[i].PDMconct), Points[i].TxCroiss, Points[i].PartProduit);
+                    chartBCG.Series[Points[i].Activite].Label = "Prod." + Points[i].Activite;
+                }
+                //chartBCG.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
+
         /// <summary>
         /// Ajoute une ligne au tableur en ajoutant un objet matrice vide
         /// </summary>
@@ -370,7 +355,6 @@ namespace BCG
                     }                 
                 }
                 BtnValider.Enabled = false;
->>>>>>> refs/remotes/origin/dev
             }
             catch(Exception ex)
             {
@@ -464,11 +448,14 @@ namespace BCG
 
         }
 
+//============================================================================================================//
+
         private void chartBCG_MouseClick(object sender, MouseEventArgs e)
          {
             if ( (e.Button ==  MouseButtons.Left) && (e.X >= 442 && e.X <= 602) && (e.Y >= 27 && e.Y <= 184) )
                 MessageBox.Show("VEDETTES !!!!!");
          }
+//============================================================================================================//
 
         private void Principale_Load(object sender, EventArgs e)
         {

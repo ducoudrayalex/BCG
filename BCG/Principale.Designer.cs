@@ -53,7 +53,8 @@
             this.btnGenerer = new System.Windows.Forms.Button();
             this.btnAjout = new System.Windows.Forms.Button();
             this.BtnValider = new System.Windows.Forms.Button();
-<<<<<<< HEAD
+
+            // LEGENDE
             this.chartBCG = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -62,7 +63,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-=======
+
             this.cmsPaste = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.Couper = new System.Windows.Forms.ToolStripMenuItem();
             this.Copier = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,7 +74,7 @@
             this.txCroissDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.partProduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.matriceBindingSource = new System.Windows.Forms.BindingSource(this.components);
->>>>>>> refs/remotes/origin/dev
+//>>>>>>> refs/remotes/origin/dev
             this.menuPrincipale.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTableur)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartBCG)).BeginInit();
@@ -212,11 +213,9 @@
             this.dgvTableur.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dgvTableur.Location = new System.Drawing.Point(12, 27);
             this.dgvTableur.Name = "dgvTableur";
-<<<<<<< HEAD
-            this.dgvTableur.Size = new System.Drawing.Size(343, 314);
-=======
+
             this.dgvTableur.Size = new System.Drawing.Size(412, 300);
->>>>>>> refs/remotes/origin/dev
+
             this.dgvTableur.TabIndex = 1;
             this.dgvTableur.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableur_CellContentClick);
             // 
@@ -270,11 +269,7 @@
             // 
             // btnGenerer
             // 
-<<<<<<< HEAD
-            this.btnGenerer.Location = new System.Drawing.Point(361, 233);
-=======
             this.btnGenerer.Location = new System.Drawing.Point(285, 331);
->>>>>>> refs/remotes/origin/dev
             this.btnGenerer.Name = "btnGenerer";
             this.btnGenerer.Size = new System.Drawing.Size(94, 26);
             this.btnGenerer.TabIndex = 2;
@@ -282,14 +277,9 @@
             this.btnGenerer.UseVisualStyleBackColor = true;
             this.btnGenerer.Click += new System.EventHandler(this.btnGenerer_Click);
             // 
-<<<<<<< HEAD
-            // btnAjout
-            // 
-            this.btnAjout.Location = new System.Drawing.Point(361, 186);
-=======
             // chartBCG
             // 
-            chartArea1.AxisX.Crossing = 5D;
+         /*   chartArea1.AxisX.Crossing = 5D;
             chartArea1.AxisX.Interval = 2D;
             chartArea1.AxisX.Maximum = 10D;
             chartArea1.AxisX.Minimum = 0D;
@@ -307,12 +297,11 @@
             this.chartBCG.Size = new System.Drawing.Size(281, 300);
             this.chartBCG.TabIndex = 3;
             this.chartBCG.Text = "Repere";
-            this.chartBCG.Visible = false;
+            this.chartBCG.Visible = false; */
             // 
             // btnAjout
             // 
             this.btnAjout.Location = new System.Drawing.Point(12, 331);
->>>>>>> refs/remotes/origin/dev
             this.btnAjout.Name = "btnAjout";
             this.btnAjout.Size = new System.Drawing.Size(94, 26);
             this.btnAjout.TabIndex = 4;
@@ -322,11 +311,7 @@
             // 
             // BtnValider
             // 
-<<<<<<< HEAD
-            this.BtnValider.Location = new System.Drawing.Point(361, 146);
-=======
             this.BtnValider.Location = new System.Drawing.Point(149, 333);
->>>>>>> refs/remotes/origin/dev
             this.BtnValider.Name = "BtnValider";
             this.BtnValider.Size = new System.Drawing.Size(94, 24);
             this.BtnValider.TabIndex = 5;
@@ -334,7 +319,6 @@
             this.BtnValider.UseVisualStyleBackColor = true;
             this.BtnValider.Click += new System.EventHandler(this.btnValider_Click);
             // 
-<<<<<<< HEAD
             // chartBCG
             // 
             chartArea1.AxisX.Crossing = 0.01D;
@@ -457,7 +441,6 @@
             this.label7.Size = new System.Drawing.Size(52, 13);
             this.label7.TabIndex = 12;
             this.label7.Text = "Dilemmes";
-=======
             // cmsPaste
             // 
             this.cmsPaste.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -485,11 +468,11 @@
             // 
             // Coller
             // 
-            this.Coller.Name = "Coller";
+         /*   this.Coller.Name = "Coller";
             this.Coller.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
             this.Coller.Size = new System.Drawing.Size(154, 22);
             this.Coller.Text = "Coller";
-            this.Coller.Click += new System.EventHandler(this.Coller_Click);
+            this.Coller.Click += new System.EventHandler(this.Coller_Click);*/
             // 
             // activiteDataGridViewTextBoxColumn
             // 
@@ -524,7 +507,6 @@
             // matriceBindingSource
             // 
             this.matriceBindingSource.DataSource = typeof(BCG.Matrice);
->>>>>>> refs/remotes/origin/dev
             // 
             // Principale
             // 
@@ -587,7 +569,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn txCroissDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn partProduitDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button BtnValider;
-<<<<<<< HEAD
+
+        // LEGENDE
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -595,12 +578,11 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-=======
+
         private System.Windows.Forms.ContextMenuStrip cmsPaste;
         private System.Windows.Forms.ToolStripMenuItem Couper;
         private System.Windows.Forms.ToolStripMenuItem Copier;
         private System.Windows.Forms.ToolStripMenuItem Coller;
->>>>>>> refs/remotes/origin/dev
     }
 }
 
