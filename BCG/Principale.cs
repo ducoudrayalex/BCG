@@ -264,7 +264,7 @@ namespace BCG
             //chartBCG.Visible = true;
             try
             {
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < /*4 */Points.Count; i++)
                 {
                     chartBCG.Series.Add(Points[i].Activite);
                     chartBCG.Series[Points[i].Activite].ChartType = SeriesChartType.Bubble;
