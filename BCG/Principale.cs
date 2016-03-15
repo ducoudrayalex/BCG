@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Data.OleDb;
 using System.IO;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace BCG
 {
