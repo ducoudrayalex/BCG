@@ -151,6 +151,7 @@
             this.agrToolStripMenuItem.Name = "agrToolStripMenuItem";
             this.agrToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.agrToolStripMenuItem.Text = "Agrandir tableur";
+            this.agrToolStripMenuItem.Click += new System.EventHandler(this.agrToolStripMenuItem_Click);
             // 
             // agrandirMatriceToolStripMenuItem
             // 

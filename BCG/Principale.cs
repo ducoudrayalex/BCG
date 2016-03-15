@@ -6,6 +6,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using System.Data.OleDb;
 using System.IO;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Reflection;
 
 namespace BCG
 {
@@ -470,5 +471,14 @@ namespace BCG
         {
             Application.Exit();
         }
+
+        private void agrToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Agrandir agr=new Agrandir();
+           
+            agr.Controls.Add(dgvTableur);
+            agr.Show();
+        }
+
     }
 }
