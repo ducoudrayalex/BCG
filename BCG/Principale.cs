@@ -19,7 +19,7 @@ namespace BCG
 {
     public partial class Principale : Form
     {
-        BindingList<Matrice> Points = new BindingList<Matrice>();
+        BindingList<Matrice>  Points = new BindingList<Matrice>();
         BindingSource bindingSource = new BindingSource();
         private string Excel03ConString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
         private string Excel07ConString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
@@ -28,8 +28,8 @@ namespace BCG
             InitializeComponent();
             remplissageTableur(10);
             actualiserTableur(Points);
-            chartBCG.ChartAreas[0].AxisX.Crossing = 0;
-            for(int i = 0; i < Points.Count; i++)
+
+            for (int i = 0; i < Points.Count; i++)
             {
                 
             }
@@ -127,6 +127,10 @@ namespace BCG
         private void rAZToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Points.Clear();
+           /* foreach(var series in chartBCG.Series)
+            {
+                series.Points.Clear();
+            }*/
         }
 
         private void testerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -222,17 +226,26 @@ namespace BCG
 
         private void btnGenerer_Click(object sender, EventArgs e)
         {
+            chartBCG.Series.Clear();
+            //chartBCG.Visible = true;
             try
             {
-                chartBCG.Visible = true;
-
-                for (int i = 0; i < 4; i++)
-                {
+                 for (int i = 0; i < 4; i++)
+                 {
                     chartBCG.Series.Add(Points[i].Activite);
                     chartBCG.Series[Points[i].Activite].ChartType = SeriesChartType.Bubble;
-                    chartBCG.Series[Points[i].Activite].Points.Add(Math.Log(Points[i].PDMproduit / Points[i].PDMconct), Points[i].TxCroiss, Points[i].PartProduit);
-                }
-                chartBCG.DataBind();
+                    chartBCG.Series[Points[i].Activite].MarkerStyle = MarkerStyle.Circle;
+                    chartBCG.Series[Points[i].Activite]["BubbleMaxSize"] = "25";
+                    chartBCG.Series[Points[i].Activite]["BubbleMinSize"] = "10";
+                    // chartBCG.Series[Points[i].Activite]["BubbleScaleMax"] = "auto";
+
+
+                    // chartBCG.Series[Points[i].Activite].Points.Add(x, y, z);
+
+                    chartBCG.Series[Points[i].Activite].Points.AddXY((Points[i].PDMproduit / Points[i].PDMconct), Points[i].TxCroiss,  Points[i].PartProduit);
+                    chartBCG.Series[Points[i].Activite].Label ="Prod." + Points[i].Activite;
+                 }
+                 //chartBCG.DataBind();
             }
             catch(Exception ex)
             {
@@ -265,6 +278,17 @@ namespace BCG
                 MessageBox.Show(ex.Message);
             }
             
+        }
+
+        private void chartBCG_MouseClick(object sender, MouseEventArgs e)
+         {
+            if ( (e.Button ==  MouseButtons.Left) && (e.X >= 442 && e.X <= 602) && (e.Y >= 27 && e.Y <= 184) )
+                MessageBox.Show("VEDETTES !!!!!");
+         }
+
+        private void Principale_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
