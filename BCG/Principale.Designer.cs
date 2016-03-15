@@ -48,13 +48,17 @@
             this.présentationEtModeDemploiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvTableur = new System.Windows.Forms.DataGridView();
+            this.activiteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pDMproduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pDMconctDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txCroissDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.partProduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.matriceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ofdExcel = new System.Windows.Forms.OpenFileDialog();
             this.sfdTableur = new System.Windows.Forms.SaveFileDialog();
             this.btnGenerer = new System.Windows.Forms.Button();
             this.btnAjout = new System.Windows.Forms.Button();
             this.BtnValider = new System.Windows.Forms.Button();
-
-            // LEGENDE
             this.chartBCG = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -63,23 +67,15 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-
             this.cmsPaste = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.Couper = new System.Windows.Forms.ToolStripMenuItem();
             this.Copier = new System.Windows.Forms.ToolStripMenuItem();
             this.Coller = new System.Windows.Forms.ToolStripMenuItem();
-            this.activiteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pDMproduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pDMconctDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txCroissDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.partProduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.matriceBindingSource = new System.Windows.Forms.BindingSource(this.components);
-//>>>>>>> refs/remotes/origin/dev
             this.menuPrincipale.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTableur)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartBCG)).BeginInit();
             this.cmsPaste.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // menuPrincipale
@@ -213,11 +209,14 @@
             this.dgvTableur.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dgvTableur.Location = new System.Drawing.Point(12, 27);
             this.dgvTableur.Name = "dgvTableur";
-
             this.dgvTableur.Size = new System.Drawing.Size(412, 300);
-
             this.dgvTableur.TabIndex = 1;
             this.dgvTableur.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableur_CellContentClick);
+            this.dgvTableur.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableur_CellEndEdit);
+            this.dgvTableur.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTableur_CellMouseClick);
+            this.dgvTableur.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableur_CellValueChanged);
+            this.dgvTableur.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvTableur_DataError);
+            this.dgvTableur.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvTableur_KeyDown);
             // 
             // activiteDataGridViewTextBoxColumn
             // 
@@ -252,11 +251,6 @@
             // matriceBindingSource
             // 
             this.matriceBindingSource.DataSource = typeof(BCG.Matrice);
-            this.dgvTableur.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableur_CellEndEdit);
-            this.dgvTableur.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTableur_CellMouseClick);
-            this.dgvTableur.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableur_CellValueChanged);
-            this.dgvTableur.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvTableur_DataError);
-            this.dgvTableur.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvTableur_KeyDown);
             // 
             // ofdExcel
             // 
@@ -276,28 +270,6 @@
             this.btnGenerer.Text = "Générer";
             this.btnGenerer.UseVisualStyleBackColor = true;
             this.btnGenerer.Click += new System.EventHandler(this.btnGenerer_Click);
-            // 
-            // chartBCG
-            // 
-         /*   chartArea1.AxisX.Crossing = 5D;
-            chartArea1.AxisX.Interval = 2D;
-            chartArea1.AxisX.Maximum = 10D;
-            chartArea1.AxisX.Minimum = 0D;
-            chartArea1.AxisX.Title = "x";
-            chartArea1.AxisY.Crossing = 25D;
-            chartArea1.AxisY.Interval = 6D;
-            chartArea1.AxisY.Maximum = 50D;
-            chartArea1.AxisY.Minimum = 0D;
-            chartArea1.Name = "ChartArea1";
-            this.chartBCG.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartBCG.Legends.Add(legend1);
-            this.chartBCG.Location = new System.Drawing.Point(485, 27);
-            this.chartBCG.Name = "chartBCG";
-            this.chartBCG.Size = new System.Drawing.Size(281, 300);
-            this.chartBCG.TabIndex = 3;
-            this.chartBCG.Text = "Repere";
-            this.chartBCG.Visible = false; */
             // 
             // btnAjout
             // 
@@ -377,7 +349,6 @@
             this.chartBCG.Size = new System.Drawing.Size(324, 314);
             this.chartBCG.TabIndex = 3;
             this.chartBCG.Text = "Repere";
-            this.chartBCG.Visible = global::BCG.Properties.Settings.Default.Visible;
             // 
             // label1
             // 
@@ -441,6 +412,7 @@
             this.label7.Size = new System.Drawing.Size(52, 13);
             this.label7.TabIndex = 12;
             this.label7.Text = "Dilemmes";
+            // 
             // cmsPaste
             // 
             this.cmsPaste.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -468,45 +440,8 @@
             // 
             // Coller
             // 
-         /*   this.Coller.Name = "Coller";
-            this.Coller.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.Coller.Name = "Coller";
             this.Coller.Size = new System.Drawing.Size(154, 22);
-            this.Coller.Text = "Coller";
-            this.Coller.Click += new System.EventHandler(this.Coller_Click);*/
-            // 
-            // activiteDataGridViewTextBoxColumn
-            // 
-            this.activiteDataGridViewTextBoxColumn.DataPropertyName = "Activite";
-            this.activiteDataGridViewTextBoxColumn.HeaderText = "Activite";
-            this.activiteDataGridViewTextBoxColumn.Name = "activiteDataGridViewTextBoxColumn";
-            // 
-            // pDMproduitDataGridViewTextBoxColumn
-            // 
-            this.pDMproduitDataGridViewTextBoxColumn.DataPropertyName = "PDMproduit";
-            this.pDMproduitDataGridViewTextBoxColumn.HeaderText = "PDMproduit";
-            this.pDMproduitDataGridViewTextBoxColumn.Name = "pDMproduitDataGridViewTextBoxColumn";
-            // 
-            // pDMconctDataGridViewTextBoxColumn
-            // 
-            this.pDMconctDataGridViewTextBoxColumn.DataPropertyName = "PDMconct";
-            this.pDMconctDataGridViewTextBoxColumn.HeaderText = "PDMconct";
-            this.pDMconctDataGridViewTextBoxColumn.Name = "pDMconctDataGridViewTextBoxColumn";
-            // 
-            // txCroissDataGridViewTextBoxColumn
-            // 
-            this.txCroissDataGridViewTextBoxColumn.DataPropertyName = "TxCroiss";
-            this.txCroissDataGridViewTextBoxColumn.HeaderText = "TxCroiss";
-            this.txCroissDataGridViewTextBoxColumn.Name = "txCroissDataGridViewTextBoxColumn";
-            // 
-            // partProduitDataGridViewTextBoxColumn
-            // 
-            this.partProduitDataGridViewTextBoxColumn.DataPropertyName = "PartProduit";
-            this.partProduitDataGridViewTextBoxColumn.HeaderText = "PartProduit";
-            this.partProduitDataGridViewTextBoxColumn.Name = "partProduitDataGridViewTextBoxColumn";
-            // 
-            // matriceBindingSource
-            // 
-            this.matriceBindingSource.DataSource = typeof(BCG.Matrice);
             // 
             // Principale
             // 
@@ -529,13 +464,13 @@
             this.MainMenuStrip = this.menuPrincipale;
             this.Name = "Principale";
             this.Text = "Principale";
-            this.Load += new System.EventHandler(this.Principale_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Principale_FormClosed);
             this.menuPrincipale.ResumeLayout(false);
             this.menuPrincipale.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTableur)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartBCG)).EndInit();
             this.cmsPaste.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
