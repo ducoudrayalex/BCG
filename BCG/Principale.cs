@@ -12,7 +12,7 @@ namespace BCG
     public partial class Principale : Form
     {
         ///<summary>La liste de matrice représentant les lignes du tableur</summary> 
-        BindingList<Matrice> Points = new BindingList<Matrice>();
+        BindingList<Matrice> Points;
         
         /// <summary>
         /// Instance de la classe BindingSource servant à lier les objets Matrice au tableur
@@ -37,6 +37,7 @@ namespace BCG
         {
             InitializeComponent();
             //remplissageTableur(10);
+            Points = new BindingList<Matrice>();
             actualiserTableur(Points);
 
         }
@@ -58,6 +59,7 @@ namespace BCG
         /// <param name="Points"></param>
         private void actualiserTableur(BindingList<Matrice> Points)
         {
+            Points.Clear();
             bindingSource.DataSource = Points;
             dgvTableur.AutoGenerateColumns = true;
             dgvTableur.DataSource = bindingSource;
@@ -161,7 +163,7 @@ namespace BCG
                     actualiserTableur(Points);
                 }
                 
-                if (Points.Count >= 3)
+                if (Points.Count >=4)
                 {
                     Points[0] = new Matrice("A", 25, 20, 18, 10);
                     Points[1] = new Matrice("B", 20, 30, 12, 10);
