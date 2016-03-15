@@ -13,6 +13,7 @@ namespace BCG
 
         private void btnLancer_Click(object sender, EventArgs e)
         {
+            //this.Hide();
             new Principale().Show();
         }
 
