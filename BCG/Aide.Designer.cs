@@ -45,7 +45,7 @@
             this.rtbAide.Margin = new System.Windows.Forms.Padding(0);
             this.rtbAide.Name = "rtbAide";
             this.rtbAide.ReadOnly = true;
-            this.rtbAide.Size = new System.Drawing.Size(760, 537);
+            this.rtbAide.Size = new System.Drawing.Size(610, 511);
             this.rtbAide.TabIndex = 0;
             this.rtbAide.Text = "";
             // 
@@ -63,7 +63,7 @@
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(760, 537);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(610, 511);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // Aide
@@ -71,10 +71,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(84)))), ((int)(((byte)(59)))));
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(634, 511);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(600, 550);
+            this.MaximumSize = new System.Drawing.Size(650, 2500);
+            this.MinimumSize = new System.Drawing.Size(650, 550);
             this.Name = "Aide";
             this.Text = "BCG - Aide";
             this.tableLayoutPanel1.ResumeLayout(false);
