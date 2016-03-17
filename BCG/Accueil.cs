@@ -8,7 +8,9 @@ namespace BCG
         public Accueil()
         {
             InitializeComponent();
+            rtbAccueil.LoadFile("accueilbcg.rtf");
             rtbAccueil.LoadFile("../../ressources/accueilbcg.rtf");
+
         }
 
         private void btnLancer_Click(object sender, EventArgs e)
@@ -26,5 +28,6 @@ namespace BCG
         {
             new Aide().Show();
         }
+
     }
 }

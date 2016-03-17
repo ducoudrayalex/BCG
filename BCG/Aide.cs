@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace BCG
 {
@@ -7,6 +8,13 @@ namespace BCG
         public Aide()
         {
             InitializeComponent();
+
+            rtbAide.LoadFile("AideBCG.rtf");
+        }
+
+        private void rtbPresentation_TextChanged(object sender, EventArgs e)
+        {
+
             rtbAide.LoadFile("../../ressources/AideBCG.rtf");
         }
     }

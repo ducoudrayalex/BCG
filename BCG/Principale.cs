@@ -455,7 +455,6 @@ namespace BCG
         private void dgvTableur_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             BtnValider.Enabled = true;
-
         }
 
 //============================================================================================================//
