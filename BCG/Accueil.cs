@@ -8,11 +8,9 @@ namespace BCG
         public Accueil()
         {
             InitializeComponent();
-<<<<<<< HEAD
             rtbAccueil.LoadFile("accueilbcg.rtf");
-=======
             rtbAccueil.LoadFile("../../ressources/accueilbcg.rtf");
->>>>>>> refs/remotes/origin/dev
+
         }
 
         private void btnLancer_Click(object sender, EventArgs e)
