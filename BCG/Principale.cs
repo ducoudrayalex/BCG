@@ -1,41 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
-using Microsoft.Office.Core;
-using System.Reflection;
-using Microsoft.Win32;
 using System.Data.OleDb;
 using System.IO;
 using System.Windows.Forms.DataVisualization.Charting;
-using System.Text.RegularExpressions;
-
 
 namespace BCG
 {
     public partial class Principale : Form
     {
         ///<summary>La liste de matrice représentant les lignes du tableur</summary> 
-        BindingList<Matrice> Points = new BindingList<Matrice>();
+        BindingList<Matrice> Points;
+        
         /// <summary>
         /// Instance de la classe BindingSource servant à lier les objets Matrice au tableur
         /// </summary>
         BindingSource bindingSource = new BindingSource();
+        
         /// <summary>
         /// Instance de la classe CopierColler contenant les méthodes pour couper,copier et coller les données du presse papier depuis excel vers le tableur
         /// </summary>
         CopierColler cc = new CopierColler();
+        
         /// <summary>
         /// Variables nécessaires à l'ouverture d'un fichier excel dans le tableur (version etc...)
         /// </summary>
         private string Excel03ConString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
         private string Excel07ConString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
+        
         /// <summary>
         /// Constructeur de la forme Principale
         /// </summary>
@@ -43,8 +37,11 @@ namespace BCG
         {
             InitializeComponent();
             //remplissageTableur(10);
+            Points = new BindingList<Matrice>();
             actualiserTableur(Points);
+
         }
+        
         /// <summary>
         /// Remplit le tableur d'objet matrice initialisé à 0
         /// </summary>
@@ -62,10 +59,18 @@ namespace BCG
         /// <param name="Points"></param>
         private void actualiserTableur(BindingList<Matrice> Points)
         {
-            bindingSource.DataSource = Points;
-            dgvTableur.AutoGenerateColumns = true;
-            dgvTableur.DataSource = bindingSource;
-            btnAjout.Enabled = true;
+            try
+            {
+                Points.Clear();
+                bindingSource.DataSource = Points;
+                dgvTableur.AutoGenerateColumns = true;
+                dgvTableur.DataSource = bindingSource;
+                btnAjout.Enabled = true;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }          
         }
 
         private void présentationEtModeDemploiToolStripMenuItem_Click(object sender, EventArgs e)
@@ -160,7 +165,12 @@ namespace BCG
         {
             try
             {
-                if (Points.Count >= 4)
+                if (dgvTableur.DataSource != Points)
+                {
+                    actualiserTableur(Points);
+                }
+                
+                if (Points.Count >=4)
                 {
                     Points[0] = new Matrice("A", 25, 20, 18, 10);
                     Points[1] = new Matrice("B", 20, 30, 12, 10);
@@ -242,7 +252,7 @@ namespace BCG
             catch (Exception ex)
             {
                 obj = null;
-                MessageBox.Show("Exception Occured while releasing object " + ex.ToString());
+                MessageBox.Show("Erreur lors de la libération de l'objet : " + ex.ToString());
             }
             finally
             {
@@ -250,15 +260,41 @@ namespace BCG
             }
         }
 
-
         private void dgvTableur_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
         }
 
         private void btnGenerer_Click(object sender, EventArgs e)
         {
- 
+
+            chartBCG.Series.Clear();
+            //chartBCG.Visible = true;
+            try
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    chartBCG.Series.Add(Points[i].Activite);
+                    chartBCG.Series[Points[i].Activite].ChartType = SeriesChartType.Bubble;
+                    chartBCG.Series[Points[i].Activite].MarkerStyle = MarkerStyle.Circle;
+                    chartBCG.Series[Points[i].Activite]["BubbleMaxSize"] = "25";
+                    chartBCG.Series[Points[i].Activite]["BubbleMinSize"] = "10";
+                    // chartBCG.Series[Points[i].Activite]["BubbleScaleMax"] = "auto";
+
+
+                    // chartBCG.Series[Points[i].Activite].Points.Add(x, y, z);
+
+                    chartBCG.Series[Points[i].Activite].Points.AddXY((Points[i].PDMproduit / Points[i].PDMconct), Points[i].TxCroiss, Points[i].PartProduit);
+                    chartBCG.Series[Points[i].Activite].Label = "Prod." + Points[i].Activite;
+                }
+                //chartBCG.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
+
         /// <summary>
         /// Ajoute une ligne au tableur en ajoutant un objet matrice vide
         /// </summary>
@@ -386,10 +422,10 @@ namespace BCG
 
         private void Couper_Click(object sender, EventArgs e)
         {
-            //Copy to clipboard
+            //Copie dans le presse papier
             cc.CopyToClipboard(dgvTableur);
 
-            //Clear selected cells
+            //vide les cellules selectionnées
             foreach (DataGridViewCell dgvCell in dgvTableur.SelectedCells)
                 dgvCell.Value = 0;
         }
@@ -418,6 +454,20 @@ namespace BCG
         private void dgvTableur_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             BtnValider.Enabled = true;
+        }
+
+//============================================================================================================//
+
+        private void chartBCG_MouseClick(object sender, MouseEventArgs e)
+         {
+            if ( (e.Button ==  MouseButtons.Left) && (e.X >= 442 && e.X <= 602) && (e.Y >= 27 && e.Y <= 184) )
+                MessageBox.Show("VEDETTES !!!!!");
+         }
+//============================================================================================================//
+
+        private void Principale_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

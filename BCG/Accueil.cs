@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BCG
@@ -15,11 +8,16 @@ namespace BCG
         public Accueil()
         {
             InitializeComponent();
+<<<<<<< HEAD
             rtbAccueil.LoadFile("accueilbcg.rtf");
+=======
+            rtbAccueil.LoadFile("../../ressources/accueilbcg.rtf");
+>>>>>>> refs/remotes/origin/dev
         }
 
         private void btnLancer_Click(object sender, EventArgs e)
         {
+            this.Hide();
             new Principale().Show();
         }
 

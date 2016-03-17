@@ -32,6 +32,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(8D, "30,0");
             this.menuPrincipale = new System.Windows.Forms.MenuStrip();
             this.tsmiFichier = new System.Windows.Forms.ToolStripMenuItem();
             this.rAZToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,9 +57,16 @@
             this.ofdExcel = new System.Windows.Forms.OpenFileDialog();
             this.sfdTableur = new System.Windows.Forms.SaveFileDialog();
             this.btnGenerer = new System.Windows.Forms.Button();
-            this.chartBCG = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnAjout = new System.Windows.Forms.Button();
             this.BtnValider = new System.Windows.Forms.Button();
+            this.chartBCG = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.cmsPaste = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.Couper = new System.Windows.Forms.ToolStripMenuItem();
             this.Copier = new System.Windows.Forms.ToolStripMenuItem();
@@ -262,28 +271,6 @@
             this.btnGenerer.UseVisualStyleBackColor = true;
             this.btnGenerer.Click += new System.EventHandler(this.btnGenerer_Click);
             // 
-            // chartBCG
-            // 
-            chartArea1.AxisX.Crossing = 5D;
-            chartArea1.AxisX.Interval = 2D;
-            chartArea1.AxisX.Maximum = 10D;
-            chartArea1.AxisX.Minimum = 0D;
-            chartArea1.AxisX.Title = "x";
-            chartArea1.AxisY.Crossing = 25D;
-            chartArea1.AxisY.Interval = 6D;
-            chartArea1.AxisY.Maximum = 50D;
-            chartArea1.AxisY.Minimum = 0D;
-            chartArea1.Name = "ChartArea1";
-            this.chartBCG.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartBCG.Legends.Add(legend1);
-            this.chartBCG.Location = new System.Drawing.Point(485, 27);
-            this.chartBCG.Name = "chartBCG";
-            this.chartBCG.Size = new System.Drawing.Size(281, 300);
-            this.chartBCG.TabIndex = 3;
-            this.chartBCG.Text = "Repere";
-            this.chartBCG.Visible = false;
-            // 
             // btnAjout
             // 
             this.btnAjout.Location = new System.Drawing.Point(12, 331);
@@ -303,6 +290,128 @@
             this.BtnValider.Text = "Valider le tableur";
             this.BtnValider.UseVisualStyleBackColor = true;
             this.BtnValider.Click += new System.EventHandler(this.btnValider_Click);
+            // 
+            // chartBCG
+            // 
+            chartArea1.AxisX.Crossing = 0.01D;
+            chartArea1.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea1.AxisX.IsLogarithmic = true;
+            chartArea1.AxisX.IsReversed = true;
+            chartArea1.AxisX.IsStartedFromZero = false;
+            chartArea1.AxisX.LabelStyle.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Auto;
+            chartArea1.AxisX.MajorGrid.Enabled = false;
+            chartArea1.AxisX.MajorGrid.Interval = 0D;
+            chartArea1.AxisX.MajorTickMark.Enabled = false;
+            chartArea1.AxisX.MajorTickMark.Interval = 0D;
+            chartArea1.AxisX.MajorTickMark.Size = 2F;
+            chartArea1.AxisX.Maximum = 10D;
+            chartArea1.AxisX.Minimum = 0.1D;
+            chartArea1.AxisX.MinorTickMark.Interval = 1D;
+            chartArea1.AxisX.MinorTickMark.TickMarkStyle = System.Windows.Forms.DataVisualization.Charting.TickMarkStyle.AcrossAxis;
+            chartArea1.AxisX.Title = "x";
+            chartArea1.AxisX.TitleAlignment = System.Drawing.StringAlignment.Far;
+            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea1.AxisX2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+            chartArea1.AxisX2.IsStartedFromZero = false;
+            chartArea1.AxisX2.MajorGrid.Enabled = false;
+            chartArea1.AxisX2.MajorTickMark.Enabled = false;
+            chartArea1.AxisY.Crossing = 15D;
+            chartArea1.AxisY.Interval = 6D;
+            chartArea1.AxisY.LabelStyle.Format = "#\"%\"";
+            chartArea1.AxisY.MajorGrid.Enabled = false;
+            chartArea1.AxisY.MajorTickMark.Enabled = false;
+            chartArea1.AxisY.Maximum = 30D;
+            chartArea1.AxisY.Minimum = 0D;
+            chartArea1.AxisY.MinorTickMark.Interval = 4D;
+            chartArea1.AxisY.Title = "y";
+            chartArea1.AxisY.TitleAlignment = System.Drawing.StringAlignment.Far;
+            chartArea1.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+            chartArea1.Name = "ChartArea1";
+            this.chartBCG.ChartAreas.Add(chartArea1);
+            this.chartBCG.Cursor = System.Windows.Forms.Cursors.Default;
+            this.chartBCG.DataBindings.Add(new System.Windows.Forms.Binding("Visible", global::BCG.Properties.Settings.Default, "Visible", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chartBCG.DataSource = this.matriceBindingSource;
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.chartBCG.Legends.Add(legend1);
+            this.chartBCG.Location = new System.Drawing.Point(442, 27);
+            this.chartBCG.Name = "chartBCG";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bubble;
+            series1.IsVisibleInLegend = false;
+            series1.Legend = "Legend1";
+            series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series1.Name = "Series1";
+            dataPoint1.Color = System.Drawing.Color.White;
+            series1.Points.Add(dataPoint1);
+            series1.YValuesPerPoint = 2;
+            this.chartBCG.Series.Add(series1);
+            this.chartBCG.Size = new System.Drawing.Size(324, 314);
+            this.chartBCG.TabIndex = 3;
+            this.chartBCG.Text = "Repere";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(442, 361);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(237, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "x = log (PDM produit / PDM concurrent principal)";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(442, 385);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(170, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "y = Taux de croissance du marché";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(442, 409);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(202, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "rayon = Part produit dans chiffre d\'affaires";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(442, 328);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(68, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Vaches à lait";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(710, 328);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(62, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Poids Morts";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(442, 27);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(49, 13);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Vedettes";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(714, 27);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(52, 13);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Dilemmes";
             // 
             // cmsPaste
             // 
@@ -332,10 +441,12 @@
             // Coller
             // 
             this.Coller.Name = "Coller";
-            this.Coller.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
             this.Coller.Size = new System.Drawing.Size(154, 22);
+<<<<<<< HEAD
             this.Coller.Text = "Coller";
             this.Coller.Click += new System.EventHandler(this.Coller_Click);
+=======
+>>>>>>> refs/remotes/origin/dev
             // 
             // Principale
             // 
@@ -343,6 +454,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(84)))), ((int)(((byte)(59)))));
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.BtnValider);
             this.Controls.Add(this.btnAjout);
             this.Controls.Add(this.chartBCG);
@@ -352,6 +470,7 @@
             this.MainMenuStrip = this.menuPrincipale;
             this.Name = "Principale";
             this.Text = "Principale";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Principale_FormClosed);
             this.menuPrincipale.ResumeLayout(false);
             this.menuPrincipale.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTableur)).EndInit();
@@ -391,6 +510,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn txCroissDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn partProduitDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button BtnValider;
+
+        // LEGENDE
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+
         private System.Windows.Forms.ContextMenuStrip cmsPaste;
         private System.Windows.Forms.ToolStripMenuItem Couper;
         private System.Windows.Forms.ToolStripMenuItem Copier;
