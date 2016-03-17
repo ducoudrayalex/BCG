@@ -292,7 +292,7 @@ namespace BCG
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                throw new InvalidOperationException(ex.Message);
             }
         }
 
