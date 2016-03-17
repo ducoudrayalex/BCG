@@ -475,10 +475,32 @@ namespace BCG
         private void agrToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Agrandir agr=new Agrandir();
-           
-            agr.Controls.Add(dgvTableur);
+            DataGridView dgvAgr = new DataGridView();
+            bindingSource.DataSource = Points;
+            dgvAgr.AutoGenerateColumns = true;
+            dgvAgr.DataSource = bindingSource;
+            dgvAgr.Size=agr.Size;
+
+            dgvAgr.DefaultCellStyle.Font = new System.Drawing.Font("Georgia", 14);
+            dgvAgr.ColumnHeadersDefaultCellStyle.Font=new System.Drawing.Font("Georgia",15);
+            dgvAgr.ColumnHeadersHeight = 30;
+            dgvAgr.EditMode = DataGridViewEditMode.EditOnEnter;
+            dgvAgr.Enabled = true;
+            dgvAgr.MultiSelect = true;
+            dgvAgr.ReadOnly = false;
+            dgvAgr.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvAgr.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            agr.Controls.Add(dgvAgr);
             agr.Show();
         }
-
+        public DataGridViewRow CloneWithValues(DataGridViewRow row)
+        {
+            DataGridViewRow clonedRow = (DataGridViewRow)row.Clone();
+            for (Int32 index = 0; index < row.Cells.Count; index++)
+            {
+                clonedRow.Cells[index].Value = row.Cells[index].Value;
+            }
+            return clonedRow;
+        }
     }
 }

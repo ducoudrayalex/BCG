@@ -48,12 +48,6 @@
             this.présentationEtModeDemploiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvTableur = new System.Windows.Forms.DataGridView();
-            this.activiteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pDMproduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pDMconctDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txCroissDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.partProduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.matriceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ofdExcel = new System.Windows.Forms.OpenFileDialog();
             this.sfdTableur = new System.Windows.Forms.SaveFileDialog();
             this.btnGenerer = new System.Windows.Forms.Button();
@@ -71,11 +65,17 @@
             this.Couper = new System.Windows.Forms.ToolStripMenuItem();
             this.Copier = new System.Windows.Forms.ToolStripMenuItem();
             this.Coller = new System.Windows.Forms.ToolStripMenuItem();
+            this.matriceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.activiteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pDMproduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pDMconctDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txCroissDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.partProduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuPrincipale.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTableur)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartBCG)).BeginInit();
             this.cmsPaste.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // menuPrincipale
@@ -218,40 +218,6 @@
             this.dgvTableur.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableur_CellValueChanged);
             this.dgvTableur.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvTableur_DataError);
             this.dgvTableur.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvTableur_KeyDown);
-            // 
-            // activiteDataGridViewTextBoxColumn
-            // 
-            this.activiteDataGridViewTextBoxColumn.DataPropertyName = "Activite";
-            this.activiteDataGridViewTextBoxColumn.HeaderText = "Activite";
-            this.activiteDataGridViewTextBoxColumn.Name = "activiteDataGridViewTextBoxColumn";
-            // 
-            // pDMproduitDataGridViewTextBoxColumn
-            // 
-            this.pDMproduitDataGridViewTextBoxColumn.DataPropertyName = "PDMproduit";
-            this.pDMproduitDataGridViewTextBoxColumn.HeaderText = "PDMproduit";
-            this.pDMproduitDataGridViewTextBoxColumn.Name = "pDMproduitDataGridViewTextBoxColumn";
-            // 
-            // pDMconctDataGridViewTextBoxColumn
-            // 
-            this.pDMconctDataGridViewTextBoxColumn.DataPropertyName = "PDMconct";
-            this.pDMconctDataGridViewTextBoxColumn.HeaderText = "PDMconct";
-            this.pDMconctDataGridViewTextBoxColumn.Name = "pDMconctDataGridViewTextBoxColumn";
-            // 
-            // txCroissDataGridViewTextBoxColumn
-            // 
-            this.txCroissDataGridViewTextBoxColumn.DataPropertyName = "TxCroiss";
-            this.txCroissDataGridViewTextBoxColumn.HeaderText = "TxCroiss";
-            this.txCroissDataGridViewTextBoxColumn.Name = "txCroissDataGridViewTextBoxColumn";
-            // 
-            // partProduitDataGridViewTextBoxColumn
-            // 
-            this.partProduitDataGridViewTextBoxColumn.DataPropertyName = "PartProduit";
-            this.partProduitDataGridViewTextBoxColumn.HeaderText = "PartProduit";
-            this.partProduitDataGridViewTextBoxColumn.Name = "partProduitDataGridViewTextBoxColumn";
-            // 
-            // matriceBindingSource
-            // 
-            this.matriceBindingSource.DataSource = typeof(BCG.Matrice);
             // 
             // ofdExcel
             // 
@@ -442,7 +408,44 @@
             // Coller
             // 
             this.Coller.Name = "Coller";
+            this.Coller.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
             this.Coller.Size = new System.Drawing.Size(154, 22);
+            this.Coller.Text = "Coller";
+            this.Coller.Click += new System.EventHandler(this.Coller_Click);
+            // 
+            // matriceBindingSource
+            // 
+            this.matriceBindingSource.DataSource = typeof(BCG.Matrice);
+            // 
+            // activiteDataGridViewTextBoxColumn
+            // 
+            this.activiteDataGridViewTextBoxColumn.DataPropertyName = "Activite";
+            this.activiteDataGridViewTextBoxColumn.HeaderText = "Activite";
+            this.activiteDataGridViewTextBoxColumn.Name = "activiteDataGridViewTextBoxColumn";
+            // 
+            // pDMproduitDataGridViewTextBoxColumn
+            // 
+            this.pDMproduitDataGridViewTextBoxColumn.DataPropertyName = "PDMproduit";
+            this.pDMproduitDataGridViewTextBoxColumn.HeaderText = "PDMproduit";
+            this.pDMproduitDataGridViewTextBoxColumn.Name = "pDMproduitDataGridViewTextBoxColumn";
+            // 
+            // pDMconctDataGridViewTextBoxColumn
+            // 
+            this.pDMconctDataGridViewTextBoxColumn.DataPropertyName = "PDMconct";
+            this.pDMconctDataGridViewTextBoxColumn.HeaderText = "PDMconct";
+            this.pDMconctDataGridViewTextBoxColumn.Name = "pDMconctDataGridViewTextBoxColumn";
+            // 
+            // txCroissDataGridViewTextBoxColumn
+            // 
+            this.txCroissDataGridViewTextBoxColumn.DataPropertyName = "TxCroiss";
+            this.txCroissDataGridViewTextBoxColumn.HeaderText = "TxCroiss";
+            this.txCroissDataGridViewTextBoxColumn.Name = "txCroissDataGridViewTextBoxColumn";
+            // 
+            // partProduitDataGridViewTextBoxColumn
+            // 
+            this.partProduitDataGridViewTextBoxColumn.DataPropertyName = "PartProduit";
+            this.partProduitDataGridViewTextBoxColumn.HeaderText = "PartProduit";
+            this.partProduitDataGridViewTextBoxColumn.Name = "partProduitDataGridViewTextBoxColumn";
             // 
             // Principale
             // 
@@ -469,9 +472,9 @@
             this.menuPrincipale.ResumeLayout(false);
             this.menuPrincipale.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTableur)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartBCG)).EndInit();
             this.cmsPaste.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
