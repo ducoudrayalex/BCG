@@ -13,7 +13,7 @@ namespace BCG
 
         private void btnLancer_Click(object sender, EventArgs e)
         {
-            //this.Hide();
+            this.Hide();
             new Principale().Show();
         }
 
@@ -26,5 +26,6 @@ namespace BCG
         {
             new Aide().Show();
         }
+
     }
 }
