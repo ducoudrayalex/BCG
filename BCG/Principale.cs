@@ -474,12 +474,13 @@ namespace BCG
         private void agrToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Agrandir agr=new Agrandir();
+            
             DataGridView dgvAgr = new DataGridView();
             bindingSource.DataSource = Points;
             dgvAgr.AutoGenerateColumns = true;
             dgvAgr.DataSource = bindingSource;
             dgvAgr.Size=agr.Size;
-
+            dgvAgr.DataError += dgvTableur_DataError;
             dgvAgr.DefaultCellStyle.Font = new System.Drawing.Font("Georgia", 14);
             dgvAgr.ColumnHeadersDefaultCellStyle.Font=new System.Drawing.Font("Georgia",15);
             dgvAgr.ColumnHeadersHeight = 30;
@@ -500,6 +501,12 @@ namespace BCG
                 clonedRow.Cells[index].Value = row.Cells[index].Value;
             }
             return clonedRow;
+        }
+
+        private void agrandirMatriceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Agrandir agr = new Agrandir();
+
         }
     }
 }
