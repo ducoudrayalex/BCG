@@ -9,13 +9,13 @@ namespace BCG
         {
             InitializeComponent();
 
-            rtbAide.LoadFile("AideBCG.rtf");
+            rtbAide.LoadFile("../../ressources/AideBCG.rtf");
         }
 
         private void rtbPresentation_TextChanged(object sender, EventArgs e)
         {
 
-            rtbAide.LoadFile("../../ressources/AideBCG.rtf");
+            
         }
     }
 }

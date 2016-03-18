@@ -151,12 +151,14 @@
             this.agrToolStripMenuItem.Name = "agrToolStripMenuItem";
             this.agrToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.agrToolStripMenuItem.Text = "Agrandir tableur";
+            this.agrToolStripMenuItem.Click += new System.EventHandler(this.agrToolStripMenuItem_Click);
             // 
             // agrandirMatriceToolStripMenuItem
             // 
             this.agrandirMatriceToolStripMenuItem.Name = "agrandirMatriceToolStripMenuItem";
             this.agrandirMatriceToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.agrandirMatriceToolStripMenuItem.Text = "Agrandir matrice";
+            this.agrandirMatriceToolStripMenuItem.Click += new System.EventHandler(this.agrandirMatriceToolStripMenuItem_Click);
             // 
             // aideToolStripMenuItem
             // 
@@ -458,6 +460,7 @@
             // Coller
             // 
             this.Coller.Name = "Coller";
+            this.Coller.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
             this.Coller.Size = new System.Drawing.Size(154, 22);
             this.Coller.Text = "Coller";
             this.Coller.Click += new System.EventHandler(this.Coller_Click);
