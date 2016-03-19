@@ -48,33 +48,40 @@
             this.présentationEtModeDemploiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvTableur = new System.Windows.Forms.DataGridView();
-            this.activiteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pDMproduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txCroissDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.partProduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.matriceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ofdExcel = new System.Windows.Forms.OpenFileDialog();
             this.sfdTableur = new System.Windows.Forms.SaveFileDialog();
             this.btnGenerer = new System.Windows.Forms.Button();
             this.btnAjout = new System.Windows.Forms.Button();
             this.BtnValider = new System.Windows.Forms.Button();
             this.chartBCG = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblX = new System.Windows.Forms.Label();
+            this.lblY = new System.Windows.Forms.Label();
+            this.lblRayon = new System.Windows.Forms.Label();
+            this.lblVacheALait = new System.Windows.Forms.Label();
+            this.lblPoidsMort = new System.Windows.Forms.Label();
+            this.lblVedette = new System.Windows.Forms.Label();
+            this.lblDilemme = new System.Windows.Forms.Label();
             this.cmsPaste = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.Couper = new System.Windows.Forms.ToolStripMenuItem();
             this.Copier = new System.Windows.Forms.ToolStripMenuItem();
             this.Coller = new System.Windows.Forms.ToolStripMenuItem();
+            this.pnlChartLbl = new System.Windows.Forms.Panel();
+            this.pnlLegend = new System.Windows.Forms.Panel();
+            this.tlpBouton = new System.Windows.Forms.TableLayoutPanel();
+            this.activiteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pDMproduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pDMconcuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txCroissDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.partProduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.matriceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuPrincipale.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTableur)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartBCG)).BeginInit();
             this.cmsPaste.SuspendLayout();
+            this.pnlChartLbl.SuspendLayout();
+            this.pnlLegend.SuspendLayout();
+            this.tlpBouton.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // menuPrincipale
@@ -85,7 +92,7 @@
             this.aideToolStripMenuItem});
             this.menuPrincipale.Location = new System.Drawing.Point(0, 0);
             this.menuPrincipale.Name = "menuPrincipale";
-            this.menuPrincipale.Size = new System.Drawing.Size(784, 24);
+            this.menuPrincipale.Size = new System.Drawing.Size(841, 24);
             this.menuPrincipale.TabIndex = 0;
             this.menuPrincipale.Text = "menuPrincipale";
             // 
@@ -204,6 +211,7 @@
             this.dgvTableur.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.activiteDataGridViewTextBoxColumn,
             this.pDMproduitDataGridViewTextBoxColumn,
+            this.pDMconcuDataGridViewTextBoxColumn,
             this.txCroissDataGridViewTextBoxColumn,
             this.partProduitDataGridViewTextBoxColumn});
             this.dgvTableur.DataSource = this.matriceBindingSource;
@@ -220,34 +228,6 @@
             this.dgvTableur.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvTableur_DataError);
             this.dgvTableur.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvTableur_KeyDown);
             // 
-            // activiteDataGridViewTextBoxColumn
-            // 
-            this.activiteDataGridViewTextBoxColumn.DataPropertyName = "Activite";
-            this.activiteDataGridViewTextBoxColumn.HeaderText = "Activite";
-            this.activiteDataGridViewTextBoxColumn.Name = "activiteDataGridViewTextBoxColumn";
-            // 
-            // pDMproduitDataGridViewTextBoxColumn
-            // 
-            this.pDMproduitDataGridViewTextBoxColumn.DataPropertyName = "PDMproduit";
-            this.pDMproduitDataGridViewTextBoxColumn.HeaderText = "PDMproduit";
-            this.pDMproduitDataGridViewTextBoxColumn.Name = "pDMproduitDataGridViewTextBoxColumn";
-            // 
-            // txCroissDataGridViewTextBoxColumn
-            // 
-            this.txCroissDataGridViewTextBoxColumn.DataPropertyName = "TxCroiss";
-            this.txCroissDataGridViewTextBoxColumn.HeaderText = "TxCroiss";
-            this.txCroissDataGridViewTextBoxColumn.Name = "txCroissDataGridViewTextBoxColumn";
-            // 
-            // partProduitDataGridViewTextBoxColumn
-            // 
-            this.partProduitDataGridViewTextBoxColumn.DataPropertyName = "PartProduit";
-            this.partProduitDataGridViewTextBoxColumn.HeaderText = "PartProduit";
-            this.partProduitDataGridViewTextBoxColumn.Name = "partProduitDataGridViewTextBoxColumn";
-            // 
-            // matriceBindingSource
-            // 
-            this.matriceBindingSource.DataSource = typeof(BCG.Matrice);
-            // 
             // ofdExcel
             // 
             this.ofdExcel.Title = "Importer des données Excel";
@@ -259,9 +239,10 @@
             // 
             // btnGenerer
             // 
+            this.btnGenerer.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnGenerer.BackColor = System.Drawing.Color.White;
             this.btnGenerer.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerer.Location = new System.Drawing.Point(162, 361);
+            this.btnGenerer.Location = new System.Drawing.Point(282, 5);
             this.btnGenerer.Name = "btnGenerer";
             this.btnGenerer.Size = new System.Drawing.Size(108, 26);
             this.btnGenerer.TabIndex = 2;
@@ -271,10 +252,11 @@
             // 
             // btnAjout
             // 
+            this.btnAjout.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnAjout.BackColor = System.Drawing.Color.White;
             this.btnAjout.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAjout.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAjout.Location = new System.Drawing.Point(12, 361);
+            this.btnAjout.Location = new System.Drawing.Point(8, 5);
             this.btnAjout.Name = "btnAjout";
             this.btnAjout.Size = new System.Drawing.Size(108, 26);
             this.btnAjout.TabIndex = 4;
@@ -284,10 +266,11 @@
             // 
             // BtnValider
             // 
+            this.BtnValider.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BtnValider.BackColor = System.Drawing.Color.White;
             this.BtnValider.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnValider.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnValider.Location = new System.Drawing.Point(316, 361);
+            this.BtnValider.Location = new System.Drawing.Point(138, 5);
             this.BtnValider.Name = "BtnValider";
             this.BtnValider.Size = new System.Drawing.Size(108, 26);
             this.BtnValider.TabIndex = 5;
@@ -338,7 +321,7 @@
             legend1.Enabled = false;
             legend1.Name = "Legend1";
             this.chartBCG.Legends.Add(legend1);
-            this.chartBCG.Location = new System.Drawing.Point(442, 41);
+            this.chartBCG.Location = new System.Drawing.Point(3, 3);
             this.chartBCG.Name = "chartBCG";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bubble;
@@ -350,81 +333,84 @@
             series1.Points.Add(dataPoint1);
             series1.YValuesPerPoint = 2;
             this.chartBCG.Series.Add(series1);
-            this.chartBCG.Size = new System.Drawing.Size(324, 314);
+            this.chartBCG.Size = new System.Drawing.Size(308, 308);
             this.chartBCG.TabIndex = 3;
             this.chartBCG.Text = "Repere";
             this.chartBCG.Visible = global::BCG.Properties.Settings.Default.Visible;
             this.chartBCG.MouseClick += new System.Windows.Forms.MouseEventHandler(this.chartBCG_MouseClick);
             // 
-            // label1
+            // lblX
             // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(442, 361);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(237, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "x = log (PDM produit / PDM concurrent principal)";
+            this.lblX.AutoSize = true;
+            this.lblX.ForeColor = System.Drawing.Color.White;
+            this.lblX.Location = new System.Drawing.Point(12, 6);
+            this.lblX.Name = "lblX";
+            this.lblX.Size = new System.Drawing.Size(237, 13);
+            this.lblX.TabIndex = 6;
+            this.lblX.Text = "x = log (PDM produit / PDM concurrent principal)";
             // 
-            // label2
+            // lblY
             // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(442, 385);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(170, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "y = Taux de croissance du marché";
+            this.lblY.AutoSize = true;
+            this.lblY.ForeColor = System.Drawing.Color.White;
+            this.lblY.Location = new System.Drawing.Point(12, 23);
+            this.lblY.Name = "lblY";
+            this.lblY.Size = new System.Drawing.Size(170, 13);
+            this.lblY.TabIndex = 7;
+            this.lblY.Text = "y = Taux de croissance du marché";
             // 
-            // label3
+            // lblRayon
             // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(442, 409);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(202, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "rayon = Part produit dans chiffre d\'affaires";
+            this.lblRayon.AutoSize = true;
+            this.lblRayon.ForeColor = System.Drawing.Color.White;
+            this.lblRayon.Location = new System.Drawing.Point(12, 36);
+            this.lblRayon.Name = "lblRayon";
+            this.lblRayon.Size = new System.Drawing.Size(202, 13);
+            this.lblRayon.TabIndex = 8;
+            this.lblRayon.Text = "rayon = Part produit dans chiffre d\'affaires";
             // 
-            // label4
+            // lblVacheALait
             // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(442, 342);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 13);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Vaches à lait";
+            this.lblVacheALait.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblVacheALait.AutoSize = true;
+            this.lblVacheALait.BackColor = System.Drawing.Color.White;
+            this.lblVacheALait.Location = new System.Drawing.Point(3, 298);
+            this.lblVacheALait.Name = "lblVacheALait";
+            this.lblVacheALait.Size = new System.Drawing.Size(68, 13);
+            this.lblVacheALait.TabIndex = 9;
+            this.lblVacheALait.Text = "Vaches à lait";
             // 
-            // label5
+            // lblPoidsMort
             // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(704, 342);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Poids Morts";
+            this.lblPoidsMort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPoidsMort.AutoSize = true;
+            this.lblPoidsMort.BackColor = System.Drawing.Color.White;
+            this.lblPoidsMort.Location = new System.Drawing.Point(249, 298);
+            this.lblPoidsMort.Name = "lblPoidsMort";
+            this.lblPoidsMort.Size = new System.Drawing.Size(62, 13);
+            this.lblPoidsMort.TabIndex = 10;
+            this.lblPoidsMort.Text = "Poids Morts";
             // 
-            // label6
+            // lblVedette
             // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(442, 41);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(49, 13);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Vedettes";
+            this.lblVedette.AutoSize = true;
+            this.lblVedette.BackColor = System.Drawing.Color.White;
+            this.lblVedette.Location = new System.Drawing.Point(3, 3);
+            this.lblVedette.Name = "lblVedette";
+            this.lblVedette.Size = new System.Drawing.Size(49, 13);
+            this.lblVedette.TabIndex = 11;
+            this.lblVedette.Text = "Vedettes";
             // 
-            // label7
+            // lblDilemme
             // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(714, 41);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(52, 13);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Dilemmes";
+            this.lblDilemme.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDilemme.AutoSize = true;
+            this.lblDilemme.BackColor = System.Drawing.Color.White;
+            this.lblDilemme.Location = new System.Drawing.Point(259, 3);
+            this.lblDilemme.Name = "lblDilemme";
+            this.lblDilemme.Size = new System.Drawing.Size(52, 13);
+            this.lblDilemme.TabIndex = 12;
+            this.lblDilemme.Text = "Dilemmes";
             // 
             // cmsPaste
             // 
@@ -459,36 +445,109 @@
             this.Coller.Text = "Coller";
             this.Coller.Click += new System.EventHandler(this.Coller_Click);
             // 
+            // pnlChartLbl
+            // 
+            this.pnlChartLbl.Controls.Add(this.lblVedette);
+            this.pnlChartLbl.Controls.Add(this.lblPoidsMort);
+            this.pnlChartLbl.Controls.Add(this.lblDilemme);
+            this.pnlChartLbl.Controls.Add(this.lblVacheALait);
+            this.pnlChartLbl.Controls.Add(this.chartBCG);
+            this.pnlChartLbl.Location = new System.Drawing.Point(445, 41);
+            this.pnlChartLbl.Name = "pnlChartLbl";
+            this.pnlChartLbl.Size = new System.Drawing.Size(316, 314);
+            this.pnlChartLbl.TabIndex = 13;
+            // 
+            // pnlLegend
+            // 
+            this.pnlLegend.Controls.Add(this.lblX);
+            this.pnlLegend.Controls.Add(this.lblY);
+            this.pnlLegend.Controls.Add(this.lblRayon);
+            this.pnlLegend.Location = new System.Drawing.Point(448, 361);
+            this.pnlLegend.Name = "pnlLegend";
+            this.pnlLegend.Size = new System.Drawing.Size(316, 60);
+            this.pnlLegend.TabIndex = 14;
+            // 
+            // tlpBouton
+            // 
+            this.tlpBouton.ColumnCount = 3;
+            this.tlpBouton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.25175F));
+            this.tlpBouton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.74825F));
+            this.tlpBouton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 151F));
+            this.tlpBouton.Controls.Add(this.btnAjout, 0, 0);
+            this.tlpBouton.Controls.Add(this.BtnValider, 1, 0);
+            this.tlpBouton.Controls.Add(this.btnGenerer, 2, 0);
+            this.tlpBouton.Location = new System.Drawing.Point(12, 361);
+            this.tlpBouton.Name = "tlpBouton";
+            this.tlpBouton.RowCount = 1;
+            this.tlpBouton.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpBouton.Size = new System.Drawing.Size(412, 36);
+            this.tlpBouton.TabIndex = 15;
+            // 
+            // activiteDataGridViewTextBoxColumn
+            // 
+            this.activiteDataGridViewTextBoxColumn.DataPropertyName = "Activite";
+            this.activiteDataGridViewTextBoxColumn.HeaderText = "Activite";
+            this.activiteDataGridViewTextBoxColumn.Name = "activiteDataGridViewTextBoxColumn";
+            // 
+            // pDMproduitDataGridViewTextBoxColumn
+            // 
+            this.pDMproduitDataGridViewTextBoxColumn.DataPropertyName = "PDMproduit";
+            this.pDMproduitDataGridViewTextBoxColumn.HeaderText = "PDMproduit";
+            this.pDMproduitDataGridViewTextBoxColumn.Name = "pDMproduitDataGridViewTextBoxColumn";
+            // 
+            // pDMconcuDataGridViewTextBoxColumn
+            // 
+            this.pDMconcuDataGridViewTextBoxColumn.DataPropertyName = "PDMconcu";
+            this.pDMconcuDataGridViewTextBoxColumn.HeaderText = "PDMconcu";
+            this.pDMconcuDataGridViewTextBoxColumn.Name = "pDMconcuDataGridViewTextBoxColumn";
+            // 
+            // txCroissDataGridViewTextBoxColumn
+            // 
+            this.txCroissDataGridViewTextBoxColumn.DataPropertyName = "TxCroiss";
+            this.txCroissDataGridViewTextBoxColumn.HeaderText = "TxCroiss";
+            this.txCroissDataGridViewTextBoxColumn.Name = "txCroissDataGridViewTextBoxColumn";
+            // 
+            // partProduitDataGridViewTextBoxColumn
+            // 
+            this.partProduitDataGridViewTextBoxColumn.DataPropertyName = "PartProduit";
+            this.partProduitDataGridViewTextBoxColumn.HeaderText = "PartProduit";
+            this.partProduitDataGridViewTextBoxColumn.Name = "partProduitDataGridViewTextBoxColumn";
+            // 
+            // matriceBindingSource
+            // 
+            this.matriceBindingSource.DataSource = typeof(BCG.Matrice);
+            // 
             // Principale
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(84)))), ((int)(((byte)(59)))));
-            this.ClientSize = new System.Drawing.Size(784, 436);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.BtnValider);
-            this.Controls.Add(this.btnAjout);
-            this.Controls.Add(this.chartBCG);
-            this.Controls.Add(this.btnGenerer);
+            this.ClientSize = new System.Drawing.Size(841, 561);
+            this.Controls.Add(this.tlpBouton);
+            this.Controls.Add(this.pnlLegend);
             this.Controls.Add(this.dgvTableur);
             this.Controls.Add(this.menuPrincipale);
+            this.Controls.Add(this.pnlChartLbl);
             this.MainMenuStrip = this.menuPrincipale;
-            this.MinimumSize = new System.Drawing.Size(800, 475);
+            this.MinimumSize = new System.Drawing.Size(640, 480);
             this.Name = "Principale";
             this.Text = "Principale";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Principale_FormClosed);
+            this.Load += new System.EventHandler(this.Principale_Load);
+            this.SizeChanged += new System.EventHandler(this.Principale_SizeChanged);
             this.menuPrincipale.ResumeLayout(false);
             this.menuPrincipale.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTableur)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartBCG)).EndInit();
             this.cmsPaste.ResumeLayout(false);
+            this.pnlChartLbl.ResumeLayout(false);
+            this.pnlChartLbl.PerformLayout();
+            this.pnlLegend.ResumeLayout(false);
+            this.pnlLegend.PerformLayout();
+            this.tlpBouton.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -516,26 +575,29 @@
         private System.Windows.Forms.Button btnGenerer;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartBCG;
         private System.Windows.Forms.Button btnAjout;
-        private System.Windows.Forms.DataGridViewTextBoxColumn activiteDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pDMproduitDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pDMconctDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn txCroissDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn partProduitDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button BtnValider;
 
         // LEGENDE
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblX;
+        private System.Windows.Forms.Label lblY;
+        private System.Windows.Forms.Label lblRayon;
+        private System.Windows.Forms.Label lblVacheALait;
+        private System.Windows.Forms.Label lblPoidsMort;
+        private System.Windows.Forms.Label lblVedette;
+        private System.Windows.Forms.Label lblDilemme;
 
         private System.Windows.Forms.ContextMenuStrip cmsPaste;
         private System.Windows.Forms.ToolStripMenuItem Couper;
         private System.Windows.Forms.ToolStripMenuItem Copier;
         private System.Windows.Forms.ToolStripMenuItem Coller;
+        private System.Windows.Forms.Panel pnlChartLbl;
+        private System.Windows.Forms.DataGridViewTextBoxColumn activiteDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pDMproduitDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txCroissDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn partProduitDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Panel pnlLegend;
+        private System.Windows.Forms.TableLayoutPanel tlpBouton;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pDMconcuDataGridViewTextBoxColumn;
     }
 }
 

@@ -7,6 +7,7 @@ using System.Data.OleDb;
 using System.IO;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Reflection;
+using System.Drawing;
 
 namespace BCG
 {
@@ -37,12 +38,35 @@ namespace BCG
         public Principale()
         {
             InitializeComponent();
+            this.Size = new Size(Screen.PrimaryScreen.Bounds.Width*75/100, Screen.PrimaryScreen.Bounds.Height*75/100);
+            this.CenterToScreen();
+            responsiveDesign();
+            pnlChartLbl.Controls.Add(lblDilemme);
+            pnlChartLbl.Controls.Add(lblPoidsMort);
+            pnlChartLbl.Controls.Add(lblVacheALait);
+            pnlChartLbl.Controls.Add(lblVedette);
+            chartBCG.SendToBack();
+            lblDilemme.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblPoidsMort.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lblVedette.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            lblVacheALait.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             //remplissageTableur(10);
             Points = new BindingList<Matrice>();
             actualiserTableur(Points);
-            this.AutoSize = true;
+            
         }
-        
+        public void responsiveDesign()
+        {
+            dgvTableur.Size = new Size(this.Size.Width * 45 / 100, this.Size.Height * 70 / 100);
+            pnlChartLbl.Size = new Size(this.Size.Width * 45 / 100, this.Size.Height * 70 / 100);
+            pnlChartLbl.Location = new Point(dgvTableur.Size.Width + 30, pnlChartLbl.Location.Y);
+            tlpBouton.Location = new Point(tlpBouton.Location.X, dgvTableur.Size.Height + 50);
+            pnlLegend.Location = new Point(pnlChartLbl.Location.X, pnlChartLbl.Size.Height + 45);
+            dgvTableur.MinimumSize = tlpBouton.Size;
+            pnlChartLbl.MinimumSize = new Size(300, 300);
+            chartBCG.Size = pnlChartLbl.Size;
+            tlpBouton.Size =new Size(pnlChartLbl.Size.Width,tlpBouton.Size.Height);
+        }
         /// <summary>
         /// Remplit le tableur d'objet matrice initialisé à 0
         /// </summary>
@@ -522,6 +546,16 @@ namespace BCG
         {
             Agrandir agr = new Agrandir();
 
+        }
+
+        private void Principale_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Principale_SizeChanged(object sender, EventArgs e)
+        {
+            responsiveDesign();
         }
     }
 }
