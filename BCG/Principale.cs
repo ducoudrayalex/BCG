@@ -7,6 +7,7 @@ using System.Data.OleDb;
 using System.IO;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Reflection;
+using System.Drawing;
 
 namespace BCG
 {
@@ -37,12 +38,35 @@ namespace BCG
         public Principale()
         {
             InitializeComponent();
+            this.Size = new Size(Screen.PrimaryScreen.Bounds.Width*75/100, Screen.PrimaryScreen.Bounds.Height*75/100);
+            this.CenterToScreen();
+            responsiveDesign();
+            pnlChartLbl.Controls.Add(lblDilemme);
+            pnlChartLbl.Controls.Add(lblPoidsMort);
+            pnlChartLbl.Controls.Add(lblVacheALait);
+            pnlChartLbl.Controls.Add(lblVedette);
+            chartBCG.SendToBack();
+            lblDilemme.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblPoidsMort.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lblVedette.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            lblVacheALait.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             //remplissageTableur(10);
             Points = new BindingList<Matrice>();
             actualiserTableur(Points);
-
+            
         }
-        
+        public void responsiveDesign()
+        {
+            dgvTableur.Size = new Size(this.Size.Width * 45 / 100, this.Size.Height * 70 / 100);
+            pnlChartLbl.Size = new Size(this.Size.Width * 45 / 100, this.Size.Height * 70 / 100);
+            pnlChartLbl.Location = new Point(dgvTableur.Size.Width + 30, pnlChartLbl.Location.Y);
+            tlpBouton.Location = new Point(tlpBouton.Location.X, dgvTableur.Size.Height + 50);
+            pnlLegend.Location = new Point(pnlChartLbl.Location.X, pnlChartLbl.Size.Height + 45);
+            dgvTableur.MinimumSize = tlpBouton.Size;
+            pnlChartLbl.MinimumSize = new Size(300, 300);
+            chartBCG.Size = pnlChartLbl.Size;
+            tlpBouton.Size =new Size(pnlChartLbl.Size.Width,tlpBouton.Size.Height);
+        }
         /// <summary>
         /// Remplit le tableur d'objet matrice initialisé à 0
         /// </summary>
@@ -81,7 +105,7 @@ namespace BCG
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            new Apropos().ShowDialog();
+            new AboutBox().ShowDialog();
         }
         /// <summary>
         /// Ouvre une boite de dialogue pour chercher un fichier excel à insérer dans le tableur
@@ -284,7 +308,7 @@ namespace BCG
 
                     // chartBCG.Series[Points[i].Activite].Points.Add(x, y, z);
 
-                    chartBCG.Series[Points[i].Activite].Points.AddXY((Points[i].PDMproduit / Points[i].PDMconct), Points[i].TxCroiss, Points[i].PartProduit);
+                    chartBCG.Series[Points[i].Activite].Points.AddXY((Points[i].PDMproduit / Points[i].PDMconcu), Points[i].TxCroiss, Points[i].PartProduit);
                     chartBCG.Series[Points[i].Activite].Label = "Prod." + Points[i].Activite;
                 }
                 //chartBCG.DataBind();
@@ -346,7 +370,7 @@ namespace BCG
 
                             Points[i].Activite = dgvTableur.Rows[i].Cells[0].Value.ToString();
                             Points[i].PDMproduit = (float)Convert.ChangeType(dgvTableur.Rows[i].Cells[1].Value, typeof(float));
-                            Points[i].PDMconct = (float)Convert.ChangeType(dgvTableur.Rows[i].Cells[2].Value, typeof(float));
+                            Points[i].PDMconcu = (float)Convert.ChangeType(dgvTableur.Rows[i].Cells[2].Value, typeof(float));
                             Points[i].TxCroiss = (float)Convert.ChangeType(dgvTableur.Rows[i].Cells[3].Value, typeof(float));
                             Points[i].PartProduit = (float)Convert.ChangeType(dgvTableur.Rows[i].Cells[4].Value, typeof(float));
                         }
@@ -522,6 +546,16 @@ namespace BCG
         {
             Agrandir agr = new Agrandir();
 
+        }
+
+        private void Principale_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Principale_SizeChanged(object sender, EventArgs e)
+        {
+            responsiveDesign();
         }
     }
 }

@@ -8,6 +8,7 @@ namespace BCG
         public Accueil()
         {
             InitializeComponent();
+            this.CenterToScreen();
             rtbAccueil.LoadFile("../../ressources/accueilbcg.rtf");
         }
 

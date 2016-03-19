@@ -6,12 +6,13 @@ namespace BCG
     {
         private String _activite;
         private float _PDMproduit;
-        private float _PDMconct;
+        private float _PDMconcu;
         private float _txCroiss;
         private float _partProduit;
+
         public String toString()
         {
-            return _activite + " " + _PDMproduit + " " + _PDMconct + " " + _txCroiss + " " + _partProduit;
+            return _activite + " " + _PDMproduit + " " + _PDMconcu + " " + _txCroiss + " " + _partProduit;
         }
         public Matrice()
         {
@@ -43,16 +44,16 @@ namespace BCG
             }
         }
 
-        public float PDMconct
+        public float PDMconcu
         {
             get
             {
-                return _PDMconct;
+                return _PDMconcu;
             }
 
             set
             {
-                _PDMconct = value;
+                _PDMconcu = value;
             }
         }
 
@@ -82,10 +83,10 @@ namespace BCG
             }
         }
 
-        public Matrice(String activite,float PDMProduit,float PDMconct,float txCroiss,float partProduit)
+        public Matrice(String activite,float PDMProduit,float PDMconcu,float txCroiss,float partProduit)
         {
             Activite = activite;
-            this.PDMconct = PDMconct;
+            this.PDMconcu = PDMconcu;
             PDMproduit = PDMProduit;
             TxCroiss = txCroiss;
             PartProduit = partProduit;
