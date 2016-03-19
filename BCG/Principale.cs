@@ -40,7 +40,7 @@ namespace BCG
             //remplissageTableur(10);
             Points = new BindingList<Matrice>();
             actualiserTableur(Points);
-
+            this.AutoSize = true;
         }
         
         /// <summary>

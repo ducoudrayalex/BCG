@@ -361,15 +361,13 @@
             this.chartBCG.Size = new System.Drawing.Size(324, 314);
             this.chartBCG.TabIndex = 3;
             this.chartBCG.Text = "Repere";
-<<<<<<< HEAD
+
             this.chartBCG.Visible = global::BCG.Properties.Settings.Default.Visible;
             //
             // EVENT CLICK
             //
             this.chartBCG.MouseClick += new System.Windows.Forms.MouseEventHandler(this.chartBCG_MouseClick);
 
-=======
->>>>>>> refs/remotes/origin/dev
             // 
             // label1
             // 
