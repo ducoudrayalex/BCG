@@ -50,7 +50,6 @@
             this.dgvTableur = new System.Windows.Forms.DataGridView();
             this.activiteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pDMproduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pDMconctDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txCroissDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.partProduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.matriceBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -205,7 +204,6 @@
             this.dgvTableur.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.activiteDataGridViewTextBoxColumn,
             this.pDMproduitDataGridViewTextBoxColumn,
-            this.pDMconctDataGridViewTextBoxColumn,
             this.txCroissDataGridViewTextBoxColumn,
             this.partProduitDataGridViewTextBoxColumn});
             this.dgvTableur.DataSource = this.matriceBindingSource;
@@ -233,12 +231,6 @@
             this.pDMproduitDataGridViewTextBoxColumn.DataPropertyName = "PDMproduit";
             this.pDMproduitDataGridViewTextBoxColumn.HeaderText = "PDMproduit";
             this.pDMproduitDataGridViewTextBoxColumn.Name = "pDMproduitDataGridViewTextBoxColumn";
-            // 
-            // pDMconctDataGridViewTextBoxColumn
-            // 
-            this.pDMconctDataGridViewTextBoxColumn.DataPropertyName = "PDMconct";
-            this.pDMconctDataGridViewTextBoxColumn.HeaderText = "PDMconct";
-            this.pDMconctDataGridViewTextBoxColumn.Name = "pDMconctDataGridViewTextBoxColumn";
             // 
             // txCroissDataGridViewTextBoxColumn
             // 
@@ -361,13 +353,8 @@
             this.chartBCG.Size = new System.Drawing.Size(324, 314);
             this.chartBCG.TabIndex = 3;
             this.chartBCG.Text = "Repere";
-
             this.chartBCG.Visible = global::BCG.Properties.Settings.Default.Visible;
-            //
-            // EVENT CLICK
-            //
             this.chartBCG.MouseClick += new System.Windows.Forms.MouseEventHandler(this.chartBCG_MouseClick);
-
             // 
             // label1
             // 

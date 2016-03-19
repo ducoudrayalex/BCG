@@ -81,7 +81,7 @@ namespace BCG
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            new Apropos().ShowDialog();
+            new AboutBox().ShowDialog();
         }
         /// <summary>
         /// Ouvre une boite de dialogue pour chercher un fichier excel à insérer dans le tableur
@@ -284,7 +284,7 @@ namespace BCG
 
                     // chartBCG.Series[Points[i].Activite].Points.Add(x, y, z);
 
-                    chartBCG.Series[Points[i].Activite].Points.AddXY((Points[i].PDMproduit / Points[i].PDMconct), Points[i].TxCroiss, Points[i].PartProduit);
+                    chartBCG.Series[Points[i].Activite].Points.AddXY((Points[i].PDMproduit / Points[i].PDMconcu), Points[i].TxCroiss, Points[i].PartProduit);
                     chartBCG.Series[Points[i].Activite].Label = "Prod." + Points[i].Activite;
                 }
                 //chartBCG.DataBind();
@@ -346,7 +346,7 @@ namespace BCG
 
                             Points[i].Activite = dgvTableur.Rows[i].Cells[0].Value.ToString();
                             Points[i].PDMproduit = (float)Convert.ChangeType(dgvTableur.Rows[i].Cells[1].Value, typeof(float));
-                            Points[i].PDMconct = (float)Convert.ChangeType(dgvTableur.Rows[i].Cells[2].Value, typeof(float));
+                            Points[i].PDMconcu = (float)Convert.ChangeType(dgvTableur.Rows[i].Cells[2].Value, typeof(float));
                             Points[i].TxCroiss = (float)Convert.ChangeType(dgvTableur.Rows[i].Cells[3].Value, typeof(float));
                             Points[i].PartProduit = (float)Convert.ChangeType(dgvTableur.Rows[i].Cells[4].Value, typeof(float));
                         }
