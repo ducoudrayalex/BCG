@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Windows.Forms;
 
 namespace BCG
@@ -10,14 +11,12 @@ namespace BCG
         private float _PDMconcu;
         private float _txCroiss;
         private float _partProduit;
-        private DataGridViewComboBoxCell couleurs;
         public String toString()
         {
             return _activite + " " + _PDMproduit + " " + _PDMconcu + " " + _txCroiss + " " + _partProduit;
         }
         public Matrice()
         {
-
         }
         public string Activite
         {
@@ -84,18 +83,6 @@ namespace BCG
             }
         }
 
-        public DataGridViewComboBoxCell Couleurs
-        {
-            get
-            {
-                return couleurs;
-            }
-
-            set
-            {
-                couleurs = value;
-            }
-        }
 
         public Matrice(String activite,float PDMProduit,float PDMconcu,float txCroiss,float partProduit)
         {
@@ -104,12 +91,7 @@ namespace BCG
             PDMproduit = PDMProduit;
             TxCroiss = txCroiss;
             PartProduit = partProduit;
-            couleurs = new DataGridViewComboBoxCell();
-            couleurs.Items.Add("Bleu");
-            couleurs.Items.Add("Rouge");
-            couleurs.Items.Add("Vert");
-            couleurs.Items.Add("Violet");
-            couleurs.Items.Add("noir");
+            
         }
        
     }

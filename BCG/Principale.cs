@@ -8,6 +8,8 @@ using System.IO;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Reflection;
 using System.Drawing;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace BCG
 {
@@ -15,13 +17,12 @@ namespace BCG
     {
         ///<summary>La liste de matrice représentant les lignes du tableur</summary> 
         BindingList<Matrice> Points;
-        DataGridViewComboBoxCell couleurs = new DataGridViewComboBoxCell();
         
         /// <summary>
         /// Instance de la classe BindingSource servant à lier les objets Matrice au tableur
         /// </summary>
         BindingSource bindingSource = new BindingSource();
-        
+        DataGridViewComboBoxColumn couleur = new DataGridViewComboBoxColumn();
         /// <summary>
         /// Instance de la classe CopierColler contenant les méthodes pour couper,copier et coller les données du presse papier depuis excel vers le tableur
         /// </summary>
@@ -39,28 +40,42 @@ namespace BCG
         /// </summary>
         public Principale()
         {
-            InitializeComponent();
-            this.Size = new Size(Screen.PrimaryScreen.Bounds.Width*75/100, Screen.PrimaryScreen.Bounds.Height*75/100);
-            this.CenterToScreen();
-            responsiveDesign();
-            pnlChartLbl.Controls.Add(lblDilemme);
-            pnlChartLbl.Controls.Add(lblPoidsMort);
-            pnlChartLbl.Controls.Add(lblVacheALait);
-            pnlChartLbl.Controls.Add(lblVedette);
-            chartBCG.SendToBack();
-            lblDilemme.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            lblPoidsMort.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            lblVedette.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-            lblVacheALait.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            //remplissageTableur(10);
-            Points = new BindingList<Matrice>();
-            actualiserTableur(Points);
-
-            dgvTableur.Columns[0].ToolTipText = "Produit";
-            dgvTableur.Columns[1].ToolTipText = "Chiffre d'affaire";
-            dgvTableur.Columns[2].ToolTipText = "Chiffre d'affaire concurrence";
-            dgvTableur.Columns[3].ToolTipText = "Taux de croissance du produit";
-            dgvTableur.Columns[4].ToolTipText = "Part du produit sur le marché";
+            try
+            {
+                InitializeComponent();
+                this.Size = new Size(Screen.PrimaryScreen.Bounds.Width*75/100, Screen.PrimaryScreen.Bounds.Height*75/100);
+                this.CenterToScreen();
+                responsiveDesign();
+                pnlChartLbl.Controls.Add(lblDilemme);
+                pnlChartLbl.Controls.Add(lblPoidsMort);
+                pnlChartLbl.Controls.Add(lblVacheALait);
+                pnlChartLbl.Controls.Add(lblVedette);
+                chartBCG.SendToBack();
+                lblDilemme.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+                lblPoidsMort.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+                lblVedette.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+                lblVacheALait.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+                //remplissageTableur(10);
+                Points = new BindingList<Matrice>();
+               
+                dgvTableur.Columns[0].ToolTipText = "Produit";
+                dgvTableur.Columns[1].ToolTipText = "Chiffre d'affaire";
+                dgvTableur.Columns[2].ToolTipText = "Chiffre d'affaire concurrence";
+                dgvTableur.Columns[3].ToolTipText = "Taux de croissance du produit";
+                dgvTableur.Columns[4].ToolTipText = "Part du produit sur le marché";
+                ArrayList listecouleur = new ArrayList() { "Bleu", "Rouge", "Vert", "Noir","Marron", "Jaune","Orange","Rose","Gris","Violet"};
+                couleur.DataSource = listecouleur;
+                couleur.HeaderText = "Couleur";
+                couleur.Name = "Couleur";
+                couleur.DataPropertyName = "Couleur";
+                dgvTableur.Columns.Add(couleur);
+                actualiserTableur(Points);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
         public void responsiveDesign()
         {
@@ -94,10 +109,11 @@ namespace BCG
             try
             {
                 Points.Clear();
-                bindingSource.DataSource = Points;
-                dgvTableur.AutoGenerateColumns = true;
+                bindingSource.DataSource = Points;               
                 dgvTableur.DataSource = bindingSource;
+                dgvTableur.AutoGenerateColumns = true;
                 btnAjout.Enabled = true;
+                
             }
             catch(Exception ex)
             {
@@ -207,7 +223,7 @@ namespace BCG
                     Points[0] = new Matrice("A", 25, 20, 18, 10);
                     Points[1] = new Matrice("B", 20, 30, 12, 10);
                     Points[2] = new Matrice("C", 12, 30, 5, 15);
-                    Points[3] = new Matrice("D", 59, 12, 7, 40);
+                    Points[3] = new Matrice("D", 59, 12, 7, 40);                 
                 }
                 else
                 {
@@ -311,22 +327,58 @@ namespace BCG
                     chartBCG.Series[Points[i].Activite]["BubbleMaxSize"] = "25";
                     chartBCG.Series[Points[i].Activite]["BubbleMinSize"] = "10";
                     // chartBCG.Series[Points[i].Activite]["BubbleScaleMax"] = "auto";
-                    
 
                     // chartBCG.Series[Points[i].Activite].Points.Add(x, y, z);
 
                     chartBCG.Series[Points[i].Activite].Points.AddXY((Points[i].PDMproduit / Points[i].PDMconcu), Points[i].TxCroiss, Points[i].PartProduit);
                     chartBCG.Series[Points[i].Activite].Label = "Prod." + Points[i].Activite;
+                    string SelectedText = Convert.ToString(dgvTableur.Rows[i].Cells["Couleur"].FormattedValue.ToString());
+                    changeCouleur(SelectedText,i);
                 }
                 //chartBCG.DataBind();
 
             }
             catch (Exception ex)
             {
-                throw new InvalidOperationException(ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
-
+        private void changeCouleur(string selectCouleur,int i)
+        {
+            switch (selectCouleur)
+            {
+                case "Bleu":
+                    chartBCG.Series[Points[i].Activite].Color = Color.Blue;
+                    break;
+                case "Rouge":
+                    chartBCG.Series[Points[i].Activite].Color = Color.Red;
+                    break;
+                case "Vert":
+                    chartBCG.Series[Points[i].Activite].Color = Color.Green;
+                    break;
+                case "Noir":
+                    chartBCG.Series[Points[i].Activite].Color = Color.Black;
+                    break;
+                case "Rose":
+                    chartBCG.Series[Points[i].Activite].Color = Color.Pink;
+                    break;
+                case "Jaune":
+                    chartBCG.Series[Points[i].Activite].Color = Color.Yellow;
+                    break;
+                case "Violet":
+                    chartBCG.Series[Points[i].Activite].Color = Color.Purple;
+                    break;
+                case "Marron":
+                    chartBCG.Series[Points[i].Activite].Color = Color.Brown;
+                    break;
+                case "Gris":
+                    chartBCG.Series[Points[i].Activite].Color = Color.Silver;
+                    break;
+                case "Orange":
+                    chartBCG.Series[Points[i].Activite].Color = Color.Orange;
+                    break;
+            }
+        }
         /// <summary>
         /// Ajoute une ligne au tableur en ajoutant un objet matrice vide
         /// </summary>
@@ -474,12 +526,12 @@ namespace BCG
 
         private void dgvTableur_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (dgvTableur.SelectedCells.Count > 0)
-                dgvTableur.ContextMenuStrip = cmsPaste;
-            this.dgvTableur.Rows[e.RowIndex].Selected = true;
-            this.rowIndex = e.RowIndex;
-            this.dgvTableur.CurrentCell = this.dgvTableur.Rows[e.RowIndex].Cells[1];
-            this.cmsPaste.Show(this.dgvTableur, e.Location);
+                if (dgvTableur.SelectedCells.Count > 0) { 
+                    dgvTableur.ContextMenuStrip = cmsPaste;
+                    //this.dgvTableur.Rows[e.RowIndex].Selected = true;
+                    this.rowIndex = e.RowIndex;
+                    //this.dgvTableur.CurrentCell = this.dgvTableur.Rows[e.RowIndex].Cells[1];
+                }           
         }
 
         private void dgvTableur_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -575,6 +627,12 @@ namespace BCG
             {
                 this.dgvTableur.Rows.RemoveAt(this.rowIndex);
             }
+        }
+
+        private void dgvTableur_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            
+            //dgvTableur.Rows[e.RowIndex].Cells[5].Value=cbCell;
         }
     }
 }
