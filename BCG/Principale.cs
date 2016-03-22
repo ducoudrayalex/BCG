@@ -53,7 +53,11 @@ namespace BCG
             //remplissageTableur(10);
             Points = new BindingList<Matrice>();
             actualiserTableur(Points);
-            
+            dgvTableur.Columns[0].ToolTipText = "Produit";
+            dgvTableur.Columns[1].ToolTipText = "Chiffre d'affaire";
+            dgvTableur.Columns[2].ToolTipText = "Chiffre d'affaire concurrence";
+            dgvTableur.Columns[3].ToolTipText = "Taux de croissance du produit";
+            dgvTableur.Columns[4].ToolTipText = "Part du produit sur le marché";
         }
         public void responsiveDesign()
         {

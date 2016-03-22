@@ -242,7 +242,7 @@
             this.btnGenerer.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnGenerer.BackColor = System.Drawing.Color.White;
             this.btnGenerer.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerer.Location = new System.Drawing.Point(282, 5);
+            this.btnGenerer.Location = new System.Drawing.Point(281, 5);
             this.btnGenerer.Name = "btnGenerer";
             this.btnGenerer.Size = new System.Drawing.Size(108, 26);
             this.btnGenerer.TabIndex = 2;
@@ -472,7 +472,7 @@
             this.tlpBouton.ColumnCount = 3;
             this.tlpBouton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.25175F));
             this.tlpBouton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.74825F));
-            this.tlpBouton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 151F));
+            this.tlpBouton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 152F));
             this.tlpBouton.Controls.Add(this.btnAjout, 0, 0);
             this.tlpBouton.Controls.Add(this.BtnValider, 1, 0);
             this.tlpBouton.Controls.Add(this.btnGenerer, 2, 0);
