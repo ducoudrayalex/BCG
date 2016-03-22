@@ -68,12 +68,21 @@
             this.pnlChartLbl = new System.Windows.Forms.Panel();
             this.pnlLegend = new System.Windows.Forms.Panel();
             this.tlpBouton = new System.Windows.Forms.TableLayoutPanel();
+            this.cmsCouleurBulle = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiCouleur = new System.Windows.Forms.ToolStripMenuItem();
+            this.bleu = new System.Windows.Forms.ToolStripMenuItem();
+            this.rouge = new System.Windows.Forms.ToolStripMenuItem();
+            this.vert = new System.Windows.Forms.ToolStripMenuItem();
+            this.jaune = new System.Windows.Forms.ToolStripMenuItem();
+            this.violet = new System.Windows.Forms.ToolStripMenuItem();
+            this.noir = new System.Windows.Forms.ToolStripMenuItem();
             this.activiteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pDMproduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pDMconcuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txCroissDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.partProduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.matriceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.supprimerLaLigneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuPrincipale.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTableur)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartBCG)).BeginInit();
@@ -81,6 +90,7 @@
             this.pnlChartLbl.SuspendLayout();
             this.pnlLegend.SuspendLayout();
             this.tlpBouton.SuspendLayout();
+            this.cmsCouleurBulle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -242,7 +252,7 @@
             this.btnGenerer.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnGenerer.BackColor = System.Drawing.Color.White;
             this.btnGenerer.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerer.Location = new System.Drawing.Point(281, 5);
+            this.btnGenerer.Location = new System.Drawing.Point(278, 5);
             this.btnGenerer.Name = "btnGenerer";
             this.btnGenerer.Size = new System.Drawing.Size(108, 26);
             this.btnGenerer.TabIndex = 2;
@@ -256,7 +266,7 @@
             this.btnAjout.BackColor = System.Drawing.Color.White;
             this.btnAjout.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAjout.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAjout.Location = new System.Drawing.Point(8, 5);
+            this.btnAjout.Location = new System.Drawing.Point(7, 5);
             this.btnAjout.Name = "btnAjout";
             this.btnAjout.Size = new System.Drawing.Size(108, 26);
             this.btnAjout.TabIndex = 4;
@@ -270,7 +280,7 @@
             this.BtnValider.BackColor = System.Drawing.Color.White;
             this.BtnValider.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnValider.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnValider.Location = new System.Drawing.Point(138, 5);
+            this.BtnValider.Location = new System.Drawing.Point(133, 5);
             this.BtnValider.Name = "BtnValider";
             this.BtnValider.Size = new System.Drawing.Size(108, 26);
             this.BtnValider.TabIndex = 5;
@@ -417,15 +427,16 @@
             this.cmsPaste.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Couper,
             this.Copier,
-            this.Coller});
+            this.Coller,
+            this.supprimerLaLigneToolStripMenuItem});
             this.cmsPaste.Name = "cmsPaste";
-            this.cmsPaste.Size = new System.Drawing.Size(155, 70);
+            this.cmsPaste.Size = new System.Drawing.Size(171, 114);
             // 
             // Couper
             // 
             this.Couper.Name = "Couper";
             this.Couper.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.Couper.Size = new System.Drawing.Size(154, 22);
+            this.Couper.Size = new System.Drawing.Size(170, 22);
             this.Couper.Text = "Couper";
             this.Couper.Click += new System.EventHandler(this.Couper_Click);
             // 
@@ -433,7 +444,7 @@
             // 
             this.Copier.Name = "Copier";
             this.Copier.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.Copier.Size = new System.Drawing.Size(154, 22);
+            this.Copier.Size = new System.Drawing.Size(170, 22);
             this.Copier.Text = "Copier";
             this.Copier.Click += new System.EventHandler(this.Copier_Click);
             // 
@@ -441,7 +452,7 @@
             // 
             this.Coller.Name = "Coller";
             this.Coller.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.Coller.Size = new System.Drawing.Size(154, 22);
+            this.Coller.Size = new System.Drawing.Size(170, 22);
             this.Coller.Text = "Coller";
             this.Coller.Click += new System.EventHandler(this.Coller_Click);
             // 
@@ -472,7 +483,7 @@
             this.tlpBouton.ColumnCount = 3;
             this.tlpBouton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.25175F));
             this.tlpBouton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.74825F));
-            this.tlpBouton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 152F));
+            this.tlpBouton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 158F));
             this.tlpBouton.Controls.Add(this.btnAjout, 0, 0);
             this.tlpBouton.Controls.Add(this.BtnValider, 1, 0);
             this.tlpBouton.Controls.Add(this.btnGenerer, 2, 0);
@@ -482,6 +493,62 @@
             this.tlpBouton.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpBouton.Size = new System.Drawing.Size(412, 36);
             this.tlpBouton.TabIndex = 15;
+            // 
+            // cmsCouleurBulle
+            // 
+            this.cmsCouleurBulle.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCouleur});
+            this.cmsCouleurBulle.Name = "cmsCouleurBulle";
+            this.cmsCouleurBulle.Size = new System.Drawing.Size(122, 26);
+            // 
+            // tsmiCouleur
+            // 
+            this.tsmiCouleur.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bleu,
+            this.rouge,
+            this.vert,
+            this.jaune,
+            this.violet,
+            this.noir});
+            this.tsmiCouleur.Name = "tsmiCouleur";
+            this.tsmiCouleur.Size = new System.Drawing.Size(121, 22);
+            this.tsmiCouleur.Text = "Couleurs";
+            // 
+            // bleu
+            // 
+            this.bleu.Name = "bleu";
+            this.bleu.Size = new System.Drawing.Size(105, 22);
+            this.bleu.Text = "bleu";
+            // 
+            // rouge
+            // 
+            this.rouge.Name = "rouge";
+            this.rouge.Size = new System.Drawing.Size(105, 22);
+            this.rouge.Text = "rouge";
+            // 
+            // vert
+            // 
+            this.vert.Name = "vert";
+            this.vert.Size = new System.Drawing.Size(105, 22);
+            this.vert.Text = "vert";
+            // 
+            // jaune
+            // 
+            this.jaune.Name = "jaune";
+            this.jaune.Size = new System.Drawing.Size(105, 22);
+            this.jaune.Text = "jaune";
+            // 
+            // violet
+            // 
+            this.violet.Name = "violet";
+            this.violet.Size = new System.Drawing.Size(105, 22);
+            this.violet.Text = "violet";
+            // 
+            // noir
+            // 
+            this.noir.Name = "noir";
+            this.noir.Size = new System.Drawing.Size(105, 22);
+            this.noir.Text = "noir";
             // 
             // activiteDataGridViewTextBoxColumn
             // 
@@ -517,6 +584,13 @@
             // 
             this.matriceBindingSource.DataSource = typeof(BCG.Matrice);
             // 
+            // supprimerLaLigneToolStripMenuItem
+            // 
+            this.supprimerLaLigneToolStripMenuItem.Name = "supprimerLaLigneToolStripMenuItem";
+            this.supprimerLaLigneToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.supprimerLaLigneToolStripMenuItem.Text = "Supprimer la ligne";
+            this.supprimerLaLigneToolStripMenuItem.Click += new System.EventHandler(this.supprimerLaLigneToolStripMenuItem_Click);
+            // 
             // Principale
             // 
             this.AllowDrop = true;
@@ -547,6 +621,7 @@
             this.pnlLegend.ResumeLayout(false);
             this.pnlLegend.PerformLayout();
             this.tlpBouton.ResumeLayout(false);
+            this.cmsCouleurBulle.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -598,6 +673,15 @@
         private System.Windows.Forms.Panel pnlLegend;
         private System.Windows.Forms.TableLayoutPanel tlpBouton;
         private System.Windows.Forms.DataGridViewTextBoxColumn pDMconcuDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ContextMenuStrip cmsCouleurBulle;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCouleur;
+        private System.Windows.Forms.ToolStripMenuItem bleu;
+        private System.Windows.Forms.ToolStripMenuItem rouge;
+        private System.Windows.Forms.ToolStripMenuItem vert;
+        private System.Windows.Forms.ToolStripMenuItem jaune;
+        private System.Windows.Forms.ToolStripMenuItem violet;
+        private System.Windows.Forms.ToolStripMenuItem noir;
+        private System.Windows.Forms.ToolStripMenuItem supprimerLaLigneToolStripMenuItem;
     }
 }
 

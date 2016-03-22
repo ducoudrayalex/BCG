@@ -15,6 +15,7 @@ namespace BCG
     {
         ///<summary>La liste de matrice représentant les lignes du tableur</summary> 
         BindingList<Matrice> Points;
+        DataGridViewComboBoxCell couleurs = new DataGridViewComboBoxCell();
         
         /// <summary>
         /// Instance de la classe BindingSource servant à lier les objets Matrice au tableur
@@ -25,7 +26,8 @@ namespace BCG
         /// Instance de la classe CopierColler contenant les méthodes pour couper,copier et coller les données du presse papier depuis excel vers le tableur
         /// </summary>
         CopierColler cc = new CopierColler();
-        
+
+        private int rowIndex = 0;
         /// <summary>
         /// Variables nécessaires à l'ouverture d'un fichier excel dans le tableur (version etc...)
         /// </summary>
@@ -53,6 +55,7 @@ namespace BCG
             //remplissageTableur(10);
             Points = new BindingList<Matrice>();
             actualiserTableur(Points);
+
             dgvTableur.Columns[0].ToolTipText = "Produit";
             dgvTableur.Columns[1].ToolTipText = "Chiffre d'affaire";
             dgvTableur.Columns[2].ToolTipText = "Chiffre d'affaire concurrence";
@@ -308,7 +311,7 @@ namespace BCG
                     chartBCG.Series[Points[i].Activite]["BubbleMaxSize"] = "25";
                     chartBCG.Series[Points[i].Activite]["BubbleMinSize"] = "10";
                     // chartBCG.Series[Points[i].Activite]["BubbleScaleMax"] = "auto";
-
+                    
 
                     // chartBCG.Series[Points[i].Activite].Points.Add(x, y, z);
 
@@ -473,6 +476,10 @@ namespace BCG
         {
             if (dgvTableur.SelectedCells.Count > 0)
                 dgvTableur.ContextMenuStrip = cmsPaste;
+            this.dgvTableur.Rows[e.RowIndex].Selected = true;
+            this.rowIndex = e.RowIndex;
+            this.dgvTableur.CurrentCell = this.dgvTableur.Rows[e.RowIndex].Cells[1];
+            this.cmsPaste.Show(this.dgvTableur, e.Location);
         }
 
         private void dgvTableur_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -560,6 +567,14 @@ namespace BCG
         private void Principale_SizeChanged(object sender, EventArgs e)
         {
             responsiveDesign();
+        }
+
+        private void supprimerLaLigneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!this.dgvTableur.Rows[this.rowIndex].IsNewRow)
+            {
+                this.dgvTableur.Rows.RemoveAt(this.rowIndex);
+            }
         }
     }
 }
