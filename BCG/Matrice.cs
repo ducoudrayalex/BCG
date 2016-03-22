@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Windows.Forms;
 
 namespace BCG
 {
@@ -9,14 +11,12 @@ namespace BCG
         private float _PDMconcu;
         private float _txCroiss;
         private float _partProduit;
-
         public String toString()
         {
             return _activite + " " + _PDMproduit + " " + _PDMconcu + " " + _txCroiss + " " + _partProduit;
         }
         public Matrice()
         {
-
         }
         public string Activite
         {
@@ -83,6 +83,7 @@ namespace BCG
             }
         }
 
+
         public Matrice(String activite,float PDMProduit,float PDMconcu,float txCroiss,float partProduit)
         {
             Activite = activite;
@@ -90,6 +91,7 @@ namespace BCG
             PDMproduit = PDMProduit;
             TxCroiss = txCroiss;
             PartProduit = partProduit;
+            
         }
        
     }

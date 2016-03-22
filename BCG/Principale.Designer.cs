@@ -48,6 +48,12 @@
             this.présentationEtModeDemploiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvTableur = new System.Windows.Forms.DataGridView();
+            this.activiteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pDMproduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pDMconcuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txCroissDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.partProduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.matriceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ofdExcel = new System.Windows.Forms.OpenFileDialog();
             this.sfdTableur = new System.Windows.Forms.SaveFileDialog();
             this.btnGenerer = new System.Windows.Forms.Button();
@@ -65,23 +71,27 @@
             this.Couper = new System.Windows.Forms.ToolStripMenuItem();
             this.Copier = new System.Windows.Forms.ToolStripMenuItem();
             this.Coller = new System.Windows.Forms.ToolStripMenuItem();
+            this.supprimerLaLigneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlChartLbl = new System.Windows.Forms.Panel();
             this.pnlLegend = new System.Windows.Forms.Panel();
             this.tlpBouton = new System.Windows.Forms.TableLayoutPanel();
-            this.activiteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pDMproduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pDMconcuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txCroissDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.partProduitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.matriceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cmsCouleurBulle = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiCouleur = new System.Windows.Forms.ToolStripMenuItem();
+            this.bleu = new System.Windows.Forms.ToolStripMenuItem();
+            this.rouge = new System.Windows.Forms.ToolStripMenuItem();
+            this.vert = new System.Windows.Forms.ToolStripMenuItem();
+            this.jaune = new System.Windows.Forms.ToolStripMenuItem();
+            this.violet = new System.Windows.Forms.ToolStripMenuItem();
+            this.noir = new System.Windows.Forms.ToolStripMenuItem();
             this.menuPrincipale.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTableur)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartBCG)).BeginInit();
             this.cmsPaste.SuspendLayout();
             this.pnlChartLbl.SuspendLayout();
             this.pnlLegend.SuspendLayout();
             this.tlpBouton.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).BeginInit();
+            this.cmsCouleurBulle.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuPrincipale
@@ -226,7 +236,42 @@
             this.dgvTableur.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTableur_CellMouseClick);
             this.dgvTableur.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableur_CellValueChanged);
             this.dgvTableur.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvTableur_DataError);
+            this.dgvTableur.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvTableur_RowsAdded);
             this.dgvTableur.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvTableur_KeyDown);
+            // 
+            // activiteDataGridViewTextBoxColumn
+            // 
+            this.activiteDataGridViewTextBoxColumn.DataPropertyName = "Activite";
+            this.activiteDataGridViewTextBoxColumn.HeaderText = "Activite";
+            this.activiteDataGridViewTextBoxColumn.Name = "activiteDataGridViewTextBoxColumn";
+            // 
+            // pDMproduitDataGridViewTextBoxColumn
+            // 
+            this.pDMproduitDataGridViewTextBoxColumn.DataPropertyName = "PDMproduit";
+            this.pDMproduitDataGridViewTextBoxColumn.HeaderText = "PDMproduit";
+            this.pDMproduitDataGridViewTextBoxColumn.Name = "pDMproduitDataGridViewTextBoxColumn";
+            // 
+            // pDMconcuDataGridViewTextBoxColumn
+            // 
+            this.pDMconcuDataGridViewTextBoxColumn.DataPropertyName = "PDMconcu";
+            this.pDMconcuDataGridViewTextBoxColumn.HeaderText = "PDMconcu";
+            this.pDMconcuDataGridViewTextBoxColumn.Name = "pDMconcuDataGridViewTextBoxColumn";
+            // 
+            // txCroissDataGridViewTextBoxColumn
+            // 
+            this.txCroissDataGridViewTextBoxColumn.DataPropertyName = "TxCroiss";
+            this.txCroissDataGridViewTextBoxColumn.HeaderText = "TxCroiss";
+            this.txCroissDataGridViewTextBoxColumn.Name = "txCroissDataGridViewTextBoxColumn";
+            // 
+            // partProduitDataGridViewTextBoxColumn
+            // 
+            this.partProduitDataGridViewTextBoxColumn.DataPropertyName = "PartProduit";
+            this.partProduitDataGridViewTextBoxColumn.HeaderText = "PartProduit";
+            this.partProduitDataGridViewTextBoxColumn.Name = "partProduitDataGridViewTextBoxColumn";
+            // 
+            // matriceBindingSource
+            // 
+            this.matriceBindingSource.DataSource = typeof(BCG.Matrice);
             // 
             // ofdExcel
             // 
@@ -242,7 +287,7 @@
             this.btnGenerer.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnGenerer.BackColor = System.Drawing.Color.White;
             this.btnGenerer.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerer.Location = new System.Drawing.Point(282, 5);
+            this.btnGenerer.Location = new System.Drawing.Point(275, 5);
             this.btnGenerer.Name = "btnGenerer";
             this.btnGenerer.Size = new System.Drawing.Size(108, 26);
             this.btnGenerer.TabIndex = 2;
@@ -256,7 +301,7 @@
             this.btnAjout.BackColor = System.Drawing.Color.White;
             this.btnAjout.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAjout.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAjout.Location = new System.Drawing.Point(8, 5);
+            this.btnAjout.Location = new System.Drawing.Point(5, 5);
             this.btnAjout.Name = "btnAjout";
             this.btnAjout.Size = new System.Drawing.Size(108, 26);
             this.btnAjout.TabIndex = 4;
@@ -270,7 +315,7 @@
             this.BtnValider.BackColor = System.Drawing.Color.White;
             this.BtnValider.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnValider.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnValider.Location = new System.Drawing.Point(138, 5);
+            this.BtnValider.Location = new System.Drawing.Point(129, 5);
             this.BtnValider.Name = "BtnValider";
             this.BtnValider.Size = new System.Drawing.Size(108, 26);
             this.BtnValider.TabIndex = 5;
@@ -417,15 +462,16 @@
             this.cmsPaste.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Couper,
             this.Copier,
-            this.Coller});
+            this.Coller,
+            this.supprimerLaLigneToolStripMenuItem});
             this.cmsPaste.Name = "cmsPaste";
-            this.cmsPaste.Size = new System.Drawing.Size(155, 70);
+            this.cmsPaste.Size = new System.Drawing.Size(171, 92);
             // 
             // Couper
             // 
             this.Couper.Name = "Couper";
             this.Couper.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.Couper.Size = new System.Drawing.Size(154, 22);
+            this.Couper.Size = new System.Drawing.Size(170, 22);
             this.Couper.Text = "Couper";
             this.Couper.Click += new System.EventHandler(this.Couper_Click);
             // 
@@ -433,7 +479,7 @@
             // 
             this.Copier.Name = "Copier";
             this.Copier.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.Copier.Size = new System.Drawing.Size(154, 22);
+            this.Copier.Size = new System.Drawing.Size(170, 22);
             this.Copier.Text = "Copier";
             this.Copier.Click += new System.EventHandler(this.Copier_Click);
             // 
@@ -441,9 +487,16 @@
             // 
             this.Coller.Name = "Coller";
             this.Coller.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.Coller.Size = new System.Drawing.Size(154, 22);
+            this.Coller.Size = new System.Drawing.Size(170, 22);
             this.Coller.Text = "Coller";
             this.Coller.Click += new System.EventHandler(this.Coller_Click);
+            // 
+            // supprimerLaLigneToolStripMenuItem
+            // 
+            this.supprimerLaLigneToolStripMenuItem.Name = "supprimerLaLigneToolStripMenuItem";
+            this.supprimerLaLigneToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.supprimerLaLigneToolStripMenuItem.Text = "Supprimer la ligne";
+            this.supprimerLaLigneToolStripMenuItem.Click += new System.EventHandler(this.supprimerLaLigneToolStripMenuItem_Click);
             // 
             // pnlChartLbl
             // 
@@ -472,7 +525,7 @@
             this.tlpBouton.ColumnCount = 3;
             this.tlpBouton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.25175F));
             this.tlpBouton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.74825F));
-            this.tlpBouton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 151F));
+            this.tlpBouton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 164F));
             this.tlpBouton.Controls.Add(this.btnAjout, 0, 0);
             this.tlpBouton.Controls.Add(this.BtnValider, 1, 0);
             this.tlpBouton.Controls.Add(this.btnGenerer, 2, 0);
@@ -483,39 +536,61 @@
             this.tlpBouton.Size = new System.Drawing.Size(412, 36);
             this.tlpBouton.TabIndex = 15;
             // 
-            // activiteDataGridViewTextBoxColumn
+            // cmsCouleurBulle
             // 
-            this.activiteDataGridViewTextBoxColumn.DataPropertyName = "Activite";
-            this.activiteDataGridViewTextBoxColumn.HeaderText = "Activite";
-            this.activiteDataGridViewTextBoxColumn.Name = "activiteDataGridViewTextBoxColumn";
+            this.cmsCouleurBulle.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCouleur});
+            this.cmsCouleurBulle.Name = "cmsCouleurBulle";
+            this.cmsCouleurBulle.Size = new System.Drawing.Size(122, 26);
             // 
-            // pDMproduitDataGridViewTextBoxColumn
+            // tsmiCouleur
             // 
-            this.pDMproduitDataGridViewTextBoxColumn.DataPropertyName = "PDMproduit";
-            this.pDMproduitDataGridViewTextBoxColumn.HeaderText = "PDMproduit";
-            this.pDMproduitDataGridViewTextBoxColumn.Name = "pDMproduitDataGridViewTextBoxColumn";
+            this.tsmiCouleur.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bleu,
+            this.rouge,
+            this.vert,
+            this.jaune,
+            this.violet,
+            this.noir});
+            this.tsmiCouleur.Name = "tsmiCouleur";
+            this.tsmiCouleur.Size = new System.Drawing.Size(121, 22);
+            this.tsmiCouleur.Text = "Couleurs";
             // 
-            // pDMconcuDataGridViewTextBoxColumn
+            // bleu
             // 
-            this.pDMconcuDataGridViewTextBoxColumn.DataPropertyName = "PDMconcu";
-            this.pDMconcuDataGridViewTextBoxColumn.HeaderText = "PDMconcu";
-            this.pDMconcuDataGridViewTextBoxColumn.Name = "pDMconcuDataGridViewTextBoxColumn";
+            this.bleu.Name = "bleu";
+            this.bleu.Size = new System.Drawing.Size(105, 22);
+            this.bleu.Text = "bleu";
             // 
-            // txCroissDataGridViewTextBoxColumn
+            // rouge
             // 
-            this.txCroissDataGridViewTextBoxColumn.DataPropertyName = "TxCroiss";
-            this.txCroissDataGridViewTextBoxColumn.HeaderText = "TxCroiss";
-            this.txCroissDataGridViewTextBoxColumn.Name = "txCroissDataGridViewTextBoxColumn";
+            this.rouge.Name = "rouge";
+            this.rouge.Size = new System.Drawing.Size(105, 22);
+            this.rouge.Text = "rouge";
             // 
-            // partProduitDataGridViewTextBoxColumn
+            // vert
             // 
-            this.partProduitDataGridViewTextBoxColumn.DataPropertyName = "PartProduit";
-            this.partProduitDataGridViewTextBoxColumn.HeaderText = "PartProduit";
-            this.partProduitDataGridViewTextBoxColumn.Name = "partProduitDataGridViewTextBoxColumn";
+            this.vert.Name = "vert";
+            this.vert.Size = new System.Drawing.Size(105, 22);
+            this.vert.Text = "vert";
             // 
-            // matriceBindingSource
+            // jaune
             // 
-            this.matriceBindingSource.DataSource = typeof(BCG.Matrice);
+            this.jaune.Name = "jaune";
+            this.jaune.Size = new System.Drawing.Size(105, 22);
+            this.jaune.Text = "jaune";
+            // 
+            // violet
+            // 
+            this.violet.Name = "violet";
+            this.violet.Size = new System.Drawing.Size(105, 22);
+            this.violet.Text = "violet";
+            // 
+            // noir
+            // 
+            this.noir.Name = "noir";
+            this.noir.Size = new System.Drawing.Size(105, 22);
+            this.noir.Text = "noir";
             // 
             // Principale
             // 
@@ -540,6 +615,7 @@
             this.menuPrincipale.ResumeLayout(false);
             this.menuPrincipale.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTableur)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartBCG)).EndInit();
             this.cmsPaste.ResumeLayout(false);
             this.pnlChartLbl.ResumeLayout(false);
@@ -547,7 +623,7 @@
             this.pnlLegend.ResumeLayout(false);
             this.pnlLegend.PerformLayout();
             this.tlpBouton.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.matriceBindingSource)).EndInit();
+            this.cmsCouleurBulle.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -591,13 +667,23 @@
         private System.Windows.Forms.ToolStripMenuItem Copier;
         private System.Windows.Forms.ToolStripMenuItem Coller;
         private System.Windows.Forms.Panel pnlChartLbl;
-        private System.Windows.Forms.DataGridViewTextBoxColumn activiteDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pDMproduitDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn txCroissDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn partProduitDataGridViewTextBoxColumn;
         private System.Windows.Forms.Panel pnlLegend;
         private System.Windows.Forms.TableLayoutPanel tlpBouton;
+        private System.Windows.Forms.ContextMenuStrip cmsCouleurBulle;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCouleur;
+        private System.Windows.Forms.ToolStripMenuItem bleu;
+        private System.Windows.Forms.ToolStripMenuItem rouge;
+        private System.Windows.Forms.ToolStripMenuItem vert;
+        private System.Windows.Forms.ToolStripMenuItem jaune;
+        private System.Windows.Forms.ToolStripMenuItem violet;
+        private System.Windows.Forms.ToolStripMenuItem noir;
+        private System.Windows.Forms.ToolStripMenuItem supprimerLaLigneToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn activiteDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pDMproduitDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn pDMconcuDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txCroissDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn partProduitDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn couleurDataGridViewTextBoxColumn;
     }
 }
 
