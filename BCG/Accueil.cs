@@ -7,8 +7,16 @@ namespace BCG
     {
         public Accueil()
         {
-            InitializeComponent();
-            rtbAccueil.LoadFile("../../ressources/accueilbcg.rtf");
+            try
+            {
+                InitializeComponent();
+                this.CenterToScreen();
+                rtbAccueil.LoadFile("../../ressources/accueilbcg.rtf");
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         private void btnLancer_Click(object sender, EventArgs e)

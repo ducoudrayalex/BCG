@@ -8,7 +8,7 @@ namespace BCG
         public Aide()
         {
             InitializeComponent();
-
+            this.CenterToScreen();
             rtbAide.LoadFile("../../ressources/AideBCG.rtf");
         }
 
