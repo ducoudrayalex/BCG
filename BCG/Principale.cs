@@ -17,18 +17,33 @@ namespace BCG
     {
         ///<summary>La liste de matrice représentant les lignes du tableur</summary> 
         BindingList<Matrice> Points;
-        
+
+        double min;
+        double max;
+
+        /// <summary>
+        /// Variable propres à la définition du graphique
+        /// </summary>
+        Series series1;
+        DataPoint dataPoint1;
+        ChartArea chartArea1;
+
         /// <summary>
         /// Instance de la classe BindingSource servant à lier les objets Matrice au tableur
         /// </summary>
-        BindingSource bindingSource = new BindingSource();
-        DataGridViewComboBoxColumn couleur = new DataGridViewComboBoxColumn();
+        BindingSource bindingSource;
+
+        /// <summary>
+        /// Colonne de combobox pour la sélection des couleurs
+        /// </summary>
+        DataGridViewComboBoxColumn couleur;
         /// <summary>
         /// Instance de la classe CopierColler contenant les méthodes pour couper,copier et coller les données du presse papier depuis excel vers le tableur
         /// </summary>
-        CopierColler cc = new CopierColler();
+        CopierColler cc;
 
         private int rowIndex = 0;
+
         /// <summary>
         /// Variables nécessaires à l'ouverture d'un fichier excel dans le tableur (version etc...)
         /// </summary>
@@ -46,6 +61,13 @@ namespace BCG
                 this.Size = new Size(Screen.PrimaryScreen.Bounds.Width*75/100, Screen.PrimaryScreen.Bounds.Height*75/100);
                 this.CenterToScreen();
                 responsiveDesign();
+                Points = new BindingList<Matrice>();
+                cc = new CopierColler();
+                couleur = new DataGridViewComboBoxColumn();
+                bindingSource = new BindingSource();
+                chartArea1 = new ChartArea();
+                dataPoint1 = new DataPoint(10, 10);
+                series1 = new Series();
                 pnlChartLbl.Controls.Add(lblDilemme);
                 pnlChartLbl.Controls.Add(lblPoidsMort);
                 pnlChartLbl.Controls.Add(lblVacheALait);
@@ -55,21 +77,43 @@ namespace BCG
                 lblPoidsMort.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
                 lblVedette.Anchor = AnchorStyles.Top | AnchorStyles.Left;
                 lblVacheALait.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-                //remplissageTableur(10);
-                Points = new BindingList<Matrice>();
-               
-                dgvTableur.Columns[0].ToolTipText = "Produit";
-                dgvTableur.Columns[1].ToolTipText = "Chiffre d'affaire";
-                dgvTableur.Columns[2].ToolTipText = "Chiffre d'affaire concurrence";
-                dgvTableur.Columns[3].ToolTipText = "Taux de croissance du produit";
-                dgvTableur.Columns[4].ToolTipText = "Part du produit sur le marché";
                 ArrayList listecouleur = new ArrayList() { "Bleu", "Rouge", "Vert", "Noir","Marron", "Jaune","Orange","Rose","Gris","Violet"};
                 couleur.DataSource = listecouleur;
                 couleur.HeaderText = "Couleur";
                 couleur.Name = "Couleur";
                 couleur.DataPropertyName = "Couleur";
-                dgvTableur.Columns.Add(couleur);
                 actualiserTableur(Points);
+                dgvTableur.Columns.Add(couleur);
+                dgvTableur.Columns[0].ToolTipText = "Produit";
+                dgvTableur.Columns[1].ToolTipText = "Chiffre d'affaire";
+                dgvTableur.Columns[2].ToolTipText = "Chiffre d'affaire concurrence";
+                dgvTableur.Columns[3].ToolTipText = "Taux de croissance du produit";
+                dgvTableur.Columns[4].ToolTipText = "Part du produit sur le marché";
+                dgvTableur.Columns["couleur"].ToolTipText = "Choix de la couleur";
+                
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }          
+        }
+
+        /// <summary>
+        /// Définit les propiètés en fonction de la taille de la form
+        /// </summary>
+        public void responsiveDesign()
+        {
+            try
+            {
+                dgvTableur.Size = new Size(this.Size.Width * 45 / 100, this.Size.Height * 70 / 100);
+                pnlChartLbl.Size = new Size(this.Size.Width * 45 / 100, this.Size.Height * 70 / 100);
+                pnlChartLbl.Location = new Point(dgvTableur.Size.Width + 30, pnlChartLbl.Location.Y);
+                tlpBouton.Location = new Point(tlpBouton.Location.X, dgvTableur.Size.Height + 50);
+                pnlLegend.Location = new Point(pnlChartLbl.Location.X, pnlChartLbl.Size.Height + 45);
+                dgvTableur.MinimumSize = tlpBouton.Size;
+                pnlChartLbl.MinimumSize = new Size(300, 300);
+                chartBCG.Size = pnlChartLbl.Size;
+                tlpBouton.Size = new Size(pnlChartLbl.Size.Width, tlpBouton.Size.Height);
             }
             catch(Exception ex)
             {
@@ -77,18 +121,7 @@ namespace BCG
             }
             
         }
-        public void responsiveDesign()
-        {
-            dgvTableur.Size = new Size(this.Size.Width * 45 / 100, this.Size.Height * 70 / 100);
-            pnlChartLbl.Size = new Size(this.Size.Width * 45 / 100, this.Size.Height * 70 / 100);
-            pnlChartLbl.Location = new Point(dgvTableur.Size.Width + 30, pnlChartLbl.Location.Y);
-            tlpBouton.Location = new Point(tlpBouton.Location.X, dgvTableur.Size.Height + 50);
-            pnlLegend.Location = new Point(pnlChartLbl.Location.X, pnlChartLbl.Size.Height + 45);
-            dgvTableur.MinimumSize = tlpBouton.Size;
-            pnlChartLbl.MinimumSize = new Size(300, 300);
-            chartBCG.Size = pnlChartLbl.Size;
-            tlpBouton.Size =new Size(pnlChartLbl.Size.Width,tlpBouton.Size.Height);
-        }
+
         /// <summary>
         /// Remplit le tableur d'objet matrice initialisé à 0
         /// </summary>
@@ -100,6 +133,7 @@ namespace BCG
                 Points.Add(new Matrice());
             }
         }
+
         /// <summary>
         /// Lie la liste de matrice au tableur en définissant la propriété datasource du tableur avec une Bindinglist
         /// </summary>
@@ -112,8 +146,7 @@ namespace BCG
                 bindingSource.DataSource = Points;               
                 dgvTableur.DataSource = bindingSource;
                 dgvTableur.AutoGenerateColumns = true;
-                btnAjout.Enabled = true;
-                
+                btnAjout.Enabled = true;                
             }
             catch(Exception ex)
             {
@@ -121,15 +154,26 @@ namespace BCG
             }          
         }
 
+        /// <summary>
+        /// affiche la fenetre d'Aide et de presentation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void présentationEtModeDemploiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new Aide().ShowDialog();
         }
 
+        /// <summary>
+        /// Affiche la fenetre a propos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            new AboutBox().ShowDialog();
+            new AboutBox().Show();
         }
+
         /// <summary>
         /// Ouvre une boite de dialogue pour chercher un fichier excel à insérer dans le tableur
         /// </summary>
@@ -139,6 +183,7 @@ namespace BCG
         {
             try
             {
+                dgvTableur.Columns.Remove(couleur);
                 ofdExcel.Filter = "Excel Worsheets (*.xls, *.xlsx)|*.xls;*.xlsx";
                 ofdExcel.ShowDialog();
                 string filePath = ofdExcel.FileName;
@@ -182,11 +227,12 @@ namespace BCG
                             oda.SelectCommand = cmd;
                             oda.Fill(dt);
                             con.Close();
-                            dgvTableur.DataSource = dt;
+                            dgvTableur.DataSource = dt;                            
                         }
                     }
                 }
                 btnAjout.Enabled = false;
+                dgvTableur.Columns.Add(couleur);
             }
             catch (Exception ex)
             {
@@ -194,11 +240,21 @@ namespace BCG
             }
         }
 
+        /// <summary>
+        /// quitte l'application
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void quitterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
+        /// <summary>
+        /// Vide le tableur et redéfini la datasourcede points
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rAZToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Points.Clear();
@@ -213,11 +269,12 @@ namespace BCG
         {
             try
             {
+                dgvTableur.Columns.Remove(couleur);
                 if (dgvTableur.DataSource != Points)
                 {
                     actualiserTableur(Points);
                 }
-                
+                               
                 if (Points.Count >=4)
                 {
                     Points[0] = new Matrice("A", 25, 20, 18, 10);
@@ -232,6 +289,7 @@ namespace BCG
                     Points.Add(new Matrice("C", 12, 30, 5, 15));
                     Points.Add(new Matrice("D", 59, 12, 7, 20));
                 }
+                dgvTableur.Columns.Add(couleur);
             }
             catch (Exception ex)
             {
@@ -308,41 +366,113 @@ namespace BCG
             }
         }
 
-        private void dgvTableur_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        /// <summary>
+        /// Calcul la valeur minimum de la colonne taux de croissance(txcroiss)
+        /// </summary>
+        /// <returns>retourn la valeur minimum min de type double</returns>
+        private double min_axisY()
         {
+            min = Points[0].TxCroiss;
+            for (int i = 1; i < Points.Count-1; i++)
+            {                
+                if (min > Points[i].TxCroiss)
+                    min = Points[i].TxCroiss;
+                              
+            }
+            return min-4;
         }
 
+        /// <summary>
+        /// Calcul la valeur maximum de la colonne taux de croissance(txcroiss)
+        /// </summary>
+        /// <returns>retourn la valeur max de type double</returns>
+        private double max_axisY()
+        {
+            max = Points[0].TxCroiss;
+            for (int i = 1; i < Points.Count-1; i++)
+            {                
+                if (max < Points[i].TxCroiss)
+                    max = Points[i].TxCroiss;               
+            }
+            return max+5;
+        }
+
+        /// <summary>
+        /// Génération des axes du graphique et insertion des bulles représentant les activités et le résultat des données du tableur
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnGenerer_Click(object sender, EventArgs e)
         {
-
-            chartBCG.Series.Clear();
-            //chartBCG.Visible = true;
             try
             {
-                for (int i = 0; i < /*4 */Points.Count; i++)
+                series1.Points.Clear();
+                chartBCG.Series.Clear();
+                chartBCG.ChartAreas.Clear();
+                validationTableur();              
+                chartArea1.AxisX.Crossing = 0.01;
+                chartArea1.AxisX.IsLogarithmic = true;
+                chartArea1.AxisX.IsReversed = true;
+                chartArea1.AxisX.IsStartedFromZero = false;
+                chartArea1.AxisX.Maximum = 10;
+                chartArea1.AxisX.Minimum = 0.1;
+                chartArea1.AxisX.IntervalAutoMode = IntervalAutoMode.VariableCount;
+                chartArea1.AxisX.Title = "X";
+                chartArea1.AxisX.TitleAlignment = StringAlignment.Far;
+                chartArea1.Name = "chartArea1";
+                chartArea1.AxisY.Maximum = max_axisY();
+                chartArea1.AxisY.Minimum = min_axisY();
+                chartArea1.AxisY.Crossing = (max - min) / 2;
+                chartArea1.AxisY.Interval = (max - min) / 5;
+                chartArea1.AxisY.Title = "Y";
+                chartArea1.AxisY.TitleAlignment = StringAlignment.Far;
+                series1.ChartArea = "chartArea1";
+                series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bubble;
+                series1.IsVisibleInLegend = false;
+                series1.Legend = "Legend1";
+                series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+                series1.Name = "Series1";
+                dataPoint1.Color = System.Drawing.Color.White;
+                series1.Points.Add(dataPoint1);
+                series1.YValuesPerPoint = 2;
+                this.chartBCG.Series.Add(series1);
+                chartBCG.ChartAreas.Add(chartArea1);
+                chartArea1.AxisX.MajorGrid.Enabled = false;
+                chartArea1.AxisY.MajorGrid.Enabled = false;
+                chartArea1.AxisY.MajorTickMark.Enabled = false;
+                for (int i = 0; i < Points.Count; i++)
                 {
-                    chartBCG.Series.Add(Points[i].Activite);
-                    chartBCG.Series[Points[i].Activite].ChartType = SeriesChartType.Bubble;
-                    chartBCG.Series[Points[i].Activite].MarkerStyle = MarkerStyle.Circle;
-                    chartBCG.Series[Points[i].Activite]["BubbleMaxSize"] = "25";
-                    chartBCG.Series[Points[i].Activite]["BubbleMinSize"] = "10";
-                    // chartBCG.Series[Points[i].Activite]["BubbleScaleMax"] = "auto";
+                    if (Points[i].Activite != "" && Points[i].PDMproduit!=0 && Points[i].PDMconcu!=0 && Points[i].PartProduit!=0 && Points[i].TxCroiss!=0)
+                    {
+                        chartBCG.Series.Add(Points[i].Activite);
+                        chartBCG.Series[Points[i].Activite].ChartType = SeriesChartType.Bubble;
+                        chartBCG.Series[Points[i].Activite].MarkerStyle = MarkerStyle.Circle;
+                        chartBCG.Series[Points[i].Activite]["BubbleMaxSize"] = "25";
+                        chartBCG.Series[Points[i].Activite]["BubbleMinSize"] = "10";
+                        // chartBCG.Series[Points[i].Activite]["BubbleScaleMax"] = "auto";
 
-                    // chartBCG.Series[Points[i].Activite].Points.Add(x, y, z);
-
-                    chartBCG.Series[Points[i].Activite].Points.AddXY((Points[i].PDMproduit / Points[i].PDMconcu), Points[i].TxCroiss, Points[i].PartProduit);
-                    chartBCG.Series[Points[i].Activite].Label = "Prod." + Points[i].Activite;
-                    string SelectedText = Convert.ToString(dgvTableur.Rows[i].Cells["Couleur"].FormattedValue.ToString());
-                    changeCouleur(SelectedText,i);
+                        // chartBCG.Series[Points[i].Activite].Points.Add(x, y, z);                   
+                        chartBCG.Series[Points[i].Activite].Points.AddXY((Points[i].PDMproduit / Points[i].PDMconcu), Points[i].TxCroiss, Points[i].PartProduit);
+                        chartBCG.Series[Points[i].Activite].Label = "Prod." + Points[i].Activite;
+                        string SelectedText = Convert.ToString(dgvTableur.Rows[i].Cells["Couleur"].FormattedValue.ToString());
+                        changeCouleur(SelectedText, i);
+                    }
+                    else {
+                        
+                    }                   
                 }
-                //chartBCG.DataBind();
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
+        /// <summary>
+        /// Change la couleur des points sur le graphique en fonction de la valeur de la combobox
+        /// </summary>
+        /// <param name="selectCouleur">Valeur de la cellule contenant la combobox</param>
+        /// <param name="i">index de la ligne de la combobox</param>
         private void changeCouleur(string selectCouleur,int i)
         {
             switch (selectCouleur)
@@ -396,11 +526,9 @@ namespace BCG
         }
 
         /// <summary>
-        /// Insère les données saisies dans le tableur dans des objets matrice
+        /// Fill les données du tableur dans la bindinglist de matrice Points en fonction du datasource du tableur
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnValider_Click(object sender, EventArgs e)
+        private void validationTableur()
         {
             try
             {
@@ -445,14 +573,13 @@ namespace BCG
                             (float)Convert.ChangeType(dgvTableur.Rows[i].Cells[4].Value, typeof(float))));
 
                         }
-                    }                 
+                    }
                 }
-                BtnValider.Enabled = false;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }             
+            }
         }
 
         /// <summary>
@@ -504,6 +631,11 @@ namespace BCG
 
         }
 
+        /// <summary>
+        /// Coupe les valeurs selectionner du tableur et les copient dans le presse papier
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Couper_Click(object sender, EventArgs e)
         {
             //Copie dans le presse papier
@@ -514,11 +646,21 @@ namespace BCG
                 dgvCell.Value = 0;
         }
 
+        /// <summary>
+        /// Copie les valeurs dans le presse papier
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Copier_Click(object sender, EventArgs e)
         {
             cc.CopyToClipboard(dgvTableur);
         }
 
+        /// <summary>
+        /// Colle les valeurs du presse papier dans le tableur
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Coller_Click(object sender, EventArgs e)
         {
             cc.PasteClipboardValue(dgvTableur);
@@ -533,18 +675,6 @@ namespace BCG
                     //this.dgvTableur.CurrentCell = this.dgvTableur.Rows[e.RowIndex].Cells[1];
                 }           
         }
-
-        private void dgvTableur_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            BtnValider.Enabled = true;
-        }
-
-        private void dgvTableur_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            BtnValider.Enabled = true;
-        }
-
-
 
         private void chartBCG_MouseClick(object sender, MouseEventArgs e)
         {
@@ -573,6 +703,11 @@ namespace BCG
             Application.Exit();
         }
 
+        /// <summary>
+        /// Agrandissement du tableur dans une fentre 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void agrToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Agrandir agr=new Agrandir();
@@ -621,6 +756,11 @@ namespace BCG
             responsiveDesign();
         }
 
+        /// <summary>
+        /// Supprime la ligne sélectionnée
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void supprimerLaLigneToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!this.dgvTableur.Rows[this.rowIndex].IsNewRow)
@@ -628,11 +768,6 @@ namespace BCG
                 this.dgvTableur.Rows.RemoveAt(this.rowIndex);
             }
         }
-
-        private void dgvTableur_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            
-            //dgvTableur.Rows[e.RowIndex].Cells[5].Value=cbCell;
-        }
     }
+
 }
