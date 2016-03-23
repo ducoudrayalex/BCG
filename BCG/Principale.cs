@@ -328,17 +328,20 @@ namespace BCG
                     }
                 }
                 sfdTableur.Filter = "Excel Worsheets (*.xls, *.xlsx)|*.xls;*.xlsx";
-                sfdTableur.ShowDialog();
-                xlWorkBook.SaveAs(sfdTableur.FileName);
-                //xlWorkBook.SaveAs("maMatriceBCG.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
-                xlWorkBook.Close(true, misValue, misValue);
-                xlApp.Quit();
+                if (sfdTableur.ShowDialog() == DialogResult.OK)
+                {
+                    xlWorkBook.SaveAs(sfdTableur.FileName);
+                    //xlWorkBook.SaveAs("maMatriceBCG.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+                    xlWorkBook.Close(true, misValue, misValue);
+                    xlApp.Quit();
 
-                releaseObject(xlWorkSheet);
-                releaseObject(xlWorkBook);
-                releaseObject(xlApp);
+                    releaseObject(xlWorkSheet);
+                    releaseObject(xlWorkBook);
+                    releaseObject(xlApp);
+                }else
+                {
 
-                MessageBox.Show("Fichier excel créé , vous pouvez trouver le fichier à " + sfdTableur.FileName);
+                }           
             }
             catch (Exception ex)
             {
@@ -396,7 +399,7 @@ namespace BCG
                 if (max < Points[i].TxCroiss)
                     max = Points[i].TxCroiss;               
             }
-            return max+5;
+            return max+10;
         }
 
         /// <summary>
@@ -422,19 +425,20 @@ namespace BCG
                 chartArea1.AxisX.Title = "X";
                 chartArea1.AxisX.TitleAlignment = StringAlignment.Far;
                 chartArea1.Name = "chartArea1";
-                chartArea1.AxisY.Maximum = max_axisY() + 5;
+                chartArea1.AxisY.Maximum = max_axisY();
                 chartArea1.AxisY.Minimum = min_axisY();
                 chartArea1.AxisY.Crossing = (max - min) / 2;
                 chartArea1.AxisY.Interval = (max - min) / 5;
+                chartArea1.AxisY.LabelStyle.Format = "#'%'";
                 chartArea1.AxisY.Title = "Y";
                 chartArea1.AxisY.TitleAlignment = StringAlignment.Far;
                 series1.ChartArea = "chartArea1";
-                series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bubble;
+                series1.ChartType = SeriesChartType.Bubble;
                 series1.IsVisibleInLegend = false;
                 series1.Legend = "Legend1";
-                series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+                series1.MarkerStyle = MarkerStyle.Circle;
                 series1.Name = "Series1";
-                dataPoint1.Color = System.Drawing.Color.White;
+                dataPoint1.Color = Color.White;
                 series1.Points.Add(dataPoint1);
                 series1.YValuesPerPoint = 2;
                 this.chartBCG.Series.Add(series1);
@@ -451,11 +455,8 @@ namespace BCG
                         chartBCG.Series[Points[i].Activite].MarkerStyle = MarkerStyle.Circle;
                         chartBCG.Series[Points[i].Activite]["BubbleMaxSize"] = "25";
                         chartBCG.Series[Points[i].Activite]["BubbleMinSize"] = "1";
-                        // chartBCG.Series[Points[i].Activite]["BubbleScaleMax"] = "auto";
-
-                        // chartBCG.Series[Points[i].Activite].Points.Add(x, y, z);                   
                         chartBCG.Series[Points[i].Activite].Points.AddXY((Points[i].PDMproduit / Points[i].PDMconcu), Points[i].TxCroiss, Points[i].PartProduit);
-                        chartBCG.Series[Points[i].Activite].Label = /*"Prod." +*/ Points[i].Activite;
+                        chartBCG.Series[Points[i].Activite].Label = Points[i].Activite;
                         string SelectedText = Convert.ToString(dgvTableur.Rows[i].Cells["Couleur"].FormattedValue.ToString());
                         changeCouleur(SelectedText, i);
                     }
@@ -678,6 +679,11 @@ namespace BCG
                 }           
         }
 
+        /// <summary>
+        /// Affiche, suivant où l'on clique sur le graphique un message explicatif de la zone 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void chartBCG_MouseClick(object sender, MouseEventArgs e)
         {
             Chart c = (Chart)sender;
@@ -702,7 +708,23 @@ namespace BCG
 
         private void Principale_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            string message = "Voulez-vous sauvegarder votre travail ?";
+            string caption = "Quitter l'application";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result;
+
+            result = MessageBox.Show(message,caption, buttons);
+
+            if (result == DialogResult.Yes)
+            {
+                enregistrerToolStripMenuItem_Click(sender,e);
+                Application.Exit();
+            }
+            else
+            {
+                Application.Exit();
+            }
+            
         }
 
         /// <summary>
@@ -769,6 +791,11 @@ namespace BCG
             {
                 this.dgvTableur.Rows.RemoveAt(this.rowIndex);
             }
+        }
+
+        private void sfdTableur_FileOk(object sender, CancelEventArgs e)
+        {
+            MessageBox.Show("Fichier excel créé , vous pouvez trouver le fichier à " + sfdTableur.FileName);
         }
     }
 
