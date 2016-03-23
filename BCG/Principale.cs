@@ -683,17 +683,17 @@ namespace BCG
             int Y = c.Location.Y;
             int mX = e.Location.X;
             int mY = e.Location.Y;
-            
-            if( (e.Button == MouseButtons.Left) && ( (mX >= 0 && mX <= 162 ) && (mY >= 0 && mY <= 157) ) )
+
+            if( (e.Button == MouseButtons.Left) && ((mX >= 0 && mX <= chartBCG.Size.Width/2) && (mY >= 0 && mY <= chartBCG.Size.Height / 4)))
                 MessageBox.Show("STARS :\n\nPart de marché relative élevée sur un marché en forte croissance. Fort besoin de liquidité pour continuer la croissance (ex : les smartphones pour Samsung).");
 
-            if ((e.Button == MouseButtons.Left) && ((mX > 162 && mX < 324) && (mY >= 0 && mY <= 157)))
+            if ((e.Button == MouseButtons.Left) && ((mX > chartBCG.Size.Width / 2 && mX < chartBCG.Size.Width) && (mY >= 0 && mY <= chartBCG.Size.Height/4)))
                 MessageBox.Show("DILEMMES :\n\nPart de marché relative faible sur un marché en croissance élevée. Peu rentable, voire déficitaire en termes de flux financiers, nécessite des investissements importants pour l'acquisition d'une bonne part de marché relative afin de ne pas devenir des poids morts (ex : Free mobile dans le portefeuille d'activités d'Iliad).");
 
-            if ((e.Button == MouseButtons.Left) && ((mX > 162 && mX < 324) && (mY >= 157 && mY <= 314)))
+            if ((e.Button == MouseButtons.Left) && ((mX > chartBCG.Size.Width / 2 && mX < chartBCG.Size.Width) && (mY >= chartBCG.Size.Height*3 / 4 && mY <= chartBCG.Size.Height)))
                 MessageBox.Show("POIDS MORTS: \n\nPart de marché relative faible sur un marché en faible croissance. Faible potentiel de développement, peu consommateur de capitaux, ne dégage pas de flux financiers stables, faible rentabilité voire nulle ou négative (ex : Ma ligne Visio, offre visiophonie dans le portefeuille d'activités de France Telecom).");
 
-            if ((e.Button == MouseButtons.Left) && ((mX > 0 && mX < 162) && (mY > 157 && mY <= 314)))
+            if ((e.Button == MouseButtons.Left) && ((mX > 0 && mX < chartBCG.Size.Width / 2) && ( mY >= chartBCG.Size.Height * 3 / 4 && mY <= chartBCG.Size.Height)))
                 MessageBox.Show("VACHE A LAIT: \n\nPart de marché relative élevée sur un marché en faible croissance, en phase de maturité ou en déclin. Exigeant peu d'investissements nouveaux et dégageant des flux financiers importants qui devront être réinvesti intelligemment sur les vedettes et les dilemmes (ex : la Freebox dans le portefeuille d'activités d'Iliad).");
 
         }
