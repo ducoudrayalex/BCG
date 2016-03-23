@@ -83,7 +83,6 @@ namespace BCG
                 couleur.Name = "Couleur";
                 couleur.DataPropertyName = "Couleur";
                 actualiserTableur(Points);
-                dgvTableur.Columns.Add(couleur);
                 dgvTableur.Columns[0].ToolTipText = "Produit";
                 dgvTableur.Columns[1].ToolTipText = "Chiffre d'affaire";
                 dgvTableur.Columns[2].ToolTipText = "Chiffre d'affaire concurrence";
@@ -143,10 +142,14 @@ namespace BCG
             try
             {
                 Points.Clear();
-                bindingSource.DataSource = Points;               
+                if(dgvTableur.Columns.Contains(couleur))
+                    dgvTableur.Columns.Remove(couleur);
+                bindingSource.DataSource = Points;
                 dgvTableur.DataSource = bindingSource;
                 dgvTableur.AutoGenerateColumns = true;
-                btnAjout.Enabled = true;                
+                btnAjout.Enabled = true;
+                if(!dgvTableur.Columns.Contains(couleur))
+                    dgvTableur.Columns.Add(couleur);
             }
             catch(Exception ex)
             {
@@ -183,6 +186,7 @@ namespace BCG
         {
             try
             {
+                Points.Clear();
                 dgvTableur.Columns.Remove(couleur);
                 ofdExcel.Filter = "Excel Worsheets (*.xls, *.xlsx)|*.xls;*.xlsx";
                 ofdExcel.ShowDialog();
@@ -232,6 +236,7 @@ namespace BCG
                     }
                 }
                 btnAjout.Enabled = false;
+
                 dgvTableur.Columns.Add(couleur);
             }
             catch (Exception ex)
@@ -257,7 +262,6 @@ namespace BCG
         /// <param name="e"></param>
         private void rAZToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Points.Clear();
             actualiserTableur(Points);
         }
         /// <summary>
@@ -269,11 +273,7 @@ namespace BCG
         {
             try
             {
-                dgvTableur.Columns.Remove(couleur);
-                if (dgvTableur.DataSource != Points)
-                {
-                    actualiserTableur(Points);
-                }
+                actualiserTableur(Points);
                                
                 if (Points.Count >=5)
                 {
@@ -291,7 +291,7 @@ namespace BCG
                     Points.Add(new Matrice("iPod", 18, 3, -20, 10));
                     Points.Add(new Matrice("Mac", 10, 20, 3, 25));
                 }
-                dgvTableur.Columns.Add(couleur);
+                
             }
             catch (Exception ex)
             {
@@ -427,7 +427,7 @@ namespace BCG
                 chartArea1.Name = "chartArea1";
                 chartArea1.AxisY.Maximum = max_axisY();
                 chartArea1.AxisY.Minimum = min_axisY();
-                chartArea1.AxisY.Crossing = (max - min) / 2;
+                chartArea1.AxisY.Crossing = max / 2;
                 chartArea1.AxisY.Interval = (max - min) / 5;
                 chartArea1.AxisY.LabelStyle.Format = "#'%'";
                 chartArea1.AxisY.Title = "Y";
@@ -539,13 +539,13 @@ namespace BCG
                 {
                     if (Points.Count > 0)
                     {
-                        for (int i = 0; i < dgvTableur.Rows.Count - 2; i++)
+                        for (int i = 0; i < dgvTableur.Rows.Count-1; i++)
                         {
                             Points[i] = (Matrice)dgvTableur.Rows[i].DataBoundItem;
                         }
                     }
                     else {
-                        for (int i = 0; i < dgvTableur.Rows.Count - 2; i++)
+                        for (int i = 0; i < dgvTableur.Rows.Count-1; i++)
                         {
                             Points.Add((Matrice)dgvTableur.Rows[i].DataBoundItem);
                         }
@@ -555,7 +555,7 @@ namespace BCG
                 {
                     if (Points.Count > 0)
                     {
-                        for (int i = 0; i < dgvTableur.Rows.Count - 2; i++)
+                        for (int i = 0; i < dgvTableur.Rows.Count-1; i++)
                         {
 
                             Points[i].Activite = dgvTableur.Rows[i].Cells[0].Value.ToString();
@@ -566,7 +566,7 @@ namespace BCG
                         }
                     }
                     else {
-                        for (int i = 0; i < dgvTableur.Rows.Count - 2; i++)
+                        for (int i = 0; i < dgvTableur.Rows.Count-1; i++)
                         {
 
                             Points.Add(new Matrice(dgvTableur.Rows[i].Cells[0].Value.ToString(),
