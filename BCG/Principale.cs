@@ -674,9 +674,10 @@ namespace BCG
                 if (dgvTableur.SelectedCells.Count > 0) { 
                     dgvTableur.ContextMenuStrip = cmsPaste;
                     //this.dgvTableur.Rows[e.RowIndex].Selected = true;
-                    this.rowIndex = e.RowIndex;
+                    
                     //this.dgvTableur.CurrentCell = this.dgvTableur.Rows[e.RowIndex].Cells[1];
-                }           
+                }
+            this.rowIndex = e.RowIndex;
         }
 
         /// <summary>
@@ -789,7 +790,9 @@ namespace BCG
         {
             if (!this.dgvTableur.Rows[this.rowIndex].IsNewRow)
             {
+
                 this.dgvTableur.Rows.RemoveAt(this.rowIndex);
+                validationTableur();
             }
         }
 
