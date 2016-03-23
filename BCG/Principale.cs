@@ -275,19 +275,21 @@ namespace BCG
                     actualiserTableur(Points);
                 }
                                
-                if (Points.Count >=4)
+                if (Points.Count >=5)
                 {
-                    Points[0] = new Matrice("A", 25, 20, 18, 10);
-                    Points[1] = new Matrice("B", 20, 30, 12, 10);
-                    Points[2] = new Matrice("C", 12, 30, 5, 15);
-                    Points[3] = new Matrice("D", 59, 12, 7, 40);                 
+                    Points[0] = new Matrice("iPhone", 30, 5, 60, 40);
+                    Points[1] = new Matrice("iTunes", 20, 2.2F, 25, 15);
+                    Points[2] = new Matrice("iPad", 9, 3, 5, 15);
+                    Points[3] = new Matrice("iPod", 18, 3, -20, 10);
+                    Points[4] = new Matrice("Mac", 10, 20, 3, 25);                
                 }
                 else
                 {
-                    Points.Add(new Matrice("A", 25, 20, 18, 10));
-                    Points.Add(new Matrice("B", 20, 30, 12, 10));
-                    Points.Add(new Matrice("C", 12, 30, 5, 15));
-                    Points.Add(new Matrice("D", 59, 12, 7, 20));
+                    Points.Add(new Matrice("iPhone", 30, 5, 60, 40));
+                    Points.Add(new Matrice("iTunes", 20, 2.2F, 25, 15));
+                    Points.Add(new Matrice("iPad", 9, 3, 5, 15));
+                    Points.Add(new Matrice("iPod", 18, 3, -20, 10));
+                    Points.Add(new Matrice("Mac", 10, 20, 3, 25));
                 }
                 dgvTableur.Columns.Add(couleur);
             }
@@ -397,7 +399,7 @@ namespace BCG
                 if (max < Points[i].TxCroiss)
                     max = Points[i].TxCroiss;               
             }
-            return max+5;
+            return max+10;
         }
 
         /// <summary>
@@ -452,9 +454,9 @@ namespace BCG
                         chartBCG.Series[Points[i].Activite].ChartType = SeriesChartType.Bubble;
                         chartBCG.Series[Points[i].Activite].MarkerStyle = MarkerStyle.Circle;
                         chartBCG.Series[Points[i].Activite]["BubbleMaxSize"] = "25";
-                        chartBCG.Series[Points[i].Activite]["BubbleMinSize"] = "10";                  
+                        chartBCG.Series[Points[i].Activite]["BubbleMinSize"] = "1";
                         chartBCG.Series[Points[i].Activite].Points.AddXY((Points[i].PDMproduit / Points[i].PDMconcu), Points[i].TxCroiss, Points[i].PartProduit);
-                        chartBCG.Series[Points[i].Activite].Label = "Prod." + Points[i].Activite;
+                        chartBCG.Series[Points[i].Activite].Label = Points[i].Activite;
                         string SelectedText = Convert.ToString(dgvTableur.Rows[i].Cells["Couleur"].FormattedValue.ToString());
                         changeCouleur(SelectedText, i);
                     }
